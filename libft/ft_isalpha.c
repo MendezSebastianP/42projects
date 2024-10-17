@@ -7,7 +7,7 @@ int ft_isalpha(int c)
     
 }
 
-#include <ctype.h>
+/* #include <ctype.h>
 #include <stdio.h>
 
 int main(void)
@@ -16,4 +16,4 @@ int main(void)
     printf("%d \n", isalpha(a));
     printf("%d", ft_isalpha(a));
     return (0);
-}
+} */
