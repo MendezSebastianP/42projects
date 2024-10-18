@@ -13,7 +13,7 @@ int ft_isalnum(int c)
 int main(void)
 {
     char a = '1';
-    printf("%d \n", isalnum(a));
-    printf("%d", ft_isalnum(a));
+    printf("Intended result: %d \n", isalnum(a));
+    printf("Our result     : %d", ft_isalnum(a));
     return (0);
 }

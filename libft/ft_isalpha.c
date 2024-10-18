@@ -7,13 +7,13 @@ int ft_isalpha(int c)
     
 }
 
-/* #include <ctype.h>
+#include <ctype.h>
 #include <stdio.h>
 
 int main(void)
 {
     char a = 'V';
-    printf("%d \n", isalpha(a));
-    printf("%d", ft_isalpha(a));
+    printf("Intended result: %d \n", isalpha(a));
+    printf("Our result     : %d", ft_isalpha(a));
     return (0);
-} */
+}

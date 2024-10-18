@@ -13,7 +13,7 @@ int ft_isdigit(int c)
 int main(void)
 {
     char a = '1';
-    printf("%d \n", isdigit(a));
-    printf("%d", ft_isdigit(a));
+    printf("Intended result: %d \n", isdigit(a));
+    printf("Our result     : %d", ft_isdigit(a));
     return (0);
 }

@@ -13,7 +13,7 @@ int ft_isprint(int c)
 int main(void)
 {
     char a = ' ';
-    printf("%d \n", isprint(a));
-    printf("%d", ft_isprint(a));
+    printf("Intended result: %d \n", isprint(a));
+    printf("Our result     : %d", ft_isprint(a));
     return (0);
 }

@@ -13,7 +13,7 @@ int ft_isascii(int c)
 int main(void)
 {
     char a = 'é';
-    printf("%d \n", isascii(a));
-    printf("%d", ft_isascii(a));
+    printf("Intended result: %d \n", isascii(a));
+    printf("Our result     : %d", ft_isascii(a));
     return (0);
 }

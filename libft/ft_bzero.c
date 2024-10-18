@@ -31,7 +31,7 @@ int main(void)
     //str1[27] = '\0';
     ft_bzero(str2, 4);
     //str2[27] = '\0';
-    printf("%s \n", str1);
-    printf("%s", str2);
+    printf("Intended result: %s \n", str1);
+    printf("Our result     : %s", str2);
     return (0);
 }
