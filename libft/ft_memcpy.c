@@ -7,6 +7,8 @@ void    *ft_memcpy(void *dest_str, const void * src_str, size_t n)
     unsigned char *ptr;
     const char *src;
 
+    if (dest_str == NULL || src_str == NULL)
+    return (NULL);
     i = 0;
     ptr = dest_str;
     src = src_str;
@@ -15,7 +17,7 @@ void    *ft_memcpy(void *dest_str, const void * src_str, size_t n)
         ptr[i] = src[i];
         i++;
     }
-    return ptr;
+    return dest_str;
 }
 
 #include <string.h>
