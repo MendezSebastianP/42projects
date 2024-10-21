@@ -1,6 +1,8 @@
-int ft_strlen(char *c)
+#include <stddef.h>
+
+int ft_strlen(const char *c)
 {
-    int i;
+    size_t i;
 
     i = 0;
     while (c[i] != '\0')
@@ -15,7 +17,7 @@ int ft_strlen(char *c)
 int main(void)
 {
     char *a = "Vamos a contar";
-    printf("Intended result: %d \n", strlen(a));
+    printf("Intended result: %ld \n", strlen(a));
     printf("Our result     : %d", ft_strlen(a));
     return (0);
 }
