@@ -24,12 +24,12 @@ int     ft_memcmp(const void *s1, const void *s2, size_t n)
 
 int main() {
     char str[] = "zd7ddd";
-    char str2[] = "";
+    char str2[] = "ddd";
     int sum1;
     int sum2;
 
-    sum1 = ft_memcmp(str, str2, 0);
-    sum2 = memcmp(str, str2, 0);
+    sum1 = ft_memcmp(str, str2, 2);
+    sum2 = memcmp(str, str2, 2);
     printf("our result: %d \n", sum1);
     printf("intended result: %d", sum2);
     return 0;
