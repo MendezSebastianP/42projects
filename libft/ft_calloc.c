@@ -1,15 +1,5 @@
 #include <stdlib.h>
 
-int     ft_strlen(char *a)
-{
-        int     i;
-
-        i = 0;
-        while (a[i] != '\0')
-                i++;
-        return (i);
-}
-
 void    *ft_calloc(size_t nitems, size_t size)
 {
         unsigned char    *t;
@@ -31,14 +21,6 @@ void    *ft_calloc(size_t nitems, size_t size)
 
 #include <stdio.h>
 #include <stdlib.h>
-
-/* int     main(int argc, char *argv[])
-{
-        (void)argc;
-        printf("Our result     : %d \n", ft_atoi(argv[1]));
-        printf("Intended result: %d", atoi(argv[1]));
-        return(0);
-} */
 
 int     main(int argc, char *argv[])
 {
