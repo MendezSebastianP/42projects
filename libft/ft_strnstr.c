@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/04 12:42:11 by smendez-          #+#    #+#             */
+/*   Updated: 2024/11/04 12:42:12 by smendez-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /* Needed to return NULL, if not it doesnt work :( */
 /* strnstr didnt work at home, verifie at school*/
 #include <stddef.h> 
