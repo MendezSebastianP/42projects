@@ -1,35 +1,22 @@
 #include <stdlib.h>
 
-int lent2(char *s1, char c1, int t1)
+int	powerf(int b)
 {
-    int i;
-    int j;
-    int k;
-    
-    i = 0;
-    k = -1;
-    while (s1[i])
-    {
-        j = 0;
-        while (s1[i] == c1)
-        i++;
-        while (s1[i] != c1 && s1[i])
-        {
-            i++;
-            j++;
-        }
-        if (s1[i] == c1 || !s1[i])
-        k++;
-        if (k == t1)
-        return (j);
-    }
-    return (0);
+	int	c;
+
+	c = 1;
+	while (b > 0)
+	{
+		c = c * 10;
+		b = b - 1;
+	}
+	return (c);
 }
 
 #include <stdio.h>
 int main(int c, char *v[])
 {
     (void)c;
-    printf("lenght: %d", lent2(v[1], v[2][0], atoi(v[3])));
+    printf("Number size: %d", powerf(atoi(v[1]))  );
     return (0);
 }

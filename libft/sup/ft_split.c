@@ -6,37 +6,11 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:35:37 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/05 09:16:47 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/05 09:34:10 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
-int lent2(char const *s1, char c1, int t1)
-{
-    int i;
-    int j;
-    int k;
-    
-    i = 0;
-    k = -1;
-    while (s1[i])
-    {
-        j = 0;
-        while (s1[i] == c1)
-            i++;
-        while (s1[i] != c1 && s1[i])
-        {
-            i++;
-            j++;
-        }
-        if (s1[i] == c1 || !s1[i])
-            k++;
-        if (k == t1)
-            return (j);
-    }
-    return (0);
-}
 
 int splitlen(char const *s1, char c1)
 {
@@ -60,12 +34,21 @@ int splitlen(char const *s1, char c1)
     }
     return (i + k - j);
 }
-char    *t2f(char *s, int start_s, int len_s)
+char    *t2f(char const *s, int start_s, char c)
 {
     int i;
+    int j;
+    int len_s;
     char    *t2;
     
     i = 0;
+    j = start_s;
+    len_s = 0;
+    while(s[j] != c && s[j])
+    {
+        len_s++;
+        j++;
+    }
     t2 = malloc(len_s * sizeof(char) + 1);
     if (t2 == NULL)
         return (NULL);
@@ -80,8 +63,6 @@ char    *t2f(char *s, int start_s, int len_s)
 char    **ft_split(char const *s, char c)
 {
     char    **t1;
-    char    *t2;
-    int k;
     int i;
     int j;
 
@@ -96,16 +77,9 @@ char    **ft_split(char const *s, char c)
             i++;
         if (!s[i])
             break;
-        t2 = malloc(lent2(s, c, j) * sizeof(char) + 1);
-        k = 0;
-        while(s[i] != c)
-        {
-            t2[k++] = s[i];
+        t1[j++] = t2f(s, i, c);
+        while(s[i] != c && s[i])
             i++;
-        }
-        t2[k] = '\0';
-        t1[j++] = t2;
-        i++;
     }
     t1[j] = NULL;
     return (t1);
