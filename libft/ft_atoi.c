@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:39:10 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/04 12:39:13 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/06 17:30:12 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,5 @@ int     main(int argc, char *argv[])
         printf("Intended result: %d", atoi(argv[1]));
         return(0);
 }
-/* int     main(int argc, char *argv[])
-{
-        (void)argc;
-        printf("Our result     : %d \n", ft_atoi(" \n \t -+2147483647asd"));
-        printf("Intended result: %d", atoi(" \n \t +-2147483647asd"));
-        return(0);
-}  */
 
 

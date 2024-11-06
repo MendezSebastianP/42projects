@@ -6,10 +6,11 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:41:32 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/04 12:41:35 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/06 09:32:44 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/* Test overlapping with source +2 if doenst work */
 #include <stddef.h>
 int overlaptest(void *dest_str, const void * src_str, size_t n)
 {
@@ -73,8 +74,8 @@ int main(void)
     char str2[21];
     strcpy(str1, "abcde");
     strcpy(str2, "abcde");
-    memmove(str1 + 2, str1, 4);
-    ft_memmove(str2 + 2, str2, 4);
+    memmove(str1 + 2, str1, 10);
+    ft_memmove(str2 + 2, str2, 10);
     printf("Intended result: %s \n", str1);
     printf("Our result     : %s \n", str2);
     return (0);
