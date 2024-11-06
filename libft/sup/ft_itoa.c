@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 09:42:49 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/05 13:15:04 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/06 10:00:06 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int sizenbr(int numb)
     int i;
 
     i = 1;
+    if (numb == -2147483648)
+        numb = -2147483647;
     if (numb < 0)
     {
         i++;
@@ -45,11 +47,16 @@ int sizenbr(int numb)
     }
     return (i);
 }
+int firstnumb(long int numb)
+{
+    while(numb > 9)
+        numb = numb / 10;
+    return (numb);
+}
 
 char    *ft_itoa(int k)
 {
     int i;
-    long int j;
     long int n;
     int sizen;
     char    *str1;
@@ -62,24 +69,19 @@ char    *ft_itoa(int k)
         return (NULL);
     if (n < 0)
     {
-        str1[i] = '-';
-        i++;
+        str1[i++] = '-';
         n = n * -1;
     }
-    j = n;
     while(i < sizen)
     {
-        while(j > 9)
-            j = j / 10;
-        str1[i] = j + 48;
-        
-        n = n - (j * powerf(sizen - i - 1));
-        j = n;
-        i++;
+        str1[i] = firstnumb(n) + 48;
+        n = n - (firstnumb(n) * powerf(sizen - i++ - 1));
     }
     str1[i] = '\0';
     return(str1);
 }
+
+
 #include <stdlib.h>
 #include <stdio.h>
 int main(int c, char *v[])
