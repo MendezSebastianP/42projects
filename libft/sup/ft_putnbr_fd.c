@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:27:03 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/06 16:19:34 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/06 17:27:24 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ void ft_putnbr_fd(int n, int fd)
 	b1 = n + 48;
 	write(fd, &b1, 1);
 }
-
-int main(void)
+#include <stdlib.h>
+int main(int c, char *v[])
 {
-    char a = 'T';
-    ft_putnbr_fd(a,0);
-    ft_putnbr_fd('\n',1);
+	(void)c;
+    ft_putnbr_fd(atoi(v[1]),1);
+	write(1,"\n", 1);
     return (0);
 }
