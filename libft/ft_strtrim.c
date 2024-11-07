@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:39:00 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/04 12:39:03 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:42:02 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int isin(const char *set, const char c)
     }
     return (0);
 }
-int ft_strlentrim(const char *c, const char *set)
+int     ft_strlentrim(const char *c, const char *set)
 {
         size_t  i;
         size_t  j;

@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:40:58 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/04 12:40:59 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/07 14:18:32 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ int main(void)
 {
     char a = ' ';
     printf("Intended result: %d \n", isprint(a));
-    printf("Our result     : %d", ft_isprint(a));
+    printf("Our result    :  %d", ft_isprint(a));
     return (0);
 }

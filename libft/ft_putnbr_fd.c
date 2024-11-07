@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:27:03 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/06 17:27:24 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:34:53 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	maxn(int a1)
 	return (a1);
 }
 
-void ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
 	int	b1;
 	int	d1;

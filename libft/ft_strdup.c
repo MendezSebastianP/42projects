@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 12:41:51 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/04 12:41:52 by smendez-         ###   ########.fr       */
+/*   Created: 2024/11/04 12:36:28 by smendez-          #+#    #+#             */
+/*   Updated: 2024/11/04 12:36:33 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int ft_strlen(const char *c)
+int     ft_strlen(const char *c)
 {
     size_t i;
 
@@ -22,20 +22,18 @@ int ft_strlen(const char *c)
     return (i);
 }
 
-void    *ft_strdup(const char * source)
+void    *ft_substr(char const *s, unsigned int start, size_t len)
 {
         unsigned char    *t;
         size_t  i;
-        size_t  nitems;
 
         i = 0;
-        nitems = ft_strlen(source);
-        t = malloc(nitems * sizeof(char) + 1);
+        t = malloc(len * sizeof(char) + 1);
         if (t == NULL)
                 return (NULL);
-        while (nitems > i)
+        while (len > i)
         {
-                t[i] = source[i];
+                t[i] = s[i + start];
                 i++;
         }
         t[i] = '\0';
@@ -49,14 +47,14 @@ int     main(int argc, char *argv[])
 {
         (void)argc;
         char *str = argv[1];
-        char *s1 = ft_strdup(str);;
-        char *s2 = strdup(str);;
-        int i = 0;
-
+        int start = atoi(argv[2]);
+        int len = atoi(argv[3]);
+        char *s1 = ft_substr(str, start, len);;
+        /* char *s2 = substr(str, start, len); */
         printf("Our result     : %s\n", s1);
-        printf("Intended result: %s", s2);
+        /* printf("Intended result: %s", s2); */
         free(s1);
-        free(s2);
+        /* free(s2); */
         return(0);
 } 
 

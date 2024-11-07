@@ -6,12 +6,12 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:39:10 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/06 17:30:12 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:54:42 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* Add is sign function if line 17 is too long */
-int     ft_atoi(const char *s)
+int	ft_atoi(const char *s)
 {
         int     i;
         int     j;

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcopy.c                                      :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:41:58 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/04 12:41:59 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:40:25 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 
-unsigned int    ft_strlcpy(char *dest, char *src, size_t size)
+size_t  ft_strlcpy(char *dest, char *src, size_t size)
 {
         size_t   i;
 

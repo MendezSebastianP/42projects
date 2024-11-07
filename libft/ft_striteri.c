@@ -6,13 +6,13 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:32:20 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/06 14:59:26 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:37:00 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-void ft_striteri(char *s, void (*f)(unsigned int, char*))
+void    ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
     int i;
 

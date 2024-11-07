@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 10:37:11 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/06 14:32:34 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:41:05 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int ft_strlen(const char *c)
     return (i);
 }
 
-char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char    *ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
     char  *str1;
     int i;
