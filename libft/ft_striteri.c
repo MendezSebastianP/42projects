@@ -12,30 +12,30 @@
 
 #include <stdlib.h>
 
-void    ft_striteri(char *s, void (*f)(unsigned int, char*))
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (s[i])
-    {
-        f(i, &s[i]);
-        i++;
-    }
+	i = 0;
+	while (s[i])
+	{
+		f(i, &s[i]);
+		i++;
+	}
 }
 
 #include <stdio.h>
 #include <ctype.h>
 void ft_toupperalternate(unsigned int i, char *ch)
 {
-    if(i % 2 == 0 && !(*ch < 97 || *ch > 122))
-        *ch = *ch - 32;
+	if(i % 2 == 0 && !(*ch < 97 || *ch > 122))
+		*ch = *ch - 32;
 }
 int main()
 {
-    char b1[50] = "vamos a ver si funciona";
-    ft_striteri(b1, ft_toupperalternate);
+	char b1[50] = "vamos a ver si funciona";
+	ft_striteri(b1, ft_toupperalternate);
 
-    printf("Result: %s", b1);
-    return (0);
+	printf("Result: %s", b1);
+	return (0);
 }

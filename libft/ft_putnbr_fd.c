@@ -68,7 +68,7 @@ void	ft_putnbr_fd(int n, int fd)
 int main(int c, char *v[])
 {
 	(void)c;
-    ft_putnbr_fd(atoi(v[1]),1);
+	ft_putnbr_fd(atoi(v[1]),1);
 	write(1,"\n", 1);
-    return (0);
+	return (0);
 }
