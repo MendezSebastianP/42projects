@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:39:16 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/07 15:24:59 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/08 12:07:28 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_bzero(void *str, size_t n)
 		i++;
 	}
 }
-
+/* 
 #include <stdio.h>
 #include <string.h>
 
@@ -43,4 +43,4 @@ int	main(void)
 	printf("Intended result: %s \n", str1);
 	printf("Our result		: %s", str2);
 	return (0);
-}
+} */

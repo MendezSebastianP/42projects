@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:39:26 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/04 12:39:51 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/08 12:11:47 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,23 @@ void	*ft_calloc(size_t nitems, size_t size)
 	return (t);
 }
 
+/* 
 #include <stdio.h>
 #include <stdlib.h>
 
 int	main(int argc, char *argv[])
 {
 	int	n;
+	int	i;
 	int	*s1;
 	int	*s2;
-	int	i;
 
 	(void)argc;
 	n = atoi(argv[1]);
 	i = 0;
 	s1 = (int *)ft_calloc(n, sizeof(int));
 	s2 = (int *)calloc(n, sizeof(int));
-	printf("Our result		: ");
+	printf("Our result     : ");
 	while (i < n)
 	{
 		printf("%d ", s1[i]);
@@ -65,3 +66,4 @@ int	main(int argc, char *argv[])
 	free(s2);
 	return (0);
 }
+ */
