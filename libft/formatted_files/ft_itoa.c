@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 09:42:49 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/06 10:00:06 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/08 13:27:18 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	powerf(int b)
 	}
 	return (c);
 }
+
 int	sizenbr(int numb)
 {
 	int	i;
@@ -47,6 +48,7 @@ int	sizenbr(int numb)
 	}
 	return (i);
 }
+
 int	firstnumb(long int numb)
 {
 	while (numb > 9)
@@ -81,7 +83,7 @@ char	*ft_itoa(int k)
 	return (str1);
 }
 
-#include <stdio.h>
+/* #include <stdio.h>
 #include <stdlib.h>
 
 int	main(int c, char *v[])
@@ -93,4 +95,4 @@ int	main(int c, char *v[])
 	printf("Our function: %s", s1);
 	free(s1);
 	return (0);
-}
+} */

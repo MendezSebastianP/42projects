@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:39:10 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/08 12:07:06 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/08 13:15:58 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ int	ft_atoi(const char *s)
 int	main(int argc, char *argv[])
 {
 	(void)argc;
-	printf("Our result     : %d \n", ft_atoi(argv[1]));
-	printf("Intended result: %d", atoi(argv[1]));
+	printf("Our result	: %d \n", ft_atoi(argv[1]));
+	printf("Intended result	: %d", atoi(argv[1]));
 	return(0);
 }
 int	main(void)
 {
 	char *a = "  \t \n 123";
-	printf("Our result     : %d \n", ft_atoi(a));
-	printf("Intended result: %d", atoi(a));
+	printf("Our result	: %d \n", ft_atoi(a));
+	printf("Intended resul	: %d", atoi(a));
 	return(0);
 } */

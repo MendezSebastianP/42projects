@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:39:26 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/08 12:11:47 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/08 13:17:06 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int argc, char *argv[])
 	i = 0;
 	s1 = (int *)ft_calloc(n, sizeof(int));
 	s2 = (int *)calloc(n, sizeof(int));
-	printf("Our result     : ");
+	printf("Our result	: ");
 	while (i < n)
 	{
 		printf("%d ", s1[i]);
@@ -55,7 +55,7 @@ int	main(int argc, char *argv[])
 	}
 	i = 0;
 	printf("\n");
-	printf("Intended result: ");
+	printf("Intended result	: ");
 	while (i < n)
 	{
 		printf("%d ", s2[i]);

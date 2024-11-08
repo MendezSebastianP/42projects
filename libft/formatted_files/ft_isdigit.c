@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:40:52 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/07 14:10:54 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/08 13:23:46 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_isdigit(int c)
 		return (0);
 }
 
-#include <ctype.h>
+/* #include <ctype.h>
 #include <stdio.h>
 
 int	main(void)
@@ -26,7 +26,7 @@ int	main(void)
 	char	a;
 
 	a = '1';
-	printf("Intended result: %d \n", isdigit(a));
-	printf("Our result		: %d", ft_isdigit(a));
+	printf("Intended result	: %d \n", isdigit(a));
+	printf("Our result	: %d", ft_isdigit(a));
 	return (0);
-}
+} */

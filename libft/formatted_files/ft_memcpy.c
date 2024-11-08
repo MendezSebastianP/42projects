@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:41:24 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/04 12:41:25 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:51:29 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	*ft_memcpy(void *dest_str, const void *src_str, size_t n)
 	}
 	return (dest_str);
 }
-
+/* 
 #include <stdio.h>
 #include <string.h>
 
@@ -54,7 +54,7 @@ int	main(void)
 	strcpy(str2, "Lets see what happen");
 	memcpy(str1, src, ft_strlen(src) + 1);
 	ft_memcpy(str2, src, ft_strlen(src) + 1);
-	printf("Intended result: %s \n", str1);
-	printf("Our result		: %s", str2);
+	printf("Intended result	: %s \n", str1);
+	printf("Our result	: %s", str2);
 	return (0);
-}
+} */

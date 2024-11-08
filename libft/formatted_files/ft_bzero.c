@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:39:16 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/08 12:07:28 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/08 13:16:23 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(void)
 	printf("Our result	before: %s \n", str2);
 	bzero(str1 + 8, 4);
 	ft_bzero(str2 + 8, 4);
-	printf("Intended result: %s \n", str1);
-	printf("Our result		: %s", str2);
+	printf("Intended result	: %s \n", str1);
+	printf("Our result	: %s", str2);
 	return (0);
 } */

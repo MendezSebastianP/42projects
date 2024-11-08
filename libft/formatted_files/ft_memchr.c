@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:41:04 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/04 12:41:05 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/08 13:34:59 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 
 void	*ft_memchr(const void *str, int c, size_t n)
 {
-	int			i;
-	const char	*ptr;
+	size_t			i;
+	const char		*ptr;
 
 	ptr = str;
 	i = 0;
 	while (ptr[i] != c && i != n)
 		i++;
-	if (ptr[i] == c)
+	if (ptr[i] == c && ptr[i])
 		return ((char *)(str + i));
 	else
 		return (NULL);
 }
 
-#include <stdio.h>
+/* #include <stdio.h>
 #include <string.h>
 
 int	main(int argc, char *argv[])
@@ -39,10 +39,10 @@ int	main(int argc, char *argv[])
 	(void)argc;
 	l1 = ft_memchr(argv[1], argv[2][0], strlen(argv[1]));
 	l2 = memchr(argv[1], argv[2][0], strlen(argv[1]));
-	printf("Our result		: %s \n", l1);
-	printf("Intended result : %s", l2);
+	printf("Our result	: %s \n", l1);
+	printf("Intended result	: %s", l2);
 	return (0);
-}
+} */
 /* This function is very usefull to count how many times you find a character
 or to find the index	(printf("position:%ld", result - text)) */
 

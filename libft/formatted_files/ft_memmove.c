@@ -6,18 +6,19 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:41:32 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/06 09:32:44 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/08 17:52:58 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* Test overlapping with source +2 if doenst work */
 #include <stddef.h>
+
 int	overlaptest(void *dest_str, const void *src_str, size_t n)
 {
-	const char	*src_start = src_str;
-	const char	*src_end = src_str + n - 1;
-	const char	*dest_start = dest_str;
-	const char	*dest_end = dest_str + n - 1;
+	const unsigned char	*src_start = (const unsigned char *)src_str;
+	const unsigned char	*src_end = (const unsigned char *)src_str + n - 1;
+	const unsigned char	*dest_start = (const unsigned char *)dest_str;
+	const unsigned char	*dest_end = (const unsigned char *)dest_str + n - 1;
 
 	if ((src_start <= dest_end) && (src_end >= dest_start))
 		return (1);
@@ -44,16 +45,13 @@ void	*ft_memmove(void *dest_str, const void *src_str, size_t n)
 		}
 		return (dest_str);
 	}
-	else
+	i = 0;
+	while (i < n)
 	{
-		i = 0;
-		while (i < n)
-		{
-			ptr[i] = src[i];
-			i++;
-		}
-		return (dest_str);
+		ptr[i] = src[i];
+		i++;
 	}
+	return (dest_str);
 }
 
 #include <stdio.h>
@@ -71,15 +69,21 @@ size_t	ft_strlen(const char *c)
 // test1 overlap
 int	main(void)
 {
-	char	str1[21];
-	char	str2[21];
+	char	str1[15];
+	char	str2[15];
 
-	strcpy(str1, "abcde");
-	strcpy(str2, "abcde");
-	memmove(str1 + 2, str1, 10);
-	ft_memmove(str2 + 2, str2, 10);
-	printf("Intended result: %s \n", str1);
-	printf("Our result		: %s \n", str2);
+	strcpy(str1, "abcd");
+	strcpy(str2, "abcd");
+	memmove(str1 + 2, str1, 4);
+	ft_memmove(str2 + 2, str2, 4);
+	for (int i = 0; i < 6; i++) {
+	printf("str1[%d]: %p, str1[%d]: %p\n", i, (void*)&str1[i], i, (void*)&str1[i] + 2);
+	}
+	for (int i = 0; i < 6; i++) {
+	printf("str2[%d]: %p, str2[%d]: %p\n", i, (void*)&str2[i], i, (void*)&str2[i] + 2);
+	}
+	printf("Intended result	: %s \n", str1);
+	printf("Our result	: %s \n", str2);
 	return (0);
 }
 // test 2 rest
