@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:41:39 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/04 16:32:18 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/08 19:42:03 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ int	main(void)
 	char	str1[11] = "0123456789";
 	char	str2[11] = "0123456789";
 
-	memset(str1, '#', 5);
+	memset(str1, '#', 4);
 	str1[10] = '\0';
-	ft_memset(str2, '#', 5);
+	ft_memset(str2, '#', 4);
 	str2[10] = '\0';
-	printf("Intended result: %s \n", str1);
-	printf("Our result		: %s", str2);
+	printf("Intended result	: %s \n", str1);
+	printf("Our result	: %s", str2);
 	return (0);
 }
