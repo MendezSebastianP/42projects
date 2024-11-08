@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:41:39 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/08 19:42:03 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/08 19:43:16 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	*ft_memset(void *str, int c, size_t n)
 	}
 	return (str);
 }
-
+/* 
 #include <stdio.h>
 #include <string.h>
 
@@ -42,4 +42,4 @@ int	main(void)
 	printf("Intended result	: %s \n", str1);
 	printf("Our result	: %s", str2);
 	return (0);
-}
+} */
