@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:41:46 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/04 12:41:47 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/08 18:26:01 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int argc, char *argv[])
 } */
 /* This function is very usefull to count how many times you find a character
 or to find the index	(printf("position:%ld", result - text)) */
-int	main(int argc, char *argv[])
+/* int	main(int argc, char *argv[])
 {
 	(void)argc;
 	i = 0;
@@ -58,4 +58,4 @@ int	main(int argc, char *argv[])
 			ft_strchr(a, argv[2][0]) - argv[1]);
 	}
 	return (0);
-}
+} */
