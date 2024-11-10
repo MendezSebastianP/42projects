@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:42:07 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/04 12:42:08 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/10 14:10:02 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 #include <string.h>
 
 int	main(void) {
-	char str[] = "aa";
+	char str[] = "a3a";
 	char str2[] = "aa";
 	int sum1;
 	int sum2;
@@ -41,4 +41,5 @@ int	main(void) {
 	printf("our result: %d \n", sum1);
 	printf("intended result: %d", sum2);
 	return (0);
-} */
+}
+ */

@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:41:58 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/07 13:40:25 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/10 14:06:07 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ size_t	ft_strlcpy(char *dest, char *src, size_t size)
 	}
 	return (i);
 }
-
+/* 
 #include <stdio.h>
 #include <string.h>
 
@@ -43,9 +43,10 @@ int	main(void)
 	size_t	copiedlen;
 
 	src = "Hello, world!";
-	copiedlen = ft_strlcpy(dest, src, 8);
+	copiedlen = ft_strlcpy(dest, src, 0);
 	printf("Copied string: %s\n", dest);
 	printf("Expected length: %lu, Copied length: %lu\n", strlen(src),
 		copiedlen);
 	return (0);
 }
+ */

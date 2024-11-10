@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 10:37:11 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/07 13:41:05 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/10 14:08:28 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	str1[i] = '\0';
 	return (str1);
 }
-
+/* 
 #include <ctype.h>
 #include <stdio.h>
 
@@ -59,3 +59,4 @@ int	main(void)
 	printf("Result: %s", ft_strmapi(b1, ft_toupperalternate));
 	return (0);
 }
+ */

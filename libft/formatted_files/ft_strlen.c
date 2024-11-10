@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:42:02 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/04 12:42:03 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/10 14:07:22 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,15 @@ int	ft_strlen(const char *c)
 	return (i);
 }
 
-// another code option proposed at memcpy
-#include <stdio.h>
+/* #include <stdio.h>
 #include <string.h>
 
 int	main(void)
 {
 	char	*a;
 
-	a = "Vamos a contar";
-	printf("Intended result: %ld \n", strlen(a));
-	printf("Our result		: %d", ft_strlen(a));
+	a = "123456";
+	printf("Intended result	: %ld \n", strlen(a));
+	printf("Our result	: %d", ft_strlen(a));
 	return (0);
-}
+} */

@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:42:11 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/06 10:12:14 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/10 14:16:43 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 /* strnstr didnt work at home, verifie at school*/
 #include <stddef.h>
 
-int	ft_strlen(const char *c)
+size_t	ft_strlen(const char *c)
 {
 	size_t	i;
 
@@ -27,12 +27,12 @@ int	ft_strlen(const char *c)
 char	*ft_strnstr(const char *str, const char *search_str, size_t n)
 {
 	int	i;
-	int	j;
+	size_t	j;
 
 	i = 0;
-	j = 0;
 	while (str[i] != '\0')
 	{
+		j = 0;
 		while (str[i] != search_str[j] && str[i] != '\0')
 			i++;
 		if (str[i] == search_str[j])
@@ -46,19 +46,17 @@ char	*ft_strnstr(const char *str, const char *search_str, size_t n)
 	}
 	return (NULL);
 }
-
+/* 
 #include <stdio.h>
 #include <string.h>
 
 int	main(int argc, char *argv[])
 {
 	(void)argc;
-	printf("Our result		: %s \n", ft_strnstr(argv[1], argv[2],
-					ft_strlen(argv[2])));
-	// printf("Intended result : %s", strnstr(argv[1], argv[2],
+	printf("Our result : %s \n", ft_strnstr(argv[1], argv[2], 
 			ft_strlen(argv[2])));
 	return (0);
-}
+} */
 /* This function is very usefull to count how many times you find a character
 or to find the index	(printf("position:%ld", result - text)) */
 
