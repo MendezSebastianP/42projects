@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:27:03 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/06 15:55:18 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/10 11:08:15 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_putchar_fd(char c, int fd)
 	write(fd, &c, 1);
 }
 
-int	main(void)
+/* int	main(void)
 {
 	char	a;
 
@@ -25,4 +25,4 @@ int	main(void)
 	ft_putchar_fd(a, 0);
 	ft_putchar_fd('\n', 1);
 	return (0);
-}
+} */

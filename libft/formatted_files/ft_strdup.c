@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:41:51 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/07 16:24:20 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/10 11:12:55 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	*ft_strdup(const char *source)
 	t[i] = '\0';
 	return (t);
 }
-
+/* 
 #include <stdio.h>
 #include <string.h>
 
@@ -55,13 +55,11 @@ int	main(int argc, char *argv[])
 	(void)argc;
 	str = argv[1];
 	s1 = ft_strdup(str);
-	;
 	s2 = strdup(str);
-	;
 	i = 0;
 	printf("Our result     : %s\n", s1);
 	printf("Intended result: %s", s2);
 	free(s1);
 	free(s2);
 	return (0);
-}
+} */

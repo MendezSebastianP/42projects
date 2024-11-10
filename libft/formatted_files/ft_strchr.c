@@ -6,11 +6,10 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:41:46 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/08 18:26:01 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/10 11:12:17 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Needed to return NULL, if not it doesnt work :( */
 #include <stddef.h>
 
 char	*ft_strchr(const char *str, int search_str)
@@ -26,18 +25,14 @@ char	*ft_strchr(const char *str, int search_str)
 		return (NULL);
 }
 
-#include <stdio.h>
+/* #include <stdio.h>
 
-/* #include <string.h>
+#include <string.h>
 int	main(int argc, char *argv[])
 {
-	int		i;
-	int		j;
-	char	*a;
-
 	(void)argc;
-	printf("Our result		: %s \n", ft_strchr(argv[1], argv[2][0]));
-	printf("Intended result : %s", strchr(argv[1], argv[2][0]));
+	printf("Our result	: %s \n", ft_strchr(argv[1], argv[2][0]));
+	printf("Intended result	: %s", strchr(argv[1], argv[2][0]));
 	return (0);
 } */
 /* This function is very usefull to count how many times you find a character

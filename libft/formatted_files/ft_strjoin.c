@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:38:06 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/04 12:38:45 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/10 11:15:58 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@ int	ft_strlen(const char *c)
 
 char	*ft_strjoin(char const *s1, const char *s2)
 {
-	unsigned char	*t;
+	char	*t;
 	size_t			i;
 	size_t			j;
 
 	i = 0;
+	j = 0;
 	t = malloc((ft_strlen(s1) + ft_strlen(s2)) * sizeof(char) + 1);
 	if (t == NULL)
 		return (NULL);
@@ -45,7 +46,7 @@ char	*ft_strjoin(char const *s1, const char *s2)
 	t[i + j] = '\0';
 	return (t);
 }
-
+/* 
 #include <stdio.h>
 #include <string.h>
 
@@ -55,11 +56,7 @@ int	main(int argc, char *argv[])
 
 	(void)argc;
 	s1 = ft_strjoin(argv[1], argv[2]);
-	;
-	/* char *s2 = substr(str, start, len); */
 	printf("Our result		: %s\n", s1);
-	/* printf("Intended result: %s", s2); */
 	free(s1);
-	/* free(s2); */
 	return (0);
-}
+} */

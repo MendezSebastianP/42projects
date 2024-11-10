@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:35:37 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/07 14:42:24 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/10 11:11:21 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	splitlen(char const *s1, char c1)
 	}
 	return (i + k - j);
 }
+
 char	*t2f(char const *s, int start_s, char c)
 {
 	int		i;
@@ -60,8 +61,8 @@ char	*t2f(char const *s, int start_s, char c)
 	}
 	t2[i] = '\0';
 	return (t2);
-	;
 }
+
 char	**ft_split(char const *s, char c)
 {
 	char	**t1;
@@ -87,7 +88,7 @@ char	**ft_split(char const *s, char c)
 	return (t1);
 }
 
-#include <stdio.h>
+/* #include <stdio.h>
 
 int	main(int c, char *v[])
 {
@@ -111,3 +112,4 @@ int	main(int c, char *v[])
 	free(a);
 	return (0);
 }
+ */

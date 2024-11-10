@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:27:03 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/07 13:34:53 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/10 11:09:39 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	ft_putnbr_fd(int n, int fd)
 	b1 = n + 48;
 	write(fd, &b1, 1);
 }
+/* 
 #include <stdlib.h>
 
 int	main(int c, char *v[])
@@ -73,3 +74,4 @@ int	main(int c, char *v[])
 	write(1, "\n", 1);
 	return (0);
 }
+ */

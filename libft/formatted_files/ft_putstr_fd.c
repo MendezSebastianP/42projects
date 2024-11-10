@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:27:03 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/06 16:03:01 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/10 11:10:13 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_putstr_fd(char *s, int fd)
 	}
 }
 
-int	main(int c, char *v[])
+/* int	main(int c, char *v[])
 {
 	char	*a;
 
@@ -34,3 +34,4 @@ int	main(int c, char *v[])
 	ft_putstr_fd("\n", 1);
 	return (0);
 }
+ */
