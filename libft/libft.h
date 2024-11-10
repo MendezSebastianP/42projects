@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/07 15:35:26 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/10 16:18:11 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 typedef struct s_list
 {
-    void    *content;
-    struct  s_list  *next;
-}   t_list;
+	void	*content;
+	struct  s_list		*next;
+}  	t_list;
 
 int	ft_atoi(const char *s);
 void	ft_bzero(void *str, size_t n);

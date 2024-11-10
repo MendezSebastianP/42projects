@@ -6,11 +6,10 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:41:32 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/10 14:36:43 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/10 17:19:25 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Test overlapping with source +2 if doenst work */
 #include <stddef.h>
 
 void	*ft_memmove(void *dest_str, const void *src_str, size_t n)
@@ -26,7 +25,7 @@ void	*ft_memmove(void *dest_str, const void *src_str, size_t n)
 	if (ptr > src)
 	{
 		i = n;
-		while (i++ > 0)
+		while (i > 0)
 		{
 			ptr[i - 1] = src[i - 1];
 			i--;
@@ -34,7 +33,7 @@ void	*ft_memmove(void *dest_str, const void *src_str, size_t n)
 		return (dest_str);
 	}
 	i = 0;
-	while (i++ < n)
+	while (i < n)
 	{
 		ptr[i] = src[i];
 		i++;
@@ -54,8 +53,8 @@ size_t	ft_strlen(const char *c)
 	while (c[i] != '\0')
 		i++;
 	return (i);
-}
-int	main(void)
+} */
+/* int	main(void)
 {
 	char	str1[15];
 
@@ -75,7 +74,7 @@ int	main(void)
 	strcpy(str2, "abcrrr");
 	memmove(str1, str, 2);
 	ft_memmove(str2, str, 2);
-	printf("Intended result: %s \n", str1);
-	printf("Our result		: %s \n", str2);
+	printf("Intended result	: %s\n", str1);
+	printf("Our result	: %s \n", str2);
 	return (0);
 } */

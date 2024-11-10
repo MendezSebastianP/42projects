@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:39:00 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/10 15:18:41 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/10 16:53:30 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,9 @@ int	isin(const char *set, const char c)
 int	ft_strlentrim(const char *c, const char *set)
 {
 	size_t	i;
-	size_t	j;
 	size_t	k;
 
 	i = 0;
-	j = 0;
 	k = 0;
 	while (c[k])
 		k++;
