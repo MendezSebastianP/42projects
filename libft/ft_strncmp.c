@@ -6,32 +6,32 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:42:07 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/04 12:42:08 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/10 14:10:02 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 
-int	 ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-		unsigned int	j;
-		unsigned int	i;
+	unsigned int	j;
+	unsigned int	i;
 
-		if (n == 0)
-				return (0);
-		i = 0;
-		j = 0;
-		while (s1[i] != '\0' && s1[i] == s2[i] && i < n - 1)
-				i++;
-		j = s1[i] - s2[i];
-		return (j);
+	if (n == 0)
+		return (0);
+	i = 0;
+	j = 0;
+	while (s1[i] != '\0' && s1[i] == s2[i] && i < n - 1)
+		i++;
+	j = s1[i] - s2[i];
+	return (j);
 }
 
 /* #include <stdio.h>
 #include <string.h>
 
-int main() {
-	char str[] = "aa";
+int	main(void) {
+	char str[] = "a3a";
 	char str2[] = "aa";
 	int sum1;
 	int sum2;
@@ -40,5 +40,6 @@ int main() {
 	sum2 = strncmp(str, str2, strlen(str2));
 	printf("our result: %d \n", sum1);
 	printf("intended result: %d", sum2);
-	return 0;
-} */
+	return (0);
+}
+ */

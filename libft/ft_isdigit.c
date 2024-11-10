@@ -6,26 +6,27 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:40:52 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/07 14:10:54 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/08 18:23:28 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
-	if (c > 47 & c < 58)
-		return(1);
+	if (c > 47 && c < 58)
+		return (1);
 	else
 		return (0);
-	
 }
 
-#include <ctype.h>
+/* #include <ctype.h>
 #include <stdio.h>
 
-int main(void)
+int	main(void)
 {
-		char a = '1';
-	printf("Intended result: %d \n", isdigit(a));
-	printf("Our result	 : %d", ft_isdigit(a));
+	char	a;
+
+	a = '1';
+	printf("Intended result	: %d \n", isdigit(a));
+	printf("Our result	: %d", ft_isdigit(a));
 	return (0);
-}
+} */

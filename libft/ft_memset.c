@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:41:39 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/04 16:32:18 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/10 11:07:46 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*ft_memset(void *str, int c, size_t n)
 {
-	size_t i;
-	unsigned char *ptr;
+	size_t			i;
+	unsigned char	*ptr;
 
 	i = 0;
 	ptr = str;
@@ -24,21 +24,22 @@ void	*ft_memset(void *str, int c, size_t n)
 		ptr[i] = c;
 		i++;
 	}
-	return str;
+	return (str);
 }
-
-#include <string.h>
+/* 
 #include <stdio.h>
+#include <string.h>
 
-int main(void)
+int	main(void)
 {
-	char str1[11] = "0123456789";
-	char str2[11] = "0123456789";
-	memset(str1, '#', 5);
+	char	str1[11] = "0123456789";
+	char	str2[11] = "0123456789";
+
+	memset(str1, '#', 4);
 	str1[10] = '\0';
-	ft_memset(str2, '#', 5);
+	ft_memset(str2, '#', 4);
 	str2[10] = '\0';
-	printf("Intended result: %s \n", str1);
-	printf("Our result	 : %s", str2);
+	printf("Intended result	: %s \n", str1);
+	printf("Our result	: %s", str2);
 	return (0);
-}
+} */

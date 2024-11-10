@@ -6,26 +6,27 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:40:58 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/07 14:18:32 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/08 18:23:40 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_isprint(int c)
+int	ft_isprint(int c)
 {
-	if (c > 31 & c < 127)
-		return(1);
+	if (c > 31 && c < 127)
+		return (1);
 	else
 		return (0);
-	
 }
-
+/* 
 #include <ctype.h>
 #include <stdio.h>
 
-int main(void)
+int	main(void)
 {
-	char a = ' ';
+	char	a;
+
+	a = '\n';
 	printf("Intended result: %d \n", isprint(a));
 	printf("Our result	:  %d", ft_isprint(a));
 	return (0);
-}
+} */
