@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:41:32 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/08 19:35:09 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/10 14:36:43 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,9 @@ size_t	ft_strlen(const char *c)
 int	main(void)
 {
 	char	str1[15];
-	char	str2[15];
 
-	strcpy(str1, "abcd");
-	strcpy(str2, "abcd");
-	memmove(str1 + 2, str1, 4);
+	strcpy(str1, "abcde");
+	memmove(str1, str1+ 2, 4);
 	ft_memmove(str2 + 2, str2, 4);
 	printf("Intended result	: %s \n", str1);
 	printf("Our result	: %s \n", str2);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: trotaevil <trotaevil@student.42.fr>        +#+  +:+       +#+        */
+/*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:39:00 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/08 09:17:38 by trotaevil        ###   ########.fr       */
+/*   Updated: 2024/11/10 15:18:41 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ char	*ft_strtrim(char const *s1, const char *set)
 	size_t			sizetrim;
 
 	i = 0;
+	j = 0;
 	sizetrim = ft_strlentrim(s1, set);
 	t = malloc(sizetrim * sizeof(char) + 1);
 	if (t == NULL)
@@ -64,10 +65,10 @@ char	*ft_strtrim(char const *s1, const char *set)
 		j++;
 	}
 	t[i + j] = '\0';
-	return (t);
+	return ((char *)t);
 }
 
-#include <stdio.h>
+/* #include <stdio.h>
 #include <string.h>
 
 int	main(int argc, char *argv[])
@@ -76,11 +77,8 @@ int	main(int argc, char *argv[])
 
 	(void)argc;
 	s1 = ft_strtrim(argv[1], argv[2]);
-	;
-	/* char *s2 = strtrim(str, start, len); */
-	printf("Our result		: %s\n", s1);
-	/* printf("Intended result: %s", s2); */
+	printf("Our result : %s\n", s1);
 	free(s1);
-	/* free(s2); */
 	return (0);
 }
+ */

@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:42:53 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/04 12:42:54 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/10 15:26:52 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_toupper(int ch)
 	a = ch - 32;
 	return (a);
 }
-
+/* 
 #include <ctype.h>
 #include <stdio.h>
 
@@ -30,3 +30,4 @@ int	main(int argc, char *argv[])
 	printf("Intended result : %c", toupper(argv[1][0]));
 	return (0);
 }
+ */
