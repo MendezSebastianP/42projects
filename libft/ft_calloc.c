@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:39:26 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/10 15:46:20 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/11 16:42:50 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,18 @@ void	*ft_calloc(size_t nitems, size_t size)
 {
 	unsigned char	*t;
 	size_t			i;
+	size_t			k;
 
 	i = 0;
-	t = malloc(nitems * size + 1);
-	if (t == NULL)
+	k = nitems * size;
+	t = malloc(k);
+	if (t == NULL || (size != 0 && k / size != nitems))
 		return (NULL);
 	while (nitems * size > i)
 	{
 		t[i] = 0;
 		i++;
 	}
-	if (size == sizeof(char))
-		t[i] = '\0';
 	return (t);
 }
 
@@ -45,8 +45,8 @@ int	main(int argc, char *argv[])
 	(void)argc;
 	n = atoi(argv[1]);
 	i = 0;
-	s1 = (int *)ft_calloc(n, sizeof(int));
-	s2 = (int *)calloc(n, sizeof(int));
+	s1 = (int *)ft_calloc(n, 2147483647);
+	s2 = (int *)calloc(n, 2147483647);
 	printf("Our result	: ");
 	while (i < n)
 	{

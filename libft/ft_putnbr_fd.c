@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:27:03 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/10 11:09:39 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/11 18:00:56 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ int	powerf(int b)
 	return (c);
 }
 
-int	maxn(int a1)
+int	maxn(int a1, int fd)
 {
 	if (a1 == -2147483648)
 	{
-		write(1, "-214748364", 10);
+		write(fd, "-214748364", 10);
 		a1 = 8;
 	}
 	if (a1 < 0)
 	{
-		write(1, "-", 1);
+		write(fd, "-", 1);
 		a1 = a1 * -1;
 	}
 	return (a1);
@@ -46,7 +46,7 @@ void	ft_putnbr_fd(int n, int fd)
 	int	d1;
 	int	i;
 
-	n = maxn(n);
+	n = maxn(n, fd);
 	b1 = n;
 	i = 0;
 	while (b1 >= 10)
@@ -73,5 +73,4 @@ int	main(int c, char *v[])
 	ft_putnbr_fd(atoi(v[1]), 1);
 	write(1, "\n", 1);
 	return (0);
-}
- */
+} */

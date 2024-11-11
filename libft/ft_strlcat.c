@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:41:55 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/10 14:00:21 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/11 14:08:45 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 		k++;
 	}
 	dest[i + k] = '\0';
-	while (k < size - 1 && src[k] != '\0')
-		k++;
-	return (k + i);
+	return (j + i);
 }
 
 /* #include <stdio.h>
@@ -55,5 +53,20 @@ int	main(void)
 	//printf("intended result	: %d \n", cat2);
 	printf("our result	: %d \n", cat1);
 	printf("dest: %s", strb);
+	return (0);
+} */
+
+/* #include <stdio.h>
+#include <string.h>
+
+int	main(void)
+{
+	char dest[30] = "BBBBA";
+	char * src = "AAAAAAAAA";
+	int		cat1;
+
+	cat1 = ft_strlcat(dest, src, 6);
+	printf("our result	: %d \n", cat1);
+	printf("dest: %s", dest);
 	return (0);
 } */

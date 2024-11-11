@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 09:42:49 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/08 13:27:18 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:49:08 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	sizenbr(int numb)
 		numb = numb * -1;
 	}
 	if ((numb / 10) == 0)
-		return (1);
+		return (i);
 	while ((numb / 10) > 0)
 	{
 		numb = numb / 10;
@@ -66,7 +66,7 @@ char	*ft_itoa(int k)
 	n = k;
 	i = 0;
 	sizen = sizenbr(n);
-	str1 = malloc(sizen * sizeof(long int));
+	str1 = malloc(sizen * sizeof(char) + 1);
 	if (!str1)
 		return (NULL);
 	if (n < 0)
@@ -77,13 +77,14 @@ char	*ft_itoa(int k)
 	while (i < sizen)
 	{
 		str1[i] = firstnumb(n) + 48;
-		n = n - (firstnumb(n) * powerf(sizen - i++ - 1));
+		n = n - (firstnumb(n) * powerf(sizen - i - 1));
+		i++;
 	}
 	str1[i] = '\0';
 	return (str1);
 }
-
-/* #include <stdio.h>
+/* 
+#include <stdio.h>
 #include <stdlib.h>
 
 int	main(int c, char *v[])
@@ -95,4 +96,5 @@ int	main(int c, char *v[])
 	printf("Our function: %s", s1);
 	free(s1);
 	return (0);
-} */
+}
+ */

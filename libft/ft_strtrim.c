@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:39:00 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/10 16:53:30 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:28:47 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	ft_strlentrim(const char *c, const char *set)
 		i++;
 	while (isin(set, c[k - 1]) == 1)
 		k--;
+	if (k < i)
+		return (0);
 	return (k - i);
 }
 
@@ -65,8 +67,8 @@ char	*ft_strtrim(char const *s1, const char *set)
 	t[i + j] = '\0';
 	return ((char *)t);
 }
-
-/* #include <stdio.h>
+/* 
+#include <stdio.h>
 #include <string.h>
 
 int	main(int argc, char *argv[])
