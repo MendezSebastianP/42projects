@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:41:17 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/08 15:47:52 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:23:14 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	{
 		s1a++;
 		s2a++;
+		i++;
 	}
+	if (i == n)
+		return (0);
 	j = *s1a - *s2a;
 	return (j);
 }
@@ -43,11 +46,15 @@ int	main(void)
 	char	str2[15];
 	int		sum1;
 	int		sum2;
+	char s[] = {-128, 0, 127, 0};
+	char sCpy[] = {-128, 0, 127, 0};
+	char sb[] = {-128, 0, 127, 0};
+	char sCpyb[] = {-128, 0, 127, 0};
 
 	memcpy(str, "abcdef", 6);
 	memcpy(str2, "ABCDEF", 6);
-	sum1 = ft_memcmp(str, str2, 3);
-	sum2 = memcmp(str, str2, 3);
+	sum1 = ft_memcmp(s, sCpy, 4);
+	sum2 = memcmp(sb, sCpyb, 4);
 	printf("our result	: %d \n", sum1);
 	printf("intended result	: %d", sum2);
 	return (0);

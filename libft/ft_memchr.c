@@ -6,29 +6,32 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:41:04 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/08 13:34:59 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:03:59 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Needed to return NULL, if not it doesnt work :( */
 #include <stddef.h>
 
 void	*ft_memchr(const void *str, int c, size_t n)
 {
 	size_t			i;
-	const char		*ptr;
+	unsigned char	*ptr;
+	unsigned char	c2;
 
-	ptr = str;
+	ptr = (unsigned char *)str;
 	i = 0;
-	while (ptr[i] != c && i != n)
+	c2 = (unsigned char)c;
+	if (n == 0)
+		return (NULL);
+	while (ptr[i] != c2 && i != n)
 		i++;
-	if (ptr[i] == c && ptr[i])
-		return ((char *)(str + i));
+	if (ptr[i] == c2)
+		return ((void *)(ptr + i));
 	else
 		return (NULL);
 }
-
-/* #include <stdio.h>
+/* 
+#include <stdio.h>
 #include <string.h>
 
 int	main(int argc, char *argv[])
@@ -64,3 +67,19 @@ or to find the index	(printf("position:%ld", result - text)) */
 	}
 	return (0);
 } */
+/* 
+#include <stdio.h>
+#include <string.h>
+
+int main(void)
+{
+	char s[] = {0, 1, 2 ,3 ,4 ,5};
+	char *t2 = ft_memchr(s, 0, 1);
+	char *t5 = ft_memchr(s, 2 + 256, 3);
+	char *t2b = memchr(s, 0, 1);
+	char *t5b = memchr(s, 2 + 256, 3);
+	printf("%d %s\n intended result:%s\n",ft_memchr(s, 0, 1) == s, t2, t2b);
+	printf("%d %s\n intended result:%s\n",ft_memchr(s, 2 + 256, 3) == s + 2, t5, t5b); 
+	return (0);
+}
+ */
