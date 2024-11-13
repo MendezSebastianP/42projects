@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:35:37 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/13 14:50:03 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/13 15:09:08 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ char	**ft_split(char const *s, char c)
 		if (!s[i])
 			break ;
 		t1[j] = t2f(s, i, c);
-		if(t1[j] == NULL)
+		if (t1[j] == NULL)
 			cleanexit(t1);
 		j++;
 		while (s[i] != c && s[i])
