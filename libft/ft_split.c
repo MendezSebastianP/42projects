@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:35:37 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/10 16:54:09 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/13 14:50:03 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,34 @@
 int	splitlen(char const *s1, char c1)
 {
 	int	i;
-	int	j;
 	int	k;
 
 	i = 0;
-	j = 0;
 	k = 0;
 	while (s1[i])
 	{
 		while (s1[i] == c1 && s1[i])
-		{
 			i++;
-			j++;
-		}
-		if (!s1[i])
-			break ;
-		i++;
-		k++;
+		if (s1[i])
+			k++;
+		while(s1[i] != c1 && s1[i])
+			i++;
 	}
-	return (i + k - j);
+	return (k);
+}
+
+char	**cleanexit(char **a)
+{
+	int	i;
+
+	i = 0;
+	while (a[i])
+	{
+		free(a[i]);
+		i++;
+	}
+	free(a);
+	return (NULL);
 }
 
 char	*t2f(char const *s, int start_s, char c)
@@ -51,7 +60,7 @@ char	*t2f(char const *s, int start_s, char c)
 		len_s++;
 		j++;
 	}
-	t2 = malloc(len_s * sizeof(char) + 1);
+	t2 = malloc((len_s + 1) * sizeof(char));
 	if (t2 == NULL)
 		return (NULL);
 	while (i < len_s)
@@ -69,7 +78,7 @@ char	**ft_split(char const *s, char c)
 	int		i;
 	int		j;
 
-	t1 = malloc(splitlen(s, c) * sizeof(char *) + 1);
+	t1 = malloc((splitlen(s, c) + 1) * sizeof(char*));
 	if (t1 == NULL)
 		return (NULL);
 	i = 0;
@@ -80,7 +89,10 @@ char	**ft_split(char const *s, char c)
 			i++;
 		if (!s[i])
 			break ;
-		t1[j++] = t2f(s, i, c);
+		t1[j] = t2f(s, i, c);
+		if(t1[j] == NULL)
+			cleanexit(t1);
+		j++;
 		while (s[i] != c && s[i])
 			i++;
 	}

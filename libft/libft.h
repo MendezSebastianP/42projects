@@ -6,13 +6,13 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/10 16:18:11 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/13 11:00:35 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_H
 # define FT_H
-#include <stddef.h>
+# include <stddef.h>
 
 typedef struct s_list
 {
@@ -29,6 +29,7 @@ int	ft_isascii(int c);
 int	ft_isdigit(int c);
 int	ft_isprint(int c);
 char	*ft_itoa(int k);
+t_list	*ft_lstnew(void *content);
 void	*ft_memchr(const void *str, int c, size_t n);
 int	ft_memcmp(const void *s1, const void *s2, size_t n);
 void	*ft_memcpy(void *dest_str, const void * src_str, size_t n);
