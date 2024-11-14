@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 18:24:09 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/14 12:01:40 by smendez-         ###   ########.fr       */
+/*   Created: 2024/11/14 12:03:51 by smendez-          #+#    #+#             */
+/*   Updated: 2024/11/14 12:50:09 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
-#include <stdlib.h>
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	t_list	*currentPtr;
-	t_list	*nextPtr;
+	t_list *currentPtr;
 	
-	if (lst == NULL || del == NULL)
+	currentPtr = lst;
+	if (lst == NULL || f == NULL)
 		return;
-	else
+	while (currentPtr != NULL)
 	{
-		currentPtr = *lst;
-		while (currentPtr != NULL)
-		{
-			nextPtr = currentPtr->next;
-			del(currentPtr->content);
-			free(currentPtr);
-			currentPtr = nextPtr;
-		}
+		f(currentPtr->content);
+		currentPtr = currentPtr->next;
 	}
-	*lst = NULL;
 }
