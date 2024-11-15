@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:39:10 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/11 15:48:39 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/15 10:02:25 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_atoi(const char *s)
 	{
 		if (s[i] == 45 && s[i + 1] != 43 && j < 1)
 			j++;
-		else if (s[i] != 43 || s[i+1] == 43 || s[i+1] == 45)
+		else if (s[i] != 43 || s[i + 1] == 43 || s[i + 1] == 45)
 			return (0);
 		i++;
 	}
@@ -38,6 +38,7 @@ int	ft_atoi(const char *s)
 		return (k * -1);
 	return (k);
 }
+
 /* 
 #include <stdio.h>
 #include <stdlib.h>

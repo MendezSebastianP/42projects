@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:24:09 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/14 12:01:40 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/15 09:56:38 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	t_list	*currentPtr;
-	t_list	*nextPtr;
-	
+	t_list	*current;
+	t_list	*nextptr;
+
 	if (lst == NULL || del == NULL)
-		return;
+		return ;
 	else
 	{
-		currentPtr = *lst;
-		while (currentPtr != NULL)
+		current = *lst;
+		while (current != NULL)
 		{
-			nextPtr = currentPtr->next;
-			del(currentPtr->content);
-			free(currentPtr);
-			currentPtr = nextPtr;
+			nextptr = current->next;
+			del(current->content);
+			free(current);
+			current = nextptr;
 		}
 	}
 	*lst = NULL;

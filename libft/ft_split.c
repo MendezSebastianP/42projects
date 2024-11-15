@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:35:37 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/13 15:09:08 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/15 10:04:02 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	splitlen(char const *s1, char c1)
 			i++;
 		if (s1[i])
 			k++;
-		while(s1[i] != c1 && s1[i])
+		while (s1[i] != c1 && s1[i])
 			i++;
 	}
 	return (k);
@@ -78,7 +78,7 @@ char	**ft_split(char const *s, char c)
 	int		i;
 	int		j;
 
-	t1 = malloc((splitlen(s, c) + 1) * sizeof(char*));
+	t1 = malloc((splitlen(s, c) + 1) * sizeof(char *));
 	if (t1 == NULL)
 		return (NULL);
 	i = 0;

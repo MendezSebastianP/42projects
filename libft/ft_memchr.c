@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:41:04 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/11 12:03:59 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/15 10:04:57 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	*ft_memchr(const void *str, int c, size_t n)
 	else
 		return (NULL);
 }
+
 /* 
 #include <stdio.h>
 #include <string.h>
@@ -78,8 +79,10 @@ int main(void)
 	char *t5 = ft_memchr(s, 2 + 256, 3);
 	char *t2b = memchr(s, 0, 1);
 	char *t5b = memchr(s, 2 + 256, 3);
-	printf("%d %s\n intended result:%s\n",ft_memchr(s, 0, 1) == s, t2, t2b);
-	printf("%d %s\n intended result:%s\n",ft_memchr(s, 2 + 256, 3) == s + 2, t5, t5b); 
+	printf("%d %s\n intended result:%s\n",
+	ft_memchr(s, 0, 1) == s, t2, t2b);
+	printf("%d %s\n intended result:%s\n",
+	ft_memchr(s, 2 + 256, 3) == s + 2, t5, t5b); 
 	return (0);
 }
  */

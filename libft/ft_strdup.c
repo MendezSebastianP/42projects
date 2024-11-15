@@ -6,21 +6,11 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:41:51 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/10 11:12:55 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/15 11:59:59 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
-int	ft_strlen(const char *c)
-{
-	size_t	i;
-
-	i = 0;
-	while (c[i] != '\0')
-		i++;
-	return (i);
-}
 
 void	*ft_strdup(const char *source)
 {

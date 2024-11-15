@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:38:06 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/10 11:15:58 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/15 10:03:07 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_strlen(const char *c)
 
 char	*ft_strjoin(char const *s1, const char *s2)
 {
-	char	*t;
+	char			*t;
 	size_t			i;
 	size_t			j;
 

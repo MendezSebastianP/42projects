@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:03:51 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/14 12:50:09 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/15 09:50:12 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	t_list *currentPtr;
-	
-	currentPtr = lst;
+	t_list	*current;
+
+	current = lst;
 	if (lst == NULL || f == NULL)
-		return;
-	while (currentPtr != NULL)
+		return ;
+	while (current != NULL)
 	{
-		f(currentPtr->content);
-		currentPtr = currentPtr->next;
+		f(current->content);
+		current = current->next;
 	}
 }

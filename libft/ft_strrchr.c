@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:42:44 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/11 13:34:53 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/15 10:05:42 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 char	*ft_strrchr(const char *str, int search_str)
 {
-	int	i;
-	unsigned char		s_str;
+	int				i;
+	unsigned char	s_str;
 
 	i = 0;
 	s_str = (unsigned char)search_str;

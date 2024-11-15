@@ -6,32 +6,28 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:36:28 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/10 15:24:39 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/15 11:50:19 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-int	ft_strlen(const char *c)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	i;
-
-	i = 0;
-	while (c[i] != '\0')
-		i++;
-	return (i);
-}
-
-void	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	unsigned char	*t;
+	char			*t;
 	size_t			i;
+	size_t			slen;
 
 	i = 0;
-	t = malloc(len * sizeof(char) + 1);
+	slen = ft_strlen(s) - start;
+	if ((slen) > len)
+		slen = len;
+	if (start >= ft_strlen(s) || ft_strlen(s) == 0 || len == 0)
+		slen = 0;
+	t = malloc((slen + 1) * sizeof(char));
 	if (t == NULL)
 		return (NULL);
-	while (len > i)
+	while (slen > i)
 	{
 		t[i] = s[i + start];
 		i++;

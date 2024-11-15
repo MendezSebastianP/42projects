@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 09:42:49 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/11 17:49:08 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/15 11:59:26 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 meme dans les autres fonctions... */
 #include <stdlib.h>
 
-int	powerf(int b)
+static int	powerf(int b)
 {
 	int	c;
 
@@ -27,7 +27,7 @@ int	powerf(int b)
 	return (c);
 }
 
-int	sizenbr(int numb)
+static int	sizenbr(int numb)
 {
 	int	i;
 
@@ -49,7 +49,7 @@ int	sizenbr(int numb)
 	return (i);
 }
 
-int	firstnumb(long int numb)
+static int	firstnumb(long int numb)
 {
 	while (numb > 9)
 		numb = numb / 10;
