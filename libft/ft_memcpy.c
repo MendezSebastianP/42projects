@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:41:24 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/10 17:13:33 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/15 17:13:20 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*ft_memcpy(void *dest_str, const void *src_str, size_t n)
 
 	if (n == 0)
 		return (dest_str);
-	if (dest_str == NULL || src_str == NULL)
+	if (dest_str == NULL && src_str == NULL)
 		return (NULL);
 	i = 0;
 	ptr = dest_str;

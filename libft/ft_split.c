@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:35:37 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/15 12:55:26 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/15 18:46:55 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,13 @@ char	**ft_split(char const *s, char c)
 	j = 0;
 	while (s[i])
 	{
-		while (s[i] == c)
+		while (s[i] == c && s[i])
 			i++;
 		if (!s[i])
 			break ;
 		t1[j] = t2f(s, i, c);
 		if (t1[j] == NULL)
-			cleanexit(t1);
+			return (cleanexit(t1));
 		j++;
 		while (s[i] != c && s[i])
 			i++;

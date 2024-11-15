@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:41:32 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/10 17:19:25 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/15 17:16:36 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_memmove(void *dest_str, const void *src_str, size_t n)
 	char			*ptr;
 	char			*src;
 
-	if (dest_str == NULL || src_str == NULL)
+	if (dest_str == NULL && src_str == NULL)
 		return (NULL);
 	ptr = (char *)dest_str;
 	src = (char *)src_str;

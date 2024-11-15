@@ -6,36 +6,9 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:42:11 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/15 14:57:07 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/15 17:10:10 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
-/* #include "libft.h"
-#include <stddef.h>
-
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
-{
-	size_t	i;
-	size_t	j;
-
-	if (*needle == '\0')
-		return ((char *)haystack);
-	for (i = 0; haystack[i] && i < len; i++)
-	{
-		if (haystack[i] == needle[0])
-		{
-			j = 0;
-			while (haystack[i + j] == needle[j] && (i + j) < len)
-			{
-				j++;
-				if (needle[j] == '\0')
-					return ((char *)(haystack + i));
-			}
-		}
-	}
-	return (NULL);
-} */
 
 #include "libft.h"
 #include <stddef.h>
@@ -46,21 +19,19 @@ char	*ft_strnstr(const char *str, const char *search_str, size_t n)
 	size_t		j;
 
 	i = 0;
-	if (ft_strlen(str) == 0 && ft_strlen(search_str) == 0)
+	if (*search_str == '\0')
 		return ((char *)str);
-	if (ft_strlen(str) == 0)
-		return (NULL);
-	while (i < n)
+	while (i < n && str[i])
 	{
 		j = 0;
-		while (str[i] != search_str[j] && str[i] != '\0')
+		while (str[i] != search_str[0])
 			i++;
 		if (str[i] == search_str[j])
 		{
-			while (str[i + j] == search_str[j] && j + i < n)
+			while (str[i + j] == search_str[j] && (j + i) < n && str[i + j])
 				j++;
 		}
-		if (ft_strlen(search_str) == j || j == n)
+		if (search_str[j] == '\0')
 			return ((char *)(str + i));
 		i++;
 	}
@@ -71,7 +42,13 @@ char	*ft_strnstr(const char *str, const char *search_str, size_t n)
 #include <string.h>
 #include <stdlib.h>
 
-int	main(int argc, char *argv[])
+int	main(void)
+{
+	char *s;
+	printf("Our result:%s\n", ft_strnstr(s, s, 2));
+	return (0);
+} */
+/* int	main(int argc, char *argv[])
 {
 	(void)argc;
 	printf("Our result:%s\n", ft_strnstr(argv[1], argv[2], 

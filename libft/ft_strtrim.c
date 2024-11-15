@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:39:00 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/15 12:57:55 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/15 18:20:52 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*ft_strtrim(char const *s1, const char *set)
 		t[j] = s1[i + j];
 		j++;
 	}
-	t[i + j] = '\0';
+	t[j] = '\0';
 	return ((char *)t);
 }
 /* 
@@ -77,7 +77,7 @@ int	main(int argc, char *argv[])
 
 	(void)argc;
 	s1 = ft_strtrim(argv[1], argv[2]);
-	printf("Our result : %s\n", s1);
+	printf("Our result : |%s|\n", s1);
 	free(s1);
 	return (0);
 }

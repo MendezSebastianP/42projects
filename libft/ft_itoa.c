@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 09:42:49 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/15 15:32:47 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/15 16:26:18 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ char	*ft_itoa(int k)
 	str1[i] = '\0';
 	return (str1);
 }
-
 
 /* #include <stdio.h>
 #include <stdlib.h>
