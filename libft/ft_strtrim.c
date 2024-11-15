@@ -6,13 +6,13 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:39:00 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/11 17:28:47 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/15 12:57:55 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int	isin(const char *set, const char c)
+static int	isin(const char *set, const char c)
 {
 	size_t	i;
 
@@ -26,7 +26,7 @@ int	isin(const char *set, const char c)
 	return (0);
 }
 
-int	ft_strlentrim(const char *c, const char *set)
+static int	ft_strlentrim(const char *c, const char *set)
 {
 	size_t	i;
 	size_t	k;

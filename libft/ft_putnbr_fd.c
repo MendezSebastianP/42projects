@@ -6,13 +6,13 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:27:03 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/11 18:00:56 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/15 12:55:01 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	powerf(int b)
+static int	powerf(int b)
 {
 	int	c;
 
@@ -25,7 +25,7 @@ int	powerf(int b)
 	return (c);
 }
 
-int	maxn(int a1, int fd)
+static int	maxn(int a1, int fd)
 {
 	if (a1 == -2147483648)
 	{

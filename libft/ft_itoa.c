@@ -6,12 +6,10 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 09:42:49 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/15 11:59:26 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/15 15:32:47 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* il y a un problemen avec les longs int, je peux pas gerer le min,
-meme dans les autres fonctions... */
 #include <stdlib.h>
 
 static int	powerf(int b)
@@ -27,9 +25,9 @@ static int	powerf(int b)
 	return (c);
 }
 
-static int	sizenbr(int numb)
+static int	sizenbr(long int numb)
 {
-	int	i;
+	long int	i;
 
 	i = 1;
 	if (numb == -2147483648)
@@ -49,8 +47,10 @@ static int	sizenbr(int numb)
 	return (i);
 }
 
-static int	firstnumb(long int numb)
+static int	firstnumb(long int numb, int sizen)
 {
+	if (sizenbr(numb) != sizen)
+		return (0);
 	while (numb > 9)
 		numb = numb / 10;
 	return (numb);
@@ -76,15 +76,16 @@ char	*ft_itoa(int k)
 	}
 	while (i < sizen)
 	{
-		str1[i] = firstnumb(n) + 48;
-		n = n - (firstnumb(n) * powerf(sizen - i - 1));
+		str1[i] = firstnumb(n, sizen - i) + 48;
+		n = n - (firstnumb(n, sizen - i) * powerf(sizen - i - 1));
 		i++;
 	}
 	str1[i] = '\0';
 	return (str1);
 }
-/* 
-#include <stdio.h>
+
+
+/* #include <stdio.h>
 #include <stdlib.h>
 
 int	main(int c, char *v[])

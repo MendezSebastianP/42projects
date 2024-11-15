@@ -6,21 +6,12 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 10:37:11 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/13 14:52:40 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/15 12:57:04 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <stdlib.h>
-
-int	ft_strlen(const char *c)
-{
-	size_t	i;
-
-	i = 0;
-	while (c[i] != '\0')
-		i++;
-	return (i);
-}
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {

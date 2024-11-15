@@ -6,21 +6,12 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 12:38:06 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/15 10:03:07 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/15 12:56:21 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <stdlib.h>
-
-int	ft_strlen(const char *c)
-{
-	size_t	i;
-
-	i = 0;
-	while (c[i] != '\0')
-		i++;
-	return (i);
-}
 
 char	*ft_strjoin(char const *s1, const char *s2)
 {

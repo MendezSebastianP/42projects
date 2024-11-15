@@ -6,13 +6,13 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:35:37 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/15 10:04:02 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/15 12:55:26 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int	splitlen(char const *s1, char c1)
+static int	splitlen(char const *s1, char c1)
 {
 	int	i;
 	int	k;
@@ -31,7 +31,7 @@ int	splitlen(char const *s1, char c1)
 	return (k);
 }
 
-char	**cleanexit(char **a)
+static char	**cleanexit(char **a)
 {
 	int	i;
 
@@ -45,7 +45,7 @@ char	**cleanexit(char **a)
 	return (NULL);
 }
 
-char	*t2f(char const *s, int start_s, char c)
+static char	*t2f(char const *s, int start_s, char c)
 {
 	int		i;
 	int		j;
