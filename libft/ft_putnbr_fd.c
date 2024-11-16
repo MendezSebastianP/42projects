@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:27:03 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/15 12:55:01 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/16 16:40:11 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	ft_putnbr_fd(int n, int fd)
 	n = maxn(n, fd);
 	b1 = n;
 	i = 0;
+	if (fd < 0)
+		return ;
 	while (b1 >= 10)
 	{
 		b1 = b1 / 10;
