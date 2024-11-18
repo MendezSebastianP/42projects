@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:02:58 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/18 15:26:49 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:20:24 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,19 +83,14 @@ int	ft_printf(const char *format, ...)
 			ft_print_adress(va_arg(args, void*));
 			i++;
 		}
-		else if (format[i + 1] == 'd' || format[i] == 'i' || format[i] == 'i')
+		else if (format[i + 1] == 'd' || format[i + 1] == 'i')
 		{
 			ft_putnbr_fd(va_arg(args, int), 1);
 			i++;
 		}
-		else if (format[i + 1] == 'i' || format[i] == 'i' || format[i] == 'i')
+		else if (format[i + 1] == 'u')
 		{
-			ft_putnbr_fd(va_arg(args, int), 1);
-			i++;
-		}
-		else if (format[i + 1] == 'u' || format[i] == 'i' || format[i] == 'i')
-		{
-			ft_putnbr_fd(va_arg(args, int), 1);
+			ft_putnbr_un_fd(va_arg(args, unsigned int), 1);
 			i++;
 		}
 		else if (format[i + 1] == 'x')
@@ -125,7 +120,7 @@ int	ft_printf(const char *format, ...)
 int	main(void)
 {
 	char *t = "Weno, el primer resultado:";
-	long int a = -2147483649;
+	long int a = -53444;
 	ft_printf("Our result	: %s %d %i %u|\n", t, a, a, a);
 	printf("Intended result	: %s %d %i %u|\n", t, a, a, a);
 	return (0);

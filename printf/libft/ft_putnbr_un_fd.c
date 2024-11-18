@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_putnbr_un_fd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 09:42:49 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/18 17:30:18 by smendez-         ###   ########.fr       */
+/*   Created: 2024/11/06 15:27:03 by smendez-          #+#    #+#             */
+/*   Updated: 2024/11/18 17:39:49 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-static int	powerf(int b)
+static unsigned int	powerf(unsigned int b)
 {
 	int	c;
 
@@ -25,18 +25,11 @@ static int	powerf(int b)
 	return (c);
 }
 
-static int	sizenbr(long int numb)
+static unsigned int	sizenbr(long int numb)
 {
 	long int	i;
 
 	i = 1;
-	if (numb == -2147483648)
-		numb = -2147483647;
-	if (numb < 0)
-	{
-		i++;
-		numb = numb * -1;
-	}
 	if ((numb / 10) == 0)
 		return (i);
 	while ((numb / 10) > 0)
@@ -47,7 +40,7 @@ static int	sizenbr(long int numb)
 	return (i);
 }
 
-static int	firstnumb(long int numb, int sizen)
+static unsigned int	firstnumb(long int numb, int sizen)
 {
 	if (sizenbr(numb) != sizen)
 		return (0);
@@ -56,7 +49,7 @@ static int	firstnumb(long int numb, int sizen)
 	return (numb);
 }
 
-char	*ft_itoa(int k)
+char	*ft_itoa_fd(unsigned k)
 {
 	int			i;
 	long int	n;
@@ -69,11 +62,6 @@ char	*ft_itoa(int k)
 	str1 = malloc(sizen * sizeof(char) + 1);
 	if (!str1)
 		return (NULL);
-	if (n < 0)
-	{
-		str1[i++] = '-';
-		n = n * -1;
-	}
 	while (i < sizen)
 	{
 		str1[i] = firstnumb(n, sizen - i) + 48;
@@ -84,6 +72,8 @@ char	*ft_itoa(int k)
 	return (str1);
 }
 
+void	ft_putnbr_un_fd(char *);
+
 /* #include <stdio.h>
 #include <stdlib.h>
 
@@ -92,9 +82,8 @@ int	main(int c, char *v[])
 	char	*s1;
 
 	(void)c;
-	s1 = ft_itoa(atoi(v[1]));
+	s1 = ft_itoa(-20);
 	printf("Our function: %s", s1);
 	free(s1);
 	return (0);
-}
- */
+} */
