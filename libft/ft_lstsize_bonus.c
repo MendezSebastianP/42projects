@@ -6,11 +6,11 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 15:43:00 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/15 09:53:45 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/20 10:24:33 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
 int	ft_lstsize(t_list *lst)
 {

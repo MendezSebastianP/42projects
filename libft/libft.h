@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/15 11:02:25 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/20 11:07:29 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void		ft_putnbr_fd(int n, int fd);
 void		ft_putstr_fd(char *s, int fd);
 char		**ft_split(char const *s, char c);
 char		*ft_strchr(const char *str, int search_str);
-char		*ft_strdup(const char *c);
+char		*ft_strdup(const char *s);
 void		ft_striteri(char *s, void (*f)(unsigned int, char*));
 char		*ft_strjoin(char const *s1, const char *s2);
 size_t		ft_strlcat(char *dest, const char *src, size_t size);
@@ -63,7 +63,7 @@ char		*ft_strnstr(const char *str, const char *search_str, size_t n);
 char		*ft_strrchr(const char *str, int search_str);
 char		*ft_strtrim(char const *s1, const char *set);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
-int			ft_tolower(int c);
-int			ft_toupper(int c);
+int			ft_tolower(int ch);
+int			ft_toupper(int ch);
 
 #endif //FT_H

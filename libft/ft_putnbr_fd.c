@@ -6,10 +6,11 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:27:03 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/16 16:40:11 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/20 10:23:51 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <unistd.h>
 
 static int	powerf(int b)

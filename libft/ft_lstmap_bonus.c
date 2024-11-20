@@ -6,11 +6,11 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:43:58 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/16 16:24:33 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/20 10:24:25 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 #include <stdlib.h>
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))

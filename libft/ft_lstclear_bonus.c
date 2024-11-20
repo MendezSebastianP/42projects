@@ -6,11 +6,11 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:24:09 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/15 09:56:38 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/20 10:24:08 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 #include <stdlib.h>
 
 void	ft_lstclear(t_list **lst, void (*del)(void*))
