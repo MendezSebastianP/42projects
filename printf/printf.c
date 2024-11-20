@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:02:58 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/18 17:20:24 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/20 20:02:45 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,72 +56,85 @@ int	ft_printf(const char *format, ...)
 {
 	va_list	args;
 	int	i;
-	int	nargs;
+	int	j;
 	
 	i = 0;
-	//nargs = countargs(format);
+	j = 0;
 	va_start(args, format);
 	while (format[i])
 	{
 		while (format[i] != '%' && format[i] && isformat(format[i + 1]))
 		{
-			ft_putchar_fd(format[i], 1);
-			i++;
+			ft_putchar_fd(format[i++], 1);
+			j++;
 		}
 		if (format[i + 1] == 'c')
 		{
 			ft_putchar_fd(va_arg(args, int), 1);
+			j++;
 			i++;
 		}
 		else if (format[i + 1] == 's')
 		{
-			ft_putstr_fd(va_arg(args, char*), 1);
+			j = ft_putstr_fd(va_arg(args, char*), 1) + j;
 			i++;
 		}
 		else if (format[i + 1] == 'p')
 		{
-			ft_print_adress(va_arg(args, void*));
+			j = ft_print_adress(va_arg(args, void*)) + j;
 			i++;
 		}
 		else if (format[i + 1] == 'd' || format[i + 1] == 'i')
 		{
-			ft_putnbr_fd(va_arg(args, int), 1);
+			j = ft_putnbr_base(va_arg(args, int), "0123456789") + j;
 			i++;
 		}
 		else if (format[i + 1] == 'u')
 		{
-			ft_putnbr_un_fd(va_arg(args, unsigned int), 1);
+			j = ft_putnbr_unsigned_fd(va_arg(args, unsigned int)) + j;
 			i++;
 		}
 		else if (format[i + 1] == 'x')
 		{
-			ft_putnbr_base(va_arg(args, unsigned long), "0123456789abcdef");
+			j = ft_putnbr_base(va_arg(args, unsigned long), "0123456789abcdef") + j;
 			i++;
 		}
 		else if (format[i + 1] == 'X')
 		{
-			ft_putnbr_base(va_arg(args, unsigned long), "0123456789ABCDEF");
+			j = ft_putnbr_base(va_arg(args, unsigned long), "0123456789ABCDEF") + j;
 			i++;
 		}
 		else if (format[i + 1] == '%')
 		{
 			ft_putchar_fd('%', 1);
 			i++;
+			j++;
 		}
 		else
+		{
 			ft_putchar_fd(format[i], 1);
-		i++;
+			j++;
+		}
+		if (format[i])
+			i++;
 	}
 	va_end(args);
-	return (0);
+	return (j);
 }
 
 #include <stdio.h>
 int	main(void)
 {
-	char *t = "Weno, el primer resultado:";
-	long int a = -53444;
-	ft_printf("Our result	: %s %d %i %u|\n", t, a, a, a);
-	printf("Intended result	: %s %d %i %u|\n", t, a, a, a);
+	int	result;
+	int	result_native;
+	char	c = 'T';
+	char	*s = "working               vbghgh";
+	int a = -153454;
+	int *p = &a;
+	int t1 = ft_printf("Our result      : %c   %s   %p %d %i %u %x %X%%|\n", c, s, p, a, a, a, a, a);
+	int t2 =    printf("Intended result : %c   %s   %p %d %i %u %x %X%%|\n", c, s, p, a, a, a, a, a);
+	// int t1 = ft_printf("%c\n", c);
+	// int t2 =    printf("%c\n", c);
+	printf("Ncharacters: Ours: %d\n intended %d\n", t1, t2);
 	return (0);
 }

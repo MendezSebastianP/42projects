@@ -6,17 +6,27 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:49:39 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/18 14:17:24 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/20 19:22:47 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_print_adress(void *ptr)
+int	ft_print_adress(void *ptr)
 {
 	unsigned long address;
+	int	i;
 
+	i = 0;
 	address = (unsigned long)ptr;
-	write(1, "0X", 2);
-	ft_putnbr_base(address, "0123456789abcdef");
+	if (ptr)
+	{
+		write(1, "0x", 2);
+	}
+	else
+	{	write(1, "(nil)", 5);
+		return(5);
+	}
+	i = ft_putnbr_base(address, "0123456789abcdef");
+	return (i + 2);
 }

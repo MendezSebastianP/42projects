@@ -1,15 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_un_fd.c                                  :+:      :+:    :+:   */
+/*   ft_putnbr_unsigned_fd.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:27:03 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/18 17:39:49 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/20 19:56:13 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <stdlib.h>
 
 static unsigned int	powerf(unsigned int b)
@@ -25,7 +26,7 @@ static unsigned int	powerf(unsigned int b)
 	return (c);
 }
 
-static unsigned int	sizenbr(long int numb)
+static unsigned int	sizenbr(unsigned int numb)
 {
 	long int	i;
 
@@ -40,7 +41,7 @@ static unsigned int	sizenbr(long int numb)
 	return (i);
 }
 
-static unsigned int	firstnumb(long int numb, int sizen)
+static unsigned int	firstnumb(unsigned int numb, unsigned int sizen)
 {
 	if (sizenbr(numb) != sizen)
 		return (0);
@@ -49,7 +50,7 @@ static unsigned int	firstnumb(long int numb, int sizen)
 	return (numb);
 }
 
-char	*ft_itoa_fd(unsigned k)
+static char	*ft_itoa_un(unsigned int k)
 {
 	int			i;
 	long int	n;
@@ -72,9 +73,16 @@ char	*ft_itoa_fd(unsigned k)
 	return (str1);
 }
 
-void	ft_putnbr_un_fd(char *);
-
-/* #include <stdio.h>
+int	ft_putnbr_unsigned_fd(unsigned int k)
+{
+	int	i;
+	
+	i = 0;
+	i = ft_putstr_fd(ft_itoa_un(k), 1);
+	return (i);
+}
+/* 
+#include <stdio.h>
 #include <stdlib.h>
 
 int	main(int c, char *v[])
@@ -82,8 +90,6 @@ int	main(int c, char *v[])
 	char	*s1;
 
 	(void)c;
-	s1 = ft_itoa(-20);
-	printf("Our function: %s", s1);
-	free(s1);
+	ft_putnbr_unsigned_fd(atoi(v[1]));
 	return (0);
 } */

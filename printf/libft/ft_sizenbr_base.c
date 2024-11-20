@@ -1,52 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_sizenbr_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/20 18:52:23 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/20 19:24:01 by smendez-         ###   ########.fr       */
+/*   Created: 2024/11/20 14:34:46 by smendez-          #+#    #+#             */
+/*   Updated: 2024/11/20 18:55:38 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	link1(long nb, char *base)
+int	ft_sizenbr_base(long int numb, char *base)
 {
-	int			size;
+	long int	i;
+	long int	sizeb;
 
-	size = 0;
-	while (base[size] != '\0')
-		size++;
-	if (size < 2)
-		return ;
-	if (nb < 0)
+	i = 1;
+	sizeb = 0;
+	while (base[sizeb])
+		sizeb++;
+	if (numb == -2147483648)
+		numb = -2147483647;
+	if (numb < 0)
 	{
-		write(1, "-", 1);
-		nb = -nb;
+		i++;
+		numb = numb * -1;
 	}
-	if (nb < size)
-		write(1, &base[nb], 1);
-	else
+	if ((numb / sizeb) == 0)
+		return (i);
+	while ((numb / sizeb) > 0)
 	{
-		link1(nb / size, base);
-		link1(nb % size, base);
+		numb = numb / sizeb;
+		i++;
 	}
-}
-
-int	ft_putnbr_base(long nb, char *base)
-{
-	int	i;
-
-	link1(nb, base);
-	i = ft_sizenbr_base(nb, base);
 	return (i);
 }
 /* 
 #include <stdio.h>
 int	main(void)
 {
-	printf("%d\n", ft_putnbr_base(34534535, "0123456789abcdef"));
+	printf("%d\n", sizenbr_base(34534535, "0123456789abcdef"));
 	return (0);
-} */
+}
+ */
