@@ -6,12 +6,12 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 10:41:55 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/15 09:56:52 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/20 10:21:09 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <libft.h>
+#include "libft.h"
 
 t_list	*ft_lstnew(void *content)
 {

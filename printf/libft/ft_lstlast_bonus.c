@@ -6,11 +6,11 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 17:05:14 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/15 09:56:47 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/20 10:20:24 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
 t_list	*ft_lstlast(t_list *lst)
 {
