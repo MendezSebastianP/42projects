@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 15:27:03 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/21 14:48:53 by smendez-         ###   ########.fr       */
+/*   Created: 2024/11/04 12:42:02 by smendez-          #+#    #+#             */
+/*   Updated: 2024/11/21 16:49:52 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "printf.h"
 
-int	ft_putchar_fd(char c, int fd, int verbose)
+size_t	ft_strlen(const char *c)
 {
-	if (verbose == 1)
-		write(fd, &c, 1);
-	return (1);
+	size_t	i;
+
+	i = 0;
+	while (c[i] != '\0')
+		i++;
+	return (i);
 }
 
-/* int	main(void)
-{
-	char	a;
+/* #include <stdio.h>
+#include <string.h>
 
-	a = 'T';
-	ft_putchar_fd(a, 0);
-	ft_putchar_fd('\n', 1);
+int	main(void)
+{
+	char	*a;
+
+	a = "123456";
+	printf("Intended result	: %ld \n", strlen(a));
+	printf("Our result	: %d", ft_strlen(a));
 	return (0);
 } */

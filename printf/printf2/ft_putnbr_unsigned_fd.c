@@ -6,12 +6,12 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:27:03 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/21 15:40:55 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/21 17:22:58 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "printf.h"
+
 
 static unsigned int	powerf(unsigned int b)
 {
@@ -85,8 +85,8 @@ int	ft_putnbr_unsigned_fd(unsigned int k, int verbose)
 	i = ft_putstr_fd(ft_itoa_un(k), 1);
 	return (i);
 }
-/* 
-#include <stdio.h>
+
+/* #include <stdio.h>
 #include <stdlib.h>
 
 int	main(int c, char *v[])
@@ -97,5 +97,4 @@ int	main(int c, char *v[])
 	int i = ft_putnbr_unsigned_fd(-1,0);
 	printf("\n%d", i);
 	return (0);
-}
- */
+} */

@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/20 19:54:12 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/21 16:40:24 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ int			ft_memcmp(const void *s1, const void *s2, size_t n);
 void		*ft_memcpy(void *dest_str, const void *src_str, size_t n);
 void		*ft_memmove(void *dest_str, const void *src_str, size_t n);
 void		*ft_memset(void *str, int c, size_t n);
-int			ft_print_adress(void *ptr);
-void		ft_putchar_fd(char c, int fd);
+int			ft_print_adress(void *ptr, int verbose);
+int			ft_putchar_fd(char c, int fd, int verbose);
 void		ft_putendl_fd(char *s, int fd);
 int			ft_putnbr_base(long nb, char *base);
 void		ft_putnbr_fd(int n, int fd);
-int			ft_putnbr_unsigned_fd(unsigned int k);
+int			ft_putnbr_unsigned_fd(unsigned int k, int verbose);
 int			ft_putstr_fd(char *s, int fd);
 int			ft_sizenbr_base(long int numb, char *base);
 char		**ft_split(char const *s, char c);

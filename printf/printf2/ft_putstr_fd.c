@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:27:03 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/21 14:48:53 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/21 16:49:44 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "printf.h"
 
-int	ft_putchar_fd(char c, int fd, int verbose)
+int	ft_putstr_fd(char *s, int fd)
 {
-	if (verbose == 1)
-		write(fd, &c, 1);
-	return (1);
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
+	return (i);
 }
 
-/* int	main(void)
+/* int	main(int c, char *v[])
 {
-	char	a;
+	char	*a;
 
-	a = 'T';
-	ft_putchar_fd(a, 0);
-	ft_putchar_fd('\n', 1);
+	(void)c;
+	a = v[1];
+	ft_putstr_fd(a, 1);
+	ft_putstr_fd("\n", 1);
 	return (0);
-} */
+}
+ */

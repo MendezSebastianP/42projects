@@ -6,11 +6,11 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:49:39 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/21 15:47:53 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/21 17:29:27 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "printf.h"
 
 int	ft_print_adress(void *ptr, int verbose)
 {
@@ -23,7 +23,7 @@ int	ft_print_adress(void *ptr, int verbose)
 	{
 		if (ptr)
 		{
-			i = ft_sizenbr_base(address, "0123456789abcdef") + 2;
+			i = ft_sizenbr_base(address, "0123456789abcdef", 0) + 2;
 			return (i);
 		}
 		else

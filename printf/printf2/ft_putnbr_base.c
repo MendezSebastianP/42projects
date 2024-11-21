@@ -6,11 +6,11 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 18:52:23 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/21 14:45:44 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/21 17:30:57 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "printf.h"
 
 static void	link1(long nb, char *base)
 {
@@ -40,7 +40,7 @@ int	ft_putnbr_base(long nb, char *base)
 	int	i;
 
 	link1(nb, base);
-	i = ft_sizenbr_base(nb, base);
+	i = ft_sizenbr_base(nb, base, 0);
 	return (i);
 }
 /* 
