@@ -1,49 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sizenbr_base.c                                  :+:      :+:    :+:   */
+/*   ft_strlennull.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/20 14:34:46 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/25 16:43:59 by smendez-         ###   ########.fr       */
+/*   Created: 2024/11/04 12:42:02 by smendez-          #+#    #+#             */
+/*   Updated: 2024/11/25 17:47:56 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int	ft_sizenbr_base(long int numb, char *base, int unsigned1)
+size_t	ft_strlennull(const char *c)
 {
-	long int	i;
-	long int	sizeb;
+	size_t	i;
 
-	i = 1;
-	sizeb = ft_strlen(base);
-	if (unsigned1 == 1)
-	{
-		numb = (unsigned int)numb;
-	}
-	if (numb == -2147483648)
-		numb = -2147483647;
-	if (numb < 0)
-	{
+	i = 0;
+	if (c == NULL)
+		return (6);
+	while (c[i] != '\0')
 		i++;
-		numb = numb * -1;
-	}
-	if ((numb / sizeb) == 0)
-		return (i);
-	while ((numb / sizeb) > 0)
-	{
-		numb = numb / sizeb;
-		i++;
-	}
 	return (i);
 }
 
 /* #include <stdio.h>
+#include <string.h>
+
 int	main(void)
 {
-	long int a = -20;
-	printf("%d\n", ft_sizenbr_base(a, "0123456789abcdef", 1));
+	char	*a;
+
+	a = "123456";
+	printf("Intended result	: %ld \n", strlen(a));
+	printf("Our result	: %d", ft_strlen(a));
 	return (0);
 } */

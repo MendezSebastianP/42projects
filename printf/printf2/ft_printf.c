@@ -25,47 +25,45 @@ int	sizearg(const char format,va_list args)
 	if (format == 'c')
 		j = ft_putchar_fd(va_arg(args, int), 1, 0);
 	else if (format == 's')
-		j = ft_strlen(va_arg(args, char*));
+		j = ft_strlennull(va_arg(args, char*));		
 	else if (format == 'p')
 		j = ft_print_adress(va_arg(args, void*), 0);
 	else if (format == 'd' || format == 'i')
 		j = ft_sizenbr_base(va_arg(args, int), "0123456789", 0);
 	else if (format == 'u')
-		j = ft_putnbr_unsigned_fd(va_arg(args, unsigned int), 0);
+		j = ft_sizenbr_base(va_arg(args, int), "0123456789", 1);
 	else if (format == 'x')
 		j = ft_sizenbr_base(va_arg(args, int), "0123456789abcdef", 1);
 	else if (format == 'X')
 		j = ft_sizenbr_base(va_arg(args, int), "0123456789ABCDEF", 1);
-	else if (format == '%') // attention
+	else if (format == '%')
 		j = 1;
-	va_end(args);
 	return (j);
-	
 }
-int	argchar(const char format,va_list args)
+char	*argchar(const char format,va_list args, char *mainmalloc)
 {
-	char	*j;
+	int	i;
 
-	j = 0;
+	i = ft_strlen(mainmalloc);
 	if (format == 'c')
-		j = va_arg(args, char*);
+		mainmalloc[i] = va_arg(args, int);
 	else if (format == 's')
-		j = va_arg(args, char*);
+	{
+		mainmalloc = ft_straddend(mainmalloc, va_arg(args, char*));
+	}
 	else if (format == 'p')
-		j = ft_print_adress(va_arg(args, void*), 0);
+		mainmalloc = ft_adresschar(va_arg(args, void*), mainmalloc);
 	else if (format == 'd' || format == 'i')
-		j = ft_sizenbr_base(va_arg(args, int), "0123456789", 0);
+		mainmalloc = ft_nbrchar(va_arg(args, int), "0123456789", 0, mainmalloc);
 	else if (format == 'u')
-		j = ft_putnbr_unsigned_fd(va_arg(args, unsigned int), 0);
+		mainmalloc = ft_nbrchar(va_arg(args, int), "0123456789", 1, mainmalloc);
 	else if (format == 'x')
-		j = ft_sizenbr_base(va_arg(args, int), "0123456789abcdef", 1);
+		mainmalloc = ft_nbrchar(va_arg(args, int), "0123456789abcdef", 1, mainmalloc);
 	else if (format == 'X')
-		j = ft_sizenbr_base(va_arg(args, int), "0123456789ABCDEF", 1);
-	else if (format == '%') // attention
-		j = 1;
-	va_end(args);
-	return (j);
-	
+		mainmalloc = ft_nbrchar(va_arg(args, int), "0123456789ABCDEF", 1, mainmalloc);
+	else if (format == '%')
+		mainmalloc[i] = '%';
+	return (mainmalloc);
 }
 
 int	sizeprintf(const char *format,va_list args)
@@ -101,15 +99,24 @@ int	ft_printf(const char *format, ...)
 	int	i;
 	
 	va_start(args, format);
+	va_copy(args1, args);
 	sz = sizeprintf(format, args);
-	chr = malloc((sz + 1) * sizeof(char));
+	chr = ft_calloc((sz + 1), sizeof(char));
 	if (!chr)
 		return (0);
 	i = 0;
 	while (format[i])
 	{
-
+		if (format[i] == '%' && isformat(format[i + 1]))
+			{
+				chr = argchar(format[i + 1], args1, chr);
+				i += 2;
+			}
+		else
+			chr = ft_charaddend(chr, format[i++]);
 	}
+	ft_putstr_fd(chr, 1);
+	free(chr);
 	va_end(args);
 	va_end(args1);
 	return (sz);
@@ -120,14 +127,14 @@ int	main(void)
 {
 	int	result;
 	int	result_native;
-	char	c = 'T';
-	char	*s = "wo";
+	char	c = '\0';
+	char	*s = NULL;
 	int a = -13634;
 	//int *p = &a;
-	int t1 =  ft_printf("Our result      : %c   %s   %p %d %i %u %x %X%%|\n", c, s, s, a, a, a, a, a);
+	// int t1 =  ft_printf("Our result      : %c   %s   %p %d %i %u %x %X%%|\n", c, s, s, a, a, a, a, a);
+	// int t2 =     printf("Intended result : %c   %s   %p %d %i %u %x %X%%|\n", c, s, s, a, a, a, a, a);
 	int t2 =     printf("Intended result : %c   %s   %p %d %i %u %x %X%%|\n", c, s, s, a, a, a, a, a);
-	// int t1 =  ft_printf("\n\n%s%p%d%i%u%x%X%%|\n", s, s, a, a, a, a, a);
-	// int t2 =     printf("\n\n%s%p%d%i%u%x%X%%|\n", s, s, a, a, a, a, a);
+	int t1 =  ft_printf("Our result      : %c   %s   %p %d %i %u %x %X%%|\n", c, s, s, a, a, a, a, a);
 	printf("\nNcharacters: Ours: %d\n intended %d\n", t1, t2);
 	return (0);
 }

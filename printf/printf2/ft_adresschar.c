@@ -6,27 +6,30 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:49:39 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/21 18:00:27 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:08:07 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-char	ft_adresschar(void *ptr, int verbose)
+char	*ft_adresschar(void *ptr, char *mainmalloc)
 {
 	unsigned long address;
 	int	i;
 
-	i = 0;
 	address = (unsigned long)ptr;
-	if (ptr)
+	i = ft_strlen(mainmalloc);
+	if (!ptr)
 	{
-		write(1, "0x", 2);
+		mainmalloc[i++] = '(';
+		mainmalloc[i++] = 'n';
+		mainmalloc[i++] = 'i';
+		mainmalloc[i++] = 'l';
+		mainmalloc[i++] = ')';
+		return (mainmalloc);
 	}
-	else
-	{	write(1, "(nil)", 5);
-		return(5);
-	}
-	i = ft_atoi_base(address, "0123456789abcdef");
-	return (i + 2);
+	mainmalloc[i++] = '0';
+	mainmalloc[i++] = 'x';
+	mainmalloc = ft_nbrchar(address, "0123456789abcdef", 1, mainmalloc);
+	return (mainmalloc);
 }
