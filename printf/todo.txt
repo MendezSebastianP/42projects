@@ -1,1 +1,0 @@
-test just put_nbr_base to return int size.
