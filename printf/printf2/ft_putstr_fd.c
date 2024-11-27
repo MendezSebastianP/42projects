@@ -6,20 +6,23 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:27:03 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/21 16:49:44 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/27 12:06:02 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-int	ft_putstr_fd(char *s, int fd)
+int	ft_putstr_fd(char *s, int fd, int size)
 {
 	int	i;
 
 	i = 0;
-	while (s[i])
+	while (i < size)
 	{
-		write(fd, &s[i], 1);
+		if (s[i] == '\0')
+			write(fd, "\0", 1); 
+		else
+			write(fd, &s[i], 1);
 		i++;
 	}
 	return (i);

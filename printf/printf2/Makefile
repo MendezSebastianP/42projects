@@ -6,7 +6,7 @@
 #    By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/10 10:54:46 by smendez-          #+#    #+#              #
-#    Updated: 2024/11/21 16:48:02 by smendez-         ###   ########.fr        #
+#    Updated: 2024/11/27 10:29:22 by smendez-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ SRC =  $(wildcard *.c)
 OBJS = $(SRC:.c=.o)
 
 
-NAME = printf.a
+NAME = libftprintf.a
 CC = gcc
 AR = ar
 FLAGS = -Wall -Wextra -Werror

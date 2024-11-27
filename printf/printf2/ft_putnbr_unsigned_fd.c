@@ -6,11 +6,11 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:27:03 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/25 16:42:59 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/27 11:33:46 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 
 static unsigned int	powerf(unsigned int b)
@@ -79,7 +79,7 @@ int	ft_putnbr_unsigned_fd(unsigned int k, int verbose, char *mainmalloc)
 		i = ft_strlen(ft_itoa_un(k, mainmalloc));
 		return (i);
 	}
-	i = ft_putstr_fd(ft_itoa_un(k, mainmalloc), 1);
+	i = ft_putstr_fd(ft_itoa_un(k, mainmalloc), 1, ft_strlen(ft_itoa_un(k, mainmalloc)));
 	return (i);
 }
 

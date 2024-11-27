@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/25 17:46:37 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/27 11:31:05 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_printf(const char *format, ...);
 int	ft_putchar_fd(char c, int fd, int verbose);
 int	ft_putnbr_base(long nb, char *base);
 int	ft_putnbr_unsigned_fd(unsigned int k, int verbose, char *mainmalloc);
-int	ft_putstr_fd(char *s, int fd);
+int	ft_putstr_fd(char *s, int fd, int size);
 int	ft_sizenbr_base(long int numb, char *base, int unsigned1);
 char	*ft_straddend(char *malloc1, char *toadd);
 size_t	ft_strlen(const char *c);

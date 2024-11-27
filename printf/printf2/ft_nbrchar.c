@@ -6,11 +6,12 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 18:52:23 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/25 16:05:21 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/27 10:47:00 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
+
 int	msize(long int a, char *base)
 {
 	long int		lenb;

@@ -6,11 +6,11 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 14:34:46 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/25 16:43:59 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/27 10:48:14 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 int	ft_sizenbr_base(long int numb, char *base, int unsigned1)
 {
