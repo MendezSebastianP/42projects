@@ -12,11 +12,11 @@
 
 char	*ft_charaddend(char *malloc1, char toadd)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (malloc1[i])
 		i++;
-	malloc1[i] = toadd;	
+	malloc1[i] = toadd;
 	return (malloc1);
 }

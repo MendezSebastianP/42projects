@@ -6,13 +6,13 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:42:16 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/27 16:33:43 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/27 16:57:11 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	sizearg(const char format,va_list args)
+int	sizearg(const char format, va_list args)
 {
 	int	j;
 
@@ -23,9 +23,9 @@ int	sizearg(const char format,va_list args)
 		j = 1;
 	}
 	else if (format == 's')
-		j = ft_strlennull(va_arg(args, char*));
+		j = ft_strlennull(va_arg(args, char *));
 	else if (format == 'p')
-		j = ft_print_adress(va_arg(args, void*));
+		j = ft_print_adress(va_arg(args, void *));
 	else if (format == 'd' || format == 'i')
 		j = ft_sizenbr_base(va_arg(args, int), "0123456789", 0);
 	else if (format == 'u')
@@ -44,27 +44,29 @@ char	*argchar(const char format, va_list args, char *mainmalloc, int index)
 	if (format == 'c')
 		mainmalloc[index] = (char)va_arg(args, int);
 	else if (format == 's')
-		mainmalloc = ft_straddend(mainmalloc, va_arg(args, char*), index);
+		mainmalloc = ft_straddend(mainmalloc, va_arg(args, char *), index);
 	else if (format == 'p')
-		mainmalloc = ft_adresschar(va_arg(args, void*), mainmalloc, index);
+		mainmalloc = ft_adresschar(va_arg(args, void *), mainmalloc, index);
 	else if (format == 'd' || format == 'i')
 		mainmalloc = ft_nbrchardec(va_arg(args, int), 0, mainmalloc, index);
 	else if (format == 'u')
 		mainmalloc = ft_nbrchardec(va_arg(args, int), 1, mainmalloc, index);
 	else if (format == 'x')
-		mainmalloc = ft_nbrcharhex(va_arg(args, int), "0123456789abcdef", mainmalloc, index);
+		mainmalloc = ft_nbrcharhex(va_arg(args, int), "0123456789abcdef",
+				mainmalloc, index);
 	else if (format == 'X')
-		mainmalloc = ft_nbrcharhex(va_arg(args, int), "0123456789ABCDEF", mainmalloc, index);
+		mainmalloc = ft_nbrcharhex(va_arg(args, int), "0123456789ABCDEF",
+				mainmalloc, index);
 	else if (format == '%')
 		mainmalloc[index] = '%';
 	return (mainmalloc);
 }
 
-char	*printmotor(char *chr,const char *format, va_list args)
+char	*printmotor(char *chr, const char *format, va_list args)
 {
-	va_list		args1;
-	int			i;
-	int			index;
+	va_list	args1;
+	int		i;
+	int		index;
 
 	va_copy(args1, args);
 	i = 0;
@@ -111,8 +113,8 @@ int	sizeprintf(const char *format, va_list args)
 
 int	ft_printf(const char *format, ...)
 {
-	va_list		args;
-	va_list		args1;
+	va_list	args;
+	va_list	args1;
 	char	*chr;
 	int		sz;
 
@@ -137,7 +139,8 @@ int	main(void)
 	char	*s = NULL;
 	int a = -13634;
 	//int *p = &a;
-	// int t1 =  ft_printf("Our result      : %c   %s   %p %d %i %u %x %X%%|\n", 
+	// int t1 =  ft_printf("Our result      : %c   %s   %p %d %i %u %x %X%%|\n",
+			
 	c, s, s, a, a, a, a, a);
 	// int t2 =     printf("Intended result : %c   %s   %p %d %i %u %x %X%%|\n",
 	c, s, s, a, a, a, a, a);
@@ -148,7 +151,8 @@ int	main(void)
 } */
 /* #include <stdio.h>
 #include <limits.h>
-int main()
+
+int	main(void)
 {
     int res1, res2;
 
@@ -173,5 +177,5 @@ int main()
     res2 = printf("Native: %p\n", (void *)ULONG_MAX);
     printf("Custom: %d, Native: %d\n\n", res1, res2);
 
-    return 0;
+    return (0);
 } */
