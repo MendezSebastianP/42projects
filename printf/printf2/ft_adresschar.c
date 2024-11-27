@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:49:39 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/27 15:47:44 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/27 16:38:35 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,36 @@
 
 char	*motoradress(unsigned long address, char *mainmalloc, int index)
 {
-	int	j;
-	
+	unsigned long	tmp;
+	int				j;
+
 	j = 0;
-	while (address)
+	tmp = address;
+	while (tmp)
 	{
 		j++;
-		address /= 16;
+		tmp /= 16;
 	}
 	while (j-- > 0)
 	{
 		mainmalloc[index + j] = "0123456789abcdef"[address % 16];
 		address /= 16;
 	}
-	return mainmalloc;
+	return (mainmalloc);
 }
 
 char	*ft_adresschar(void *ptr, char *mainmalloc, int index)
 {
-	unsigned long address;
-	char	*nil1;
-	int	i;
+	unsigned long	address;
+	char			*nil1;
+	int				i;
 
 	address = (unsigned long)ptr;
 	nil1 = "(nil)";
 	i = 0;
 	if (!ptr)
 	{
-		while(nil1[i])
+		while (nil1[i])
 		{
 			mainmalloc[index + i] = nil1[i];
 			i++;

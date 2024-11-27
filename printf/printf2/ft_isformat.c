@@ -1,41 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_isformat.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 15:27:03 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/27 16:35:54 by smendez-         ###   ########.fr       */
+/*   Created: 2024/11/27 16:23:33 by smendez-          #+#    #+#             */
+/*   Updated: 2024/11/27 16:28:57 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	ft_putstr_fd(char *s, int fd, int size)
+int	isformat(const char c)
 {
-	int	i;
+	int		i;
+	char	*set;
 
 	i = 0;
-	while (i < size)
+	set = "cspdiuxX%";
+	while (set[i])
 	{
-		if (s[i] == '\0')
-			write(fd, "\0", 1);
-		else
-			write(fd, &s[i], 1);
+		if (set[i] == c)
+			return (1);
 		i++;
 	}
-	return (i);
-}
-
-/* int	main(int c, char *v[])
-{
-	char	*a;
-
-	(void)c;
-	a = v[1];
-	ft_putstr_fd(a, 1);
-	ft_putstr_fd("\n", 1);
 	return (0);
 }
- */

@@ -6,27 +6,11 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:42:16 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/27 15:56:35 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/27 16:33:43 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	isformat(const char c)
-{
-	int	i;
-	char *set;
-
-	i = 0;
-	set = "cspdiuxX%";
-	while (set[i])
-	{
-		if (set[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
-}
 
 int	sizearg(const char format,va_list args)
 {
@@ -39,7 +23,7 @@ int	sizearg(const char format,va_list args)
 		j = 1;
 	}
 	else if (format == 's')
-		j = ft_strlennull(va_arg(args, char*));		
+		j = ft_strlennull(va_arg(args, char*));
 	else if (format == 'p')
 		j = ft_print_adress(va_arg(args, void*));
 	else if (format == 'd' || format == 'i')
@@ -54,7 +38,8 @@ int	sizearg(const char format,va_list args)
 		j = 1;
 	return (j);
 }
-char	*argchar(const char format,va_list args, char *mainmalloc, int index)
+
+char	*argchar(const char format, va_list args, char *mainmalloc, int index)
 {
 	if (format == 'c')
 		mainmalloc[index] = (char)va_arg(args, int);
@@ -77,38 +62,37 @@ char	*argchar(const char format,va_list args, char *mainmalloc, int index)
 
 char	*printmotor(char *chr,const char *format, va_list args)
 {
-	va_list args1;
-	int	i;
-	int	index;
-	
+	va_list		args1;
+	int			i;
+	int			index;
+
 	va_copy(args1, args);
 	i = 0;
 	index = 0;
 	while (format[i])
 	{
 		if (format[i] == '%' && isformat(format[i + 1]))
-			{
-				chr = argchar(format[i + 1], args1, chr, index);
-				index += sizearg(format[i + 1], args);
-				i += 2;
-			}
+		{
+			chr = argchar(format[i + 1], args1, chr, index);
+			index += sizearg(format[i + 1], args);
+			i += 2;
+		}
 		else
 			chr[index++] = format[i++];
 	}
 	chr[index] = '\0';
 	va_end(args);
 	va_end(args1);
-	return(chr);
+	return (chr);
 }
 
-int	sizeprintf(const char *format,va_list args)
+int	sizeprintf(const char *format, va_list args)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-
 	while (format[i])
 	{
 		if (format[i] == '%' && isformat(format[i + 1]))
@@ -127,11 +111,11 @@ int	sizeprintf(const char *format,va_list args)
 
 int	ft_printf(const char *format, ...)
 {
-	va_list	args;
-	va_list args1;
+	va_list		args;
+	va_list		args1;
 	char	*chr;
-	int	sz;
-	
+	int		sz;
+
 	va_start(args, format);
 	va_copy(args1, args);
 	sz = sizeprintf(format, args);
@@ -153,8 +137,10 @@ int	main(void)
 	char	*s = NULL;
 	int a = -13634;
 	//int *p = &a;
-	// int t1 =  ft_printf("Our result      : %c   %s   %p %d %i %u %x %X%%|\n", c, s, s, a, a, a, a, a);
-	// int t2 =     printf("Intended result : %c   %s   %p %d %i %u %x %X%%|\n", c, s, s, a, a, a, a, a);
+	// int t1 =  ft_printf("Our result      : %c   %s   %p %d %i %u %x %X%%|\n", 
+	c, s, s, a, a, a, a, a);
+	// int t2 =     printf("Intended result : %c   %s   %p %d %i %u %x %X%%|\n",
+	c, s, s, a, a, a, a, a);
 	int t2 =     printf("|Intended result : %c%c%c|\n", '0', 0, '1');
 	int t1 =  ft_printf("|Our result      : %c%c%c|\n", '0', 0, '1');
 	printf("\nNcharacters\nOurs: %d\nintended: %d\n", t1, t2);

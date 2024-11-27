@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/27 15:37:02 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/27 16:34:12 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
-#include <stdarg.h>
+# include <stdarg.h>
 
 char	*ft_adresschar(void *ptr, char *mainmalloc, int index);
 void	*ft_calloc(size_t nitems, size_t size);
 char	*ft_charaddend(char *malloc1, char toadd);
 char	*ft_nbrchardec(int nbr, int unsigned1, char *mainmalloc, int index);
+int	isformat(const char c);
 char	*ft_nbrcharhex(int nbr, char *base, char *mainmalloc, int index);
 int	ft_print_adress(void *ptr);
 int	ft_printf(const char *format, ...);

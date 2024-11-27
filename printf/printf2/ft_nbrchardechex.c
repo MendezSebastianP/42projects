@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 18:52:23 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/27 15:52:37 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/27 16:29:50 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static int	msize(long int a, char *base)
 	}
 	return (i);
 }
+
 static char	*motor(long int nbr, char *base, char *final, int index)
 {
 	long int		size;

@@ -6,12 +6,11 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:27:03 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/27 11:33:46 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/27 16:35:32 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
 
 static unsigned int	powerf(unsigned int b)
 {
@@ -50,7 +49,7 @@ static unsigned int	firstnumb(unsigned int numb, unsigned int sizen)
 	return (numb);
 }
 
-static char	*ft_itoa_un(unsigned int k, char *mainmalloc)
+static char	*ft_itoa_un(unsigned int k, char *mm)
 {
 	int			i;
 	long int	n;
@@ -59,27 +58,27 @@ static char	*ft_itoa_un(unsigned int k, char *mainmalloc)
 	n = k;
 	i = 0;
 	sizen = sizenbr(n);
-	while (mainmalloc[i])
+	while (mm[i])
 		i++;
 	while (i < sizen)
 	{
-		mainmalloc[i] = firstnumb(n, sizen - i) + 48;
+		mm[i] = firstnumb(n, sizen - i) + 48;
 		n = n - (firstnumb(n, sizen - i) * powerf(sizen - i - 1));
 		i++;
 	}
-	return (mainmalloc);
+	return (mm);
 }
 
-int	ft_putnbr_unsigned_fd(unsigned int k, int verbose, char *mainmalloc)
+int	ft_putnbr_unsigned_fd(unsigned int k, int verbose, char *mm)
 {
 	int	i;
-	
+
 	if (verbose == 0)
 	{
-		i = ft_strlen(ft_itoa_un(k, mainmalloc));
+		i = ft_strlen(ft_itoa_un(k, mm));
 		return (i);
 	}
-	i = ft_putstr_fd(ft_itoa_un(k, mainmalloc), 1, ft_strlen(ft_itoa_un(k, mainmalloc)));
+	i = ft_putstr_fd(ft_itoa_un(k, mm), 1, ft_strlen(ft_itoa_un(k, mm)));
 	return (i);
 }
 

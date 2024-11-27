@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 18:52:23 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/27 15:58:18 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/27 16:29:44 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static int	msize1(long int a, char *base)
 	}
 	return (i);
 }
+
 static char	*motor1(long int nbr, char *base, char *final, int index)
 {
 	long int		size;
@@ -62,7 +63,7 @@ static char	*motor1(long int nbr, char *base, char *final, int index)
 char	*ft_nbrchardec(int nbr, int unsigned1, char *mainmalloc, int index)
 {
 	char	*base;
-	
+
 	base = "0123456789";
 	if (unsigned1 == 1)
 	{
