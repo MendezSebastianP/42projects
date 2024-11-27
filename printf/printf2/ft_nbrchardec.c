@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbrchar.c                                       :+:      :+:    :+:   */
+/*   ft_nbrchardec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 18:52:23 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/27 10:47:00 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:58:18 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	msize(long int a, char *base)
+static int	msize1(long int a, char *base)
 {
 	long int		lenb;
 	long int		i;
@@ -33,7 +33,7 @@ int	msize(long int a, char *base)
 	}
 	return (i);
 }
-char	*motor(long int nbr, char *base, char *final)
+static char	*motor1(long int nbr, char *base, char *final, int index)
 {
 	long int		size;
 	long int		k;
@@ -41,8 +41,8 @@ char	*motor(long int nbr, char *base, char *final)
 	long int		i;
 
 	size = ft_strlen(base);
-	i = ft_strlen(final);
-	k = msize(nbr, base) - 1;
+	i = index;
+	k = msize1(nbr, base) - 1;
 	nb = nbr;
 	if (nb < 0)
 	{
@@ -59,14 +59,17 @@ char	*motor(long int nbr, char *base, char *final)
 	return (final);
 }
 
-char	*ft_nbrchar(int nbr, char *base, int unsigned1, char *mainmalloc)
+char	*ft_nbrchardec(int nbr, int unsigned1, char *mainmalloc, int index)
 {
+	char	*base;
+	
+	base = "0123456789";
 	if (unsigned1 == 1)
 	{
-		mainmalloc = motor((unsigned int)nbr, base, mainmalloc);
+		mainmalloc = motor1((unsigned int)nbr, base, mainmalloc, index);
 		return (mainmalloc);
 	}
-	mainmalloc = motor(nbr, base, mainmalloc);
+	mainmalloc = motor1(nbr, base, mainmalloc, index);
 	return (mainmalloc);
 }
 

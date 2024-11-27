@@ -6,21 +6,19 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:01:52 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/25 17:37:57 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/27 13:56:14 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_straddend(char *malloc1, char *toadd)
+char	*ft_straddend(char *malloc1, char *toadd, int index)
 {
 	int	i;
 	int	j;
 	char	*a;
 	
-	i = 0;
+	i = index;
 	j = 0;
 	a = "(null)";
-	while (malloc1[i])
-		i++;
 	if (!toadd)
 	{
 		while (a[j])

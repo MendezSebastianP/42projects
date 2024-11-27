@@ -6,30 +6,50 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:49:39 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/27 10:46:28 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:47:44 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_adresschar(void *ptr, char *mainmalloc)
+char	*motoradress(unsigned long address, char *mainmalloc, int index)
+{
+	int	j;
+	
+	j = 0;
+	while (address)
+	{
+		j++;
+		address /= 16;
+	}
+	while (j-- > 0)
+	{
+		mainmalloc[index + j] = "0123456789abcdef"[address % 16];
+		address /= 16;
+	}
+	return mainmalloc;
+}
+
+char	*ft_adresschar(void *ptr, char *mainmalloc, int index)
 {
 	unsigned long address;
+	char	*nil1;
 	int	i;
 
 	address = (unsigned long)ptr;
-	i = ft_strlen(mainmalloc);
+	nil1 = "(nil)";
+	i = 0;
 	if (!ptr)
 	{
-		mainmalloc[i++] = '(';
-		mainmalloc[i++] = 'n';
-		mainmalloc[i++] = 'i';
-		mainmalloc[i++] = 'l';
-		mainmalloc[i++] = ')';
+		while(nil1[i])
+		{
+			mainmalloc[index + i] = nil1[i];
+			i++;
+		}
 		return (mainmalloc);
 	}
-	mainmalloc[i++] = '0';
-	mainmalloc[i++] = 'x';
-	mainmalloc = ft_nbrchar(address, "0123456789abcdef", 1, mainmalloc);
+	mainmalloc[index++] = '0';
+	mainmalloc[index++] = 'x';
+	mainmalloc = motoradress(address, mainmalloc, index);
 	return (mainmalloc);
 }

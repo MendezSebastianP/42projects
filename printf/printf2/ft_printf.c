@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:42:16 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/27 13:49:41 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:56:35 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	sizearg(const char format,va_list args)
 	else if (format == 's')
 		j = ft_strlennull(va_arg(args, char*));		
 	else if (format == 'p')
-		j = ft_print_adress(va_arg(args, void*), 0);
+		j = ft_print_adress(va_arg(args, void*));
 	else if (format == 'd' || format == 'i')
 		j = ft_sizenbr_base(va_arg(args, int), "0123456789", 0);
 	else if (format == 'u')
@@ -54,28 +54,51 @@ int	sizearg(const char format,va_list args)
 		j = 1;
 	return (j);
 }
-char	*argchar(const char format,va_list args, char *mainmalloc)
+char	*argchar(const char format,va_list args, char *mainmalloc, int index)
 {
-	int	i;
-
-	i = ft_strlen(mainmalloc);
 	if (format == 'c')
-		mainmalloc[i] = (char)va_arg(args, int);
+		mainmalloc[index] = (char)va_arg(args, int);
 	else if (format == 's')
-		mainmalloc = ft_straddend(mainmalloc, va_arg(args, char*));
+		mainmalloc = ft_straddend(mainmalloc, va_arg(args, char*), index);
 	else if (format == 'p')
-		mainmalloc = ft_adresschar(va_arg(args, void*), mainmalloc);
+		mainmalloc = ft_adresschar(va_arg(args, void*), mainmalloc, index);
 	else if (format == 'd' || format == 'i')
-		mainmalloc = ft_nbrchar(va_arg(args, int), "0123456789", 0, mainmalloc);
+		mainmalloc = ft_nbrchardec(va_arg(args, int), 0, mainmalloc, index);
 	else if (format == 'u')
-		mainmalloc = ft_nbrchar(va_arg(args, int), "0123456789", 1, mainmalloc);
+		mainmalloc = ft_nbrchardec(va_arg(args, int), 1, mainmalloc, index);
 	else if (format == 'x')
-		mainmalloc = ft_nbrchar(va_arg(args, int), "0123456789abcdef", 1, mainmalloc);
+		mainmalloc = ft_nbrcharhex(va_arg(args, int), "0123456789abcdef", mainmalloc, index);
 	else if (format == 'X')
-		mainmalloc = ft_nbrchar(va_arg(args, int), "0123456789ABCDEF", 1, mainmalloc);
+		mainmalloc = ft_nbrcharhex(va_arg(args, int), "0123456789ABCDEF", mainmalloc, index);
 	else if (format == '%')
-		mainmalloc[i] = '%';
+		mainmalloc[index] = '%';
 	return (mainmalloc);
+}
+
+char	*printmotor(char *chr,const char *format, va_list args)
+{
+	va_list args1;
+	int	i;
+	int	index;
+	
+	va_copy(args1, args);
+	i = 0;
+	index = 0;
+	while (format[i])
+	{
+		if (format[i] == '%' && isformat(format[i + 1]))
+			{
+				chr = argchar(format[i + 1], args1, chr, index);
+				index += sizearg(format[i + 1], args);
+				i += 2;
+			}
+		else
+			chr[index++] = format[i++];
+	}
+	chr[index] = '\0';
+	va_end(args);
+	va_end(args1);
+	return(chr);
 }
 
 int	sizeprintf(const char *format,va_list args)
@@ -108,29 +131,16 @@ int	ft_printf(const char *format, ...)
 	va_list args1;
 	char	*chr;
 	int	sz;
-	int	i;
 	
 	va_start(args, format);
 	va_copy(args1, args);
 	sz = sizeprintf(format, args);
-	chr = ft_calloc((sz + 1), sizeof(char));
+	chr = malloc((sz + 1) * sizeof(char));
 	if (!chr)
 		return (0);
-	i = 0;
-	while (format[i])
-	{
-		if (format[i] == '%' && isformat(format[i + 1]))
-			{
-				chr = argchar(format[i + 1], args1, chr);
-				i += 2;
-			}
-		else
-			chr = ft_charaddend(chr, format[i++]);
-	}
+	chr = printmotor(chr, format, args1);
 	ft_putstr_fd(chr, 1, sz);
 	free(chr);
-	va_end(args);
-	va_end(args1);
 	return (sz);
 }
 
@@ -149,5 +159,33 @@ int	main(void)
 	int t1 =  ft_printf("|Our result      : %c%c%c|\n", '0', 0, '1');
 	printf("\nNcharacters\nOurs: %d\nintended: %d\n", t1, t2);
 	return (0);
-}
- */
+} */
+/* #include <stdio.h>
+#include <limits.h>
+int main()
+{
+    int res1, res2;
+
+    // Test null pointer
+    res1 = ft_printf("Custom: %p\n", NULL);
+    res2 = printf("Native: %p\n", NULL);
+    printf("Custom: %d, Native: %d\n\n", res1, res2);
+
+    // Test valid pointer
+    int x = 42;
+    res1 = ft_printf("Custom: %p\n", &x);
+    res2 = printf("Native: %p\n", &x);
+    printf("Custom: %d, Native: %d\n\n", res1, res2);
+
+    // Test LONG_MIN and LONG_MAX
+    res1 = ft_printf("Custom: %p %p\n", (void *)LONG_MIN, (void *)LONG_MAX);
+    res2 = printf("Native: %p %p\n", (void *)LONG_MIN, (void *)LONG_MAX);
+    printf("Custom: %d, Native: %d\n\n", res1, res2);
+
+    // Test ULONG_MAX
+    res1 = ft_printf("Custom: %p\n", (void *)ULONG_MAX);
+    res2 = printf("Native: %p\n", (void *)ULONG_MAX);
+    printf("Custom: %d, Native: %d\n\n", res1, res2);
+
+    return 0;
+} */
