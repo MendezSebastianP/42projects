@@ -6,84 +6,11 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:37:03 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/29 14:14:42 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/29 18:07:09 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
-
-
-size_t	ft_strlen(const char *c)
-{
-	size_t	i;
-
-	i = 0;
-	while (c[i] != '\0')
-		i++;
-	return (i);
-}
-
-void	*ft_calloc(size_t nitems, size_t size)
-{
-	unsigned char	*t;
-	size_t			i;
-	size_t			k;
-
-	i = 0;
-	k = nitems * size;
-	t = malloc(k);
-	if (t == NULL || (size != 0 && k / size != nitems))
-		return (NULL);
-	while (nitems * size > i)
-	{
-		t[i] = 0;
-		i++;
-	}
-	return (t);
-}
-
-static int	isin(const char *set, const char c, int buffersize)
-{
-	int	i;
-
-	i = 0;
-	while (buffersize > i)
-	{
-		if (set[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-static char	*ft_realloc(char *oldlloc, size_t buffersize)
-{
-	char	*t;
-	size_t			i;
-	size_t			k;
-
-	i = 0;
-	k = 0;
-	while(oldlloc[i])
-		i++;
-	t = malloc(i + buffersize + 1);
-	if (t == NULL)
-		return (NULL);
-	while (i + buffersize > k)
-	{
-		t[k] = 0;
-		k++;
-	}
-	while(i != 0)
-	{
-		t[i - 1] = oldlloc[i - 1];
-		i--;
-	}
-	free(oldlloc);
-	return (t);
-}
+#include "get_next_line.h"
 
 char	*ft_straddend(char *malloc1, char *toadd, int buffersize)
 {
@@ -93,7 +20,9 @@ char	*ft_straddend(char *malloc1, char *toadd, int buffersize)
 
 	i = 0;
 	j = 0;
-	str = ft_calloc(ft_strlen(malloc1)+ ft_strlen(toadd) +1, 1);
+	if (!malloc1)
+		return (ft_strdup(toadd));
+	str = ft_calloc(ft_strlen(malloc1)+ ft_strlen(toadd) + 1, 1);
 	while (malloc1[i])
 	{
 		str[i] = malloc1[i];
@@ -104,6 +33,7 @@ char	*ft_straddend(char *malloc1, char *toadd, int buffersize)
 		str[i + j] = toadd[j];
 		j++;
 	}
+	free(malloc1);
 	return (str);
 }
 
@@ -119,13 +49,11 @@ char	*ft_resetbase(char *base)
 	k = 0;
 	while (base[i] && base[i] != '\n')
 		i++;
-	while (base[i + j])
-		j++;
+	j = ft_strlen(base + i + 1);
 	if (!base[i + 1])
 	{
 		free(base);
-		base = malloc(1);
-		return (base);
+		return (ft_calloc(1, 1));
 	}
 	newlloc = malloc(j);
 	if (!newlloc)
@@ -180,12 +108,19 @@ char	*get_next_line(int fd)
 	line = ft_strdup(base);
 	base = ft_resetbase(base);
 	free(b1);
-	if (sizeb != BUFFER_SIZE ||  )
+	// if (sizeb != BUFFER_SIZE || isin(base, '\n', BUFFER_SIZE) != 1) // adjakdjhs
+	// 	free(base);
+	if (sizeb < 0 || (!base[0] && sizeb == 0)) // Erreur ou EOF sans contenu.
+	{
 		free(base);
+		base = NULL;
+		return (NULL);
+	}
 	return (line);
 }
+
 // mettre base a 0 a la fin
-#include <stdio.h>
+/* #include <stdio.h>
 int main()
 {
 	int	fd;
@@ -211,4 +146,4 @@ int main()
 	// free(a2);
 
     return 0;
-}
+} */
