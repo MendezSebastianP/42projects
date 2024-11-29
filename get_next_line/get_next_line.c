@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:37:03 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/28 19:54:30 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/29 14:14:42 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,12 @@ char	*ft_resetbase(char *base)
 {
 	int	i;
 	int	j;
+	int	k;
 	char	*newlloc;
 	
 	i = 0;
 	j = 0;
+	k = 0;
 	while (base[i] && base[i] != '\n')
 		i++;
 	while (base[i + j])
@@ -128,11 +130,8 @@ char	*ft_resetbase(char *base)
 	newlloc = malloc(j);
 	if (!newlloc)
 		return (NULL);
-	while (j < 0)
-	{
-		newlloc[j] = base[j + i];
-		j--;
-	}
+	while (j > k)
+		newlloc[k++] = base[i++ + 1];
 	free(base);
 	return (newlloc);
 }
@@ -146,7 +145,7 @@ char	*ft_strdup(const char *s)
 
 	i = 0;
 	nitems = 0;
-	while (s[nitems])
+	while (s[nitems] && s[nitems - 1] != '\n')
 		nitems++;
 	t = malloc(nitems * sizeof(char) + 1);
 	if (t == NULL)
@@ -175,14 +174,13 @@ char	*get_next_line(int fd)
 		base = ft_calloc(1,sizeof(char));
 	while (isin(b1, '\n', BUFFER_SIZE) == 0 && sizeb == BUFFER_SIZE)
 	{
-		//base = ft_realloc(base, BUFFER_SIZE);
 		sizeb = read(fd, b1, BUFFER_SIZE);
 		base = ft_straddend(base, b1, BUFFER_SIZE);
 	}
 	line = ft_strdup(base);
 	base = ft_resetbase(base);
 	free(b1);
-	if (sizeb != BUFFER_SIZE)
+	if (sizeb != BUFFER_SIZE ||  )
 		free(base);
 	return (line);
 }
@@ -194,7 +192,7 @@ int main()
 	char	*a1;
 	char	*a2;
 
-	fd = open("test1.txt", O_RDONLY);
+	fd = open("testa.txt", O_RDONLY);
 	if (fd == -1)
 	{
 		perror("Error opening the file");
@@ -202,9 +200,12 @@ int main()
 	a1 = get_next_line(fd);
 	printf("%s", a1);
 	free(a1);
-	// a2 = get_next_line(fd);
-	// printf("%s", a2);
-	// free(a2);
+	a2 = get_next_line(fd);
+	printf("%s", a2);
+	free(a2);
+	a2 = get_next_line(fd);
+	printf("%s", a2);
+	free(a2);
 	// a2 = get_next_line(fd);
 	// printf("%s", a2);
 	// free(a2);
