@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:37:03 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/30 12:11:33 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/30 17:09:00 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_straddend(char *malloc1, char *toadd, int buffersize)
 	if (!toadd)
         	return (malloc1);
 	if (!malloc1)
-		return (ft_strdup(toadd));
+		return (ft_strdup(toadd, 0));
 	str = ft_calloc(ft_strlen(malloc1)+ ft_strlen(toadd) + 1, 1);
 	if (!str)
 		return (NULL);
@@ -51,12 +51,12 @@ char	*ft_resetbase(char *base)
 		return (NULL);
 	while (base[i] && base[i] != '\n')
 		i++;
-	if (!base[i + 1])
+	if (!base[i])
 	{
 		free(base);
 		return (ft_calloc(1, 1));
 	}
-	newlloc = ft_strdup(base + i + 1);
+	newlloc = ft_strdup(base + i + 1, 0);
 	if (!newlloc)
 		return (NULL);
 	
@@ -65,7 +65,7 @@ char	*ft_resetbase(char *base)
 }
 
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(const char *s, int line)
 {
 	char			*t;
 	size_t			i;
@@ -75,7 +75,7 @@ char	*ft_strdup(const char *s)
 	nitems = 0;
 	while (s[nitems])
 	{
-		if (nitems > 0 && s[nitems - 1] == '\n')
+		if (nitems > 0 && s[nitems - 1] == '\n' && line == 1)
 			break;
 		nitems++;
 	}
@@ -112,27 +112,27 @@ char	*get_next_line(int fd)
 		base = ft_calloc(1,sizeof(char));
 	while (isin(base, '\n', ft_strlen(base)) == 0 && (sizeb = read(fd, b1, BUFFER_SIZE)) > 0)
 	{
-		base = ft_straddend(base, b1, BUFFER_SIZE);
+		base = ft_straddend(base, b1, sizeb);
 		if (!base)
 			return (freenull(&b1));
 	}
 	free(b1);
 	if (sizeb < 0 || (!base[0] && sizeb == 0))
 		return (freenull(&base));
-	line = ft_strdup(base);
+	line = ft_strdup(base, 1);
 	base = ft_resetbase(base);
 	return (line);
 }
 
-
-/* #include <stdio.h>
+/* 
+#include <stdio.h>
 int main()
 {
 	int	fd;
 	char	*a1;
 	char	*a2;
 
-	fd = open("testa.txt", O_RDONLY);
+	fd = open("giant_line.txt", O_RDONLY);
 	if (fd == -1)
 	{
 		perror("Error opening the file");
@@ -143,15 +143,15 @@ int main()
 	a2 = get_next_line(fd);
 	printf("%s", a2);
 	free(a2);
-	a2 = get_next_line(fd);
-	printf("%s", a2);
-	free(a2);
-	a2 = get_next_line(fd);
-	printf("%s", a2);
-	free(a2);
-	a2 = get_next_line(fd);
-	printf("%s", a2);
-	free(a2);
+	// a2 = get_next_line(fd);
+	// printf("%s", a2);
+	// free(a2);
+	// a2 = get_next_line(fd);
+	// printf("%s", a2);
+	// free(a2);
+	// a2 = get_next_line(fd);
+	// printf("%s", a2);
+	// free(a2);
 
     return 0;
 } */
