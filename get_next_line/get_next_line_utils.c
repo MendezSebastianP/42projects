@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 17:38:45 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/29 17:49:40 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/30 10:42:04 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlen(const char *c)
 	size_t	i;
 
 	i = 0;
+	if (!c)
+		return (0);
 	while (c[i] != '\0')
 		i++;
 	return (i);

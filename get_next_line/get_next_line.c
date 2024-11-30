@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:37:03 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/29 18:07:09 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/11/30 12:11:33 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,13 @@ char	*ft_straddend(char *malloc1, char *toadd, int buffersize)
 
 	i = 0;
 	j = 0;
+	if (!toadd)
+        	return (malloc1);
 	if (!malloc1)
 		return (ft_strdup(toadd));
 	str = ft_calloc(ft_strlen(malloc1)+ ft_strlen(toadd) + 1, 1);
+	if (!str)
+		return (NULL);
 	while (malloc1[i])
 	{
 		str[i] = malloc1[i];
@@ -40,26 +44,22 @@ char	*ft_straddend(char *malloc1, char *toadd, int buffersize)
 char	*ft_resetbase(char *base)
 {
 	int	i;
-	int	j;
-	int	k;
 	char	*newlloc;
 	
 	i = 0;
-	j = 0;
-	k = 0;
+	if (!base)
+		return (NULL);
 	while (base[i] && base[i] != '\n')
 		i++;
-	j = ft_strlen(base + i + 1);
 	if (!base[i + 1])
 	{
 		free(base);
 		return (ft_calloc(1, 1));
 	}
-	newlloc = malloc(j);
+	newlloc = ft_strdup(base + i + 1);
 	if (!newlloc)
 		return (NULL);
-	while (j > k)
-		newlloc[k++] = base[i++ + 1];
+	
 	free(base);
 	return (newlloc);
 }
@@ -73,8 +73,12 @@ char	*ft_strdup(const char *s)
 
 	i = 0;
 	nitems = 0;
-	while (s[nitems] && s[nitems - 1] != '\n')
+	while (s[nitems])
+	{
+		if (nitems > 0 && s[nitems - 1] == '\n')
+			break;
 		nitems++;
+	}
 	t = malloc(nitems * sizeof(char) + 1);
 	if (t == NULL)
 		return (NULL);
@@ -87,6 +91,13 @@ char	*ft_strdup(const char *s)
 	return (t);
 }
 
+char	*freenull(char **base)
+{
+	free(*base);
+	*base = NULL;
+	return (NULL);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*base;
@@ -97,29 +108,23 @@ char	*get_next_line(int fd)
 	b1 = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (!b1)
 		return (NULL);
-	sizeb = BUFFER_SIZE;
 	if (!base)
 		base = ft_calloc(1,sizeof(char));
-	while (isin(b1, '\n', BUFFER_SIZE) == 0 && sizeb == BUFFER_SIZE)
+	while (isin(base, '\n', ft_strlen(base)) == 0 && (sizeb = read(fd, b1, BUFFER_SIZE)) > 0)
 	{
-		sizeb = read(fd, b1, BUFFER_SIZE);
 		base = ft_straddend(base, b1, BUFFER_SIZE);
+		if (!base)
+			return (freenull(&b1));
 	}
+	free(b1);
+	if (sizeb < 0 || (!base[0] && sizeb == 0))
+		return (freenull(&base));
 	line = ft_strdup(base);
 	base = ft_resetbase(base);
-	free(b1);
-	// if (sizeb != BUFFER_SIZE || isin(base, '\n', BUFFER_SIZE) != 1) // adjakdjhs
-	// 	free(base);
-	if (sizeb < 0 || (!base[0] && sizeb == 0)) // Erreur ou EOF sans contenu.
-	{
-		free(base);
-		base = NULL;
-		return (NULL);
-	}
 	return (line);
 }
 
-// mettre base a 0 a la fin
+
 /* #include <stdio.h>
 int main()
 {
@@ -141,9 +146,12 @@ int main()
 	a2 = get_next_line(fd);
 	printf("%s", a2);
 	free(a2);
-	// a2 = get_next_line(fd);
-	// printf("%s", a2);
-	// free(a2);
+	a2 = get_next_line(fd);
+	printf("%s", a2);
+	free(a2);
+	a2 = get_next_line(fd);
+	printf("%s", a2);
+	free(a2);
 
     return 0;
 } */
