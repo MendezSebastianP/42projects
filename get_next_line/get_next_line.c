@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:37:03 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/30 17:09:00 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/02 11:35:04 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (!base)
 		base = ft_calloc(1,sizeof(char));
+	sizeb = 0;
 	while (isin(base, '\n', ft_strlen(base)) == 0 && (sizeb = read(fd, b1, BUFFER_SIZE)) > 0)
 	{
 		base = ft_straddend(base, b1, sizeb);
@@ -124,7 +125,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-/* 
+
 #include <stdio.h>
 int main()
 {
@@ -132,7 +133,7 @@ int main()
 	char	*a1;
 	char	*a2;
 
-	fd = open("giant_line.txt", O_RDONLY);
+	fd = open("empty.txt", O_RDONLY);
 	if (fd == -1)
 	{
 		perror("Error opening the file");
@@ -152,6 +153,8 @@ int main()
 	// a2 = get_next_line(fd);
 	// printf("%s", a2);
 	// free(a2);
-
+	// a2 = get_next_line(fd);
+	// printf("%s", a2);
+	// free(a2);
     return 0;
-} */
+}
