@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:37:03 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/02 12:33:35 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/02 15:30:21 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ char	*ft_straddend(char *malloc1, char *toadd, int buffersize)
 {
 	int		i;
 	int		j;
-	char *str;
+	char	*str;
 
 	i = 0;
 	j = 0;
 	if (!toadd)
-        	return (malloc1);
+		return (malloc1);
 	if (!malloc1)
 		return (ft_strdup(toadd, 0));
-	str = ft_calloc(ft_strlen(malloc1)+ ft_strlen(toadd) + 1, 1);
+	str = ft_calloc(sl(malloc1) + sl(toadd) + 1, 1);
 	if (!str)
 		return (NULL);
 	while (malloc1[i])
@@ -41,42 +41,43 @@ char	*ft_straddend(char *malloc1, char *toadd, int buffersize)
 	return (str);
 }
 
-char	*ft_resetbase(char *base)
+char	*ft_resetsc(char *sc)
 {
-	int	i;
+	int		i;
 	char	*newlloc;
-	
+
 	i = 0;
-	if (!base)
+	if (!sc)
 		return (NULL);
-	while (base[i] && base[i] != '\n')
+	while (sc[i] && sc[i] != '\n')
 		i++;
-	if (!base[i])
+	if (!sc[i])
 	{
-		free(base);
+		free(sc);
 		return (ft_calloc(1, 1));
 	}
-	newlloc = ft_strdup(base + i + 1, 0);
+	newlloc = ft_strdup(sc + i + 1, 0);
 	if (!newlloc)
-		return (NULL);
-	
-	free(base);
+	{
+		free(sc);
+		return (ft_calloc(1, 1));
+	}
+	free(sc);
 	return (newlloc);
 }
 
-
 char	*ft_strdup(const char *s, int line)
 {
-	char			*t;
-	size_t			i;
-	size_t			nitems;
+	char	*t;
+	size_t	i;
+	size_t	nitems;
 
 	i = 0;
 	nitems = 0;
 	while (s[nitems])
 	{
 		if (nitems > 0 && s[nitems - 1] == '\n' && line == 1)
-			break;
+			break ;
 		nitems++;
 	}
 	t = malloc(nitems * sizeof(char) + 1);
@@ -91,51 +92,52 @@ char	*ft_strdup(const char *s, int line)
 	return (t);
 }
 
-char	*freenull(char **base)
+char	*freenull(char **sc)
 {
-	free(*base);
-	*base = NULL;
+	free(*sc);
+	*sc = NULL;
 	return (NULL);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*base;
+	static char	*sc;
 	char		*b1;
 	char		*line;
-	int		sizeb;
+	int			n;
 
 	b1 = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (!b1)
 		return (NULL);
-	if (!base)
-		base = ft_calloc(1,sizeof(char));
-	// if (!base)
-	// 	return (freenull(&base));
-	sizeb = 0;
-	while (isin(base, '\n', ft_strlen(base)) == 0 && (sizeb = read(fd, b1, BUFFER_SIZE)) > 0)
+	if (!sc)
+		sc = ft_calloc(1, sizeof(char));
+	if (!sc)
+		return (free(b1), NULL);
+	n = 1;
+	while (isin(sc, '\n', sl(sc)) == 0 && n > 0)
 	{
-		base = ft_straddend(base, b1, sizeb);
-		if (!base)
-			return (freenull(&b1));
+		n = read(fd, b1, BUFFER_SIZE);
+		sc = ft_straddend(sc, b1, n);
+		if (!sc)
+			return (free(b1), freenull(&sc));
 	}
-	free(b1);
-	if (sizeb < 0 || (!base[0] && sizeb == 0))
-		return (freenull(&base));
-	line = ft_strdup(base, 1);
-	base = ft_resetbase(base);
-	return (line);
+	if (n < 0 || (!sc[0] && n == 0))
+		return (free(b1), freenull(&sc));
+	line = ft_strdup(sc, 1);
+	sc = ft_resetsc(sc);
+	return (free(b1), line);
 }
 
+/* 
+#include <stdio.h>
 
-/* #include <stdio.h>
-int main()
+int	main(void)
 {
-	int	fd;
+	int		fd;
 	char	*a1;
 	char	*a2;
 
-	fd =  100; //open("empty.txt", O_RDONLY);
+	fd =  open("empty.txt", O_RDONLY);
 	if (fd == -1)
 	{
 		perror("Error opening the file");
@@ -143,20 +145,16 @@ int main()
 	a1 = get_next_line(fd);
 	printf("%s", a1);
 	free(a1);
-	a2 = get_next_line(fd);
-	printf("%s", a2);
-	free(a2);
-	a2 = get_next_line(fd);
-	printf("%s", a2);
-	free(a2);
-	a2 = get_next_line(fd);
-	printf("%s", a2);
-	free(a2);
-	a2 = get_next_line(fd);
-	printf("%s", a2);
-	free(a2);
-	a2 = get_next_line(fd);
-	printf("%s", a2);
-	free(a2);
-    return 0;
-} */
+	a1 = get_next_line(fd);
+	printf("%s", a1);
+	free(a1);
+	a1 = get_next_line(fd);
+	printf("%s", a1);
+	free(a1);
+	a1 = get_next_line(fd);
+	printf("%s", a1);
+	free(a1);
+	close(fd);
+    return (0);
+}
+ */

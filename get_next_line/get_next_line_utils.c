@@ -6,13 +6,13 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 17:38:45 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/02 12:38:33 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:58:17 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *c)
+size_t	sl(const char *c)
 {
 	size_t	i;
 
@@ -23,19 +23,7 @@ size_t	ft_strlen(const char *c)
 		i++;
 	return (i);
 }
-void	ft_bzero(void *str, size_t n)
-{
-	size_t			i;
-	unsigned char	*ptr;
 
-	i = 0;
-	ptr = str;
-	while (i < n)
-	{
-		ptr[i] = 0;
-		i++;
-	}
-}
 void	*ft_calloc(size_t nitems, size_t size)
 {
 	unsigned char	*t;
@@ -43,15 +31,16 @@ void	*ft_calloc(size_t nitems, size_t size)
 	size_t			k;
 
 	i = 0;
-	k = nitems * size;
-	if ((size != 0 && k / size != 2147483647))
+	if (size != 0 && (nitems * size) / size != nitems)
 		return (NULL);
+	k = nitems * size;
 	t = malloc(k);
-	if (t == NULL)
+	if (!t)
 		return (NULL);
 	while (nitems * size > i)
 	{
-		ft_bzero(t, k);
+		t[i] = 0;
+		i++;
 	}
 	return (t);
 }
@@ -61,6 +50,8 @@ int	isin(const char *set, const char c, int buffersize)
 	int	i;
 
 	i = 0;
+	if (!set)
+		return (0);
 	while (buffersize > i)
 	{
 		if (set[i] == c)
@@ -69,4 +60,3 @@ int	isin(const char *set, const char c, int buffersize)
 	}
 	return (0);
 }
-
