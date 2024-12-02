@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 17:38:45 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/30 10:42:04 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/02 12:38:33 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,19 @@ size_t	ft_strlen(const char *c)
 		i++;
 	return (i);
 }
+void	ft_bzero(void *str, size_t n)
+{
+	size_t			i;
+	unsigned char	*ptr;
 
+	i = 0;
+	ptr = str;
+	while (i < n)
+	{
+		ptr[i] = 0;
+		i++;
+	}
+}
 void	*ft_calloc(size_t nitems, size_t size)
 {
 	unsigned char	*t;
@@ -32,13 +44,14 @@ void	*ft_calloc(size_t nitems, size_t size)
 
 	i = 0;
 	k = nitems * size;
+	if ((size != 0 && k / size != 2147483647))
+		return (NULL);
 	t = malloc(k);
-	if (t == NULL || (size != 0 && k / size != nitems))
+	if (t == NULL)
 		return (NULL);
 	while (nitems * size > i)
 	{
-		t[i] = 0;
-		i++;
+		ft_bzero(t, k);
 	}
 	return (t);
 }

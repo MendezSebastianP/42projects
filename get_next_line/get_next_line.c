@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:37:03 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/02 11:35:04 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/02 12:33:35 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (!base)
 		base = ft_calloc(1,sizeof(char));
+	// if (!base)
+	// 	return (freenull(&base));
 	sizeb = 0;
 	while (isin(base, '\n', ft_strlen(base)) == 0 && (sizeb = read(fd, b1, BUFFER_SIZE)) > 0)
 	{
@@ -126,14 +128,14 @@ char	*get_next_line(int fd)
 }
 
 
-#include <stdio.h>
+/* #include <stdio.h>
 int main()
 {
 	int	fd;
 	char	*a1;
 	char	*a2;
 
-	fd = open("empty.txt", O_RDONLY);
+	fd =  100; //open("empty.txt", O_RDONLY);
 	if (fd == -1)
 	{
 		perror("Error opening the file");
@@ -144,17 +146,17 @@ int main()
 	a2 = get_next_line(fd);
 	printf("%s", a2);
 	free(a2);
-	// a2 = get_next_line(fd);
-	// printf("%s", a2);
-	// free(a2);
-	// a2 = get_next_line(fd);
-	// printf("%s", a2);
-	// free(a2);
-	// a2 = get_next_line(fd);
-	// printf("%s", a2);
-	// free(a2);
-	// a2 = get_next_line(fd);
-	// printf("%s", a2);
-	// free(a2);
+	a2 = get_next_line(fd);
+	printf("%s", a2);
+	free(a2);
+	a2 = get_next_line(fd);
+	printf("%s", a2);
+	free(a2);
+	a2 = get_next_line(fd);
+	printf("%s", a2);
+	free(a2);
+	a2 = get_next_line(fd);
+	printf("%s", a2);
+	free(a2);
     return 0;
-}
+} */
