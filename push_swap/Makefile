@@ -6,11 +6,11 @@
 #    By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/10 10:54:46 by smendez-          #+#    #+#              #
-#    Updated: 2024/12/09 17:52:33 by smendez-         ###   ########.fr        #
+#    Updated: 2024/12/10 12:34:07 by smendez-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC =   ft_nbrchardechex.c ft_printf.c ft_nbrchardec.c outils1.c
+SRC =   ft_nbrchardechex.c ft_printf.c ft_nbrchardec.c outils1.c swap_iserror.c
 
 OBJS = $(SRC:.c=.o)
 

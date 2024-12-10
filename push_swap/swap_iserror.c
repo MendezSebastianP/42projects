@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   swap_iserror.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:36:58 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/09 19:27:18 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/10 12:33:34 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,47 @@ int	is_dup(int argc, char *argv[])
 	}
 	return (0);
 }
-// add function is min max
+int	is_intoverflow(char *arg)
+{
+	int	i;
+	int	j;
+	char	*positive;
+
+	i = 0;
+	j = 0;
+	positive = "2147483647";
+	if ((ft_isdigit(arg[0]) == 1 && ft_strlen(arg) > 10) ||
+	(arg[0] == '-' && ft_strlen(arg) > 11))
+		return (1);
+	if ((ft_isdigit(arg[0]) == 1 && ft_strlen(arg) < 10) ||
+	(arg[0] == '-' && ft_strlen(arg) < 11))
+		return (0);
+	if (arg[0] == '-')
+		j = 1 + i++;
+	while (arg[i + 1])
+	{
+		if (arg[i] > positive[i - j])
+			return (1);
+		i++;
+	}
+	if (arg[i] > '7' + j)
+		return (1);
+	return (0);
+}
+
 int	swap_iserror(int argc, char *argv[])
 {
 	int	i;
 	int	j;
 
 	i = 1;
-	while(argv[i])
+	if (argc < 3)
+		return	(1);
+	while (argv[i])
 	{
 		j = 0;
+		if (is_intoverflow(argv[i]) == 1)
+			return (1);
 		while(argv[i][j])
 		{
 			if (argv[i][j] == '-')
@@ -102,8 +133,14 @@ int	swap_iserror(int argc, char *argv[])
 // 	return (0);
 // }
 
-int	main(int argc, char *argv[])
-{
- 	ft_printf("Test result -> %d", swap_iserror(argc, argv));
- 	return (0);
-}
+// int	main(int argc, char *argv[])
+// {
+//  	ft_printf("Test result -> %d", swap_iserror(argc, argv));
+//  	return (0);
+// }
+
+// int	main(int argc, char *argv[])
+// {
+//  	ft_printf("Test result -> %d", is_intoverflow(argv[1]));
+//  	return (0);
+// }
