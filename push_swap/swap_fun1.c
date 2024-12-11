@@ -1,24 +1,5 @@
 #include "push_swap.h"
 
-t_list	*ptr_to_list(int argc, char *argv[])
-{
-	int	i;
-	t_list	*newob;
-	t_list	*newlst;
-
-	i = 1;
-	newlst = NULL;
-	while(argv[i])
-	{
-		newob = ft_lstnew(argv[i]);
-		if (!newob)
-			return (NULL);
-		ft_lstadd_back(&newlst, newob);
-		i++;
-	}
-	return (newlst);
-}
-
 void sswap(t_list **list)
 {
 	t_list *first;
@@ -30,61 +11,71 @@ void sswap(t_list **list)
 	second = (*list)->next;
 	first->next = second->next;
 	second->next = first;
-	*list = second; 
+	*list = second;
+}
+void	ss(t_list **list_a, t_list ** list_b)
+{
+	if (!list_a || !*list_a || !(*list_a)->next ||
+	!list_b || !*list_b || !(*list_b)->next)
+        	return;
+	sswap(list_a);
+	sswap(list_b);
 }
 
 void spush(t_list **list_a, t_list **list_b)
 {
 	t_list *first_a;
-	t_list *first_b;
+	t_list *second_a;
 	t_list	*temp;
 
-	if (!list_a || !*list_a || !list_b || !*list_b )
+	if (!list_a || !*list_a )
         	return;
 	first_a = *list_a;
-	first_b = *list_b;
-	temp = *list_a;
-	temp->next = first_a->next;
-	first_a->next = first_b->next;
-	first_b->next = temp->next;
-	*list_a = first_b;
-	*list_b = first_a;
+	second_a = (*list_a)->next;
+	ft_lstadd_front(list_b, first_a);
+	*list_a = second_a;
 }
-
-/* int	main(int argc, char *argv[])
+void	rotate(t_list **list)
 {
-	t_list 	*b1;
-	t_list	*b1a;
-	int	i = 1;
+	t_list	*temp;
+	t_list	*node;
 
-	b1 = ptr_to_list(argc, argv);
-	b1a = ptr_to_list(argc, argv);
-	sswap(&b1a);
-	while (b1 != NULL)
-	{
-		ft_printf("%d- |__%s__|__%s__| \n",
-		 i++, b1->content, b1a->content);
-		b1 = b1->next;
-		b1a = b1a->next;
-	}
-	return (0);
-} */
+	temp = *list;
+	node = temp->next;
+	ft_lstadd_back(&temp, node);
+	
+}
 
 int	main(int argc, char *argv[])
 {
-	t_list 	*b1;
-	t_list	*b1a;
-	int	i = 1;
-
-	b1 = ptr_to_list(argc, argv);
-	b1a = ptr_to_list(argc, argv);
-	sswap(&b1a);
-	while (b1 != NULL)
-	{
-		ft_printf("%d- |__%s__|__%s__| \n",
-		 i++, b1->content, b1a->content);
-		b1 = b1->next;
-		b1a = b1a->next;
-	}
+	print_single(argv, rotate);
+	// print_both(argv, argv + 4, ss);
 	return (0);
 }
+
+
+// int	main(int argc, char *argv[])
+// {
+// 	t_list 	*b1;
+// 	t_list	*b1a;
+// 	int	i = 1;
+
+// 	b1 = ptr_to_list(argv);
+// 	b1a = ptr_to_list(argv + 2);
+// 	while (b1 != NULL )
+// 	{
+// 		ft_printf("%d- ", i++);
+// 		if (b1)
+// 		{
+// 			ft_printf("|__%s__|", b1->content);
+// 			b1 = b1->next;
+// 		}
+// 		if (b1a != NULL)
+// 		{
+// 			ft_printf("|__%s__|", b1a->content);
+// 			b1a = b1a->next;
+// 		}
+// 		ft_printf("\n");
+// 	}
+// 	return (0);
+// }
