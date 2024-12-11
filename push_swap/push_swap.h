@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/11 19:57:00 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/11 20:16:12 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void		ft_lstiter(t_list *lst, void (*f)(void *));
 t_list		*ft_lstlast(t_list *lst);
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 t_list		*ft_lstnew(void *content);
+int	        ft_lstsize(t_list *lst);
 char	*ft_nbrchardec(int nbr, int unsigned1, char *mainmalloc, int index);
 int		isformat(const char c);
 char	*ft_nbrcharhex(int nbr, char *base, char *mainmalloc, int index);

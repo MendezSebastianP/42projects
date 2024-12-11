@@ -5,15 +5,22 @@ void	r_rot(t_list **list)
 	t_list	*first;
 	t_list	*last;
 	t_list	*temp;
-	t_list	**list2;
+	int	i;
+	int	k;
 
+	k = 0;
+	i = ft_lstsize(*list) - 1;
 	first = *list;
-	list2 = list;
 	last = ft_lstlast(*list);
 	ft_lstadd_front(list, last);
 	*list = last;
-	// temp = ft_lstlast(*list);
-	// temp->next = NULL;
+	temp = *list;
+	while (k != i)
+	{
+		temp = temp->next;
+		k++;
+	}
+	temp->next = NULL;
 }
 
 int	main(int argc, char *argv[])
