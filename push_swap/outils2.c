@@ -45,7 +45,7 @@ void	print_single(char **argv, void (f)(t_list **))
 	b1a_free = b1a;
 	f(&b1a);
 	ft_printf("   |before|after | \n");
-	while (b1 != NULL)
+	while (b1 != NULL && b1a != NULL)
 	{
 		ft_printf("%d- |__%s___|__%s___| \n", i++, b1->content, b1a->content);
 		b1 = b1->next;

@@ -41,17 +41,26 @@ void	rotate(t_list **list)
 	t_list	*node;
 
 	temp = *list;
-	node = temp->next;
-	ft_lstadd_back(&temp, node);
-	
+	node = (*list)->next;
+	ft_lstadd_back(list, temp);
+	*list = node;
+	temp->next = NULL;
 }
 
-int	main(int argc, char *argv[])
+void	rr(t_list **list_a, t_list ** list_b)
 {
-	print_single(argv, rotate);
-	// print_both(argv, argv + 4, ss);
-	return (0);
+	if (!list_a || !*list_a || !list_b || !*list_b)
+        	return;
+	rotate(list_a);
+	rotate(list_b);
 }
+
+/* int	main(int argc, char *argv[])
+{
+	// print_single(argv, rotate);
+	print_both(argv, argv + 4, rr);
+	return (0);
+} */
 
 
 // int	main(int argc, char *argv[])

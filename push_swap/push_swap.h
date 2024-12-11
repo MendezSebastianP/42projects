@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/11 17:28:16 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/11 19:57:00 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ size_t	ft_strlennull(const char *c);
 void	print_both(char **argv1, char **argv2, void (f)(t_list **, t_list **));
 void	print_single(char **argv, void (f)(t_list **));
 t_list	*ptr_to_list(char *argv[]);
+void	r_rot(t_list **list);
 void	rotate(t_list **list);
+void	rr(t_list **list_a, t_list ** list_b);
 void	ss(t_list **list_a, t_list ** list_b);
 int	swap_iserror(int argc, char *argv[]);
 
