@@ -24,7 +24,10 @@ t_list	*ptr_to_list(char *argv[])
 	{
 		newob = ft_lstnew(argv[i]);
 		if (!newob)
+		{
+			free_list(newlst);
 			return (NULL);
+		}
 		ft_lstadd_back(&newlst, newob);
 		i++;
 	}
@@ -93,3 +96,41 @@ void	print_both(char **argv1, char **argv2, void (f)(t_list **, t_list **))
 	free_list(b1);
 	free_list(b1a);
 }
+
+void	print_ex(char **argv)
+{
+	t_list	*b1;
+	t_list	*b2;
+	t_list	*tmp1;
+	t_list	*tmp2;
+	int	i;
+
+	b1 = ptr_to_list(argv);
+	spush(&b1, &b2);
+	tmp1 = b1;
+	tmp2 = b2;
+	i = 0;
+	while (tmp1 != NULL || tmp2 != NULL)
+	{
+		ft_printf("%d- ", i++);
+		if (tmp1)
+		{
+			ft_printf("|__%s__|", (char *)tmp1->content);
+			tmp1 = tmp1->next;
+		}
+		if (tmp2)
+		{
+			ft_printf("|__%s__|", (char *)tmp2->content);
+			tmp2 = tmp2->next;
+		}
+		ft_printf("\n");
+	}
+	free_list(b1);
+	free_list(b2);
+}
+
+/* int	main(int argc, char *argv[])
+{
+	print_ex(argv);
+	return (0);
+} */

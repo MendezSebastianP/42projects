@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/11 20:16:12 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/12 11:18:41 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ typedef struct s_list
     struct s_list   *next;
     struct s_list   *prev;
 }           t_list;
-
 
 char	*ft_adresschar(void *ptr, char *mainmalloc, int index);
 void		ft_lstadd_back(t_list **lst, t_list *new);
@@ -51,7 +50,10 @@ t_list	*ptr_to_list(char *argv[]);
 void	r_rot(t_list **list);
 void	rotate(t_list **list);
 void	rr(t_list **list_a, t_list ** list_b);
+void	rrr(t_list **list_a, t_list ** list_b);
+void    spush(t_list **list_a, t_list **list_b);
 void	ss(t_list **list_a, t_list ** list_b);
+void sswap(t_list **list);
 int	swap_iserror(int argc, char *argv[]);
 
 

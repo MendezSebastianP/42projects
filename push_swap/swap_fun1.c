@@ -34,6 +34,8 @@ void spush(t_list **list_a, t_list **list_b)
 	second_a = (*list_a)->next;
 	ft_lstadd_front(list_b, first_a);
 	*list_a = second_a;
+	first_a->next = NULL;
+
 }
 void	rotate(t_list **list)
 {
@@ -57,8 +59,8 @@ void	rr(t_list **list_a, t_list ** list_b)
 
 /* int	main(int argc, char *argv[])
 {
-	// print_single(argv, rotate);
-	print_both(argv, argv + 4, rr);
+	print_single(argv, rotate);
+	//print_both(argv, argv + 4, rr);
 	return (0);
 } */
 

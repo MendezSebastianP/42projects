@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:36:58 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/10 12:33:34 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/12 11:57:54 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,11 +133,11 @@ int	swap_iserror(int argc, char *argv[])
 // 	return (0);
 // }
 
-// int	main(int argc, char *argv[])
-// {
-//  	ft_printf("Test result -> %d", swap_iserror(argc, argv));
-//  	return (0);
-// }
+int	main(int argc, char *argv[])
+{
+ 	ft_printf("Test result -> %d", swap_iserror(argc, argv));
+ 	return (0);
+}
 
 // int	main(int argc, char *argv[])
 // {

@@ -1,5 +1,10 @@
 #include "push_swap.h"
 
+void	lstnull(t_list **list)
+{
+	
+}
+
 void	r_rot(t_list **list)
 {
 	t_list	*first;
@@ -23,9 +28,17 @@ void	r_rot(t_list **list)
 	temp->next = NULL;
 }
 
-int	main(int argc, char *argv[])
+void	rrr(t_list **list_a, t_list ** list_b)
 {
-	print_single(argv, r_rot);
-	// print_both(argv, argv + 4, rr);
-	return (0);
+	if (!list_a || !*list_a || !list_b || !*list_b)
+        	return;
+	r_rot(list_a);
+	r_rot(list_b);
 }
+
+/* int	main(int argc, char *argv[])
+{
+	// print_single(argv, r_rot);
+	print_both(argv, argv + 4, rrr);
+	return (0);
+} */
