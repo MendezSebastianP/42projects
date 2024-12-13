@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/12 11:18:41 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/13 12:36:37 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ typedef struct s_list
 {
     void            *content;
     struct s_list   *next;
-    struct s_list   *prev;
 }           t_list;
 
 char	*ft_adresschar(void *ptr, char *mainmalloc, int index);
@@ -44,9 +43,11 @@ int		ft_sizenbr_base(long int numb, char *base, int unsigned1);
 char	*ft_straddend(char *malloc1, char *toadd, int index);
 size_t	ft_strlen(const char *c);
 size_t	ft_strlennull(const char *c);
+void	print_algo(t_list *b1, t_list *b2);
 void	print_both(char **argv1, char **argv2, void (f)(t_list **, t_list **));
 void	print_single(char **argv, void (f)(t_list **));
 t_list	*ptr_to_list(char *argv[]);
+t_list	*ptr_to_numblist(char *argv[]);
 void	r_rot(t_list **list);
 void	rotate(t_list **list);
 void	rr(t_list **list_a, t_list ** list_b);

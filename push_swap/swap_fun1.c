@@ -27,15 +27,19 @@ void spush(t_list **list_a, t_list **list_b)
 	t_list *first_a;
 	t_list *second_a;
 	t_list	*temp;
+	int	rule;
 
+	rule = 0;
 	if (!list_a || !*list_a )
         	return;
+	if (ft_lstsize(*list_b) < 1)
+		rule = 1;
 	first_a = *list_a;
 	second_a = (*list_a)->next;
 	ft_lstadd_front(list_b, first_a);
 	*list_a = second_a;
-	first_a->next = NULL;
-
+	if (rule == 1)
+		first_a->next = NULL;
 }
 void	rotate(t_list **list)
 {
