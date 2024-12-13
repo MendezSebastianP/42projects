@@ -26,6 +26,8 @@ int	content_list(t_list *b1, int index)
 
 int	test_isok(t_list *b1)
 {
+	if (b1->next == NULL)
+		return (0);
 	while (b1->next)
 	{
 		if (*(int *)b1->content > *(int *)b1->next->content)
@@ -41,12 +43,16 @@ void	swap_algo1(t_list **b1, t_list **b2)
 	int	i;
 
 	i = 0;
-	while (i != 4)
+	while (test_isok(*b1) == 0 || *b2)
 	{
 		ft_printf("    %d\n", i + 1);
-		if (*(int *)(*b1)->content > *(int *)((*b1)->next->content))
+		if ((*(int *)(*b1)->content > *(int *)((*b1)->next->content)) && (*(int *)(*b1)->content > *(int*)(ft_lstlast(*b1)->content)))
+			rotate(b1);
+		else if (*(int *)(*b1)->content > *(int*)(ft_lstlast(*b1)->content))
+			r_rot(b1);
+		else if (*(int *)(*b1)->content > *(int *)((*b1)->next->content))
 			sswap(b1);
-		else if(*b2 && test_isok(*b1) == 1 && test_isok(*b2) == 0)
+		else if (*b2 && test_isok(*b1) == 1 && test_isok(*b2) == 0)
 		{
 			while(*b2)
 				spush(b2, b1);
