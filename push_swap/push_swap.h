@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/13 12:36:37 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/13 15:42:58 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_list
     struct s_list   *next;
 }           t_list;
 
+char    *free_list(t_list *list);
 char	*ft_adresschar(void *ptr, char *mainmalloc, int index);
 void		ft_lstadd_back(t_list **lst, t_list *new);
 void		ft_lstadd_front(t_list **lst, t_list *new);

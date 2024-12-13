@@ -29,7 +29,7 @@ int	ft_atoi(const char *s)
 	return (k);
 }
 
-void free_list(t_list *list)
+char *free_list(t_list *list)
 {
     t_list *tmp;
 
@@ -39,6 +39,7 @@ void free_list(t_list *list)
         list = list->next;
         free(tmp);
     }
+    return (NULL);
 }
 
 t_list	*ptr_to_list(char *argv[])
@@ -62,22 +63,25 @@ t_list	*ptr_to_list(char *argv[])
 	}
 	return (newlst);
 }
+#include <stdio.h>
 t_list	*ptr_to_numblist(char *argv[])
 {
 	int	i;
 	t_list	*newob;
 	t_list	*newlst;
+	int	*number;
 
 	i = 1;
 	newlst = NULL;
 	while(argv[i])
 	{
-		newob = ft_lstnew((int*)ft_atoi(argv[i]));
+		number = malloc(sizeof(int));
+		if (!number)
+			return(free_list(newlst), NULL);
+		*number = ft_atoi(argv[i]);
+		newob = ft_lstnew(number);
 		if (!newob)
-		{
-			free_list(newlst);
-			return (NULL);
-		}
+			return (free(number), free_list(newlst), NULL);
 		ft_lstadd_back(&newlst, newob);
 		i++;
 	}
@@ -204,19 +208,18 @@ void	print_algo(t_list *b1, t_list *b2)
 		ft_printf("%d- ", i++);
 		if (tmp1)
 		{
-			ft_printf("|__%s__|", (char *)tmp1->content);
+			ft_printf("|__%d__|", *(int *)tmp1->content);
 			tmp1 = tmp1->next;
 		}
 		if (tmp2)
 		{
-			ft_printf("|__%s__|", (char *)tmp2->content);
+			ft_printf("|__%d__|", *(int *)tmp2->content);
 			tmp2 = tmp2->next;
 		}
 		ft_printf("\n");
 	}
-	free_list(b1);
-	free_list(b2);
 }
+
 
 /* int	main(int argc, char *argv[])
 {
