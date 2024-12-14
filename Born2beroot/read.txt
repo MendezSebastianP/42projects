@@ -1,43 +1,42 @@
 smendez-42
 smendez-
 passphrase and passwords : HELLOthisisspartaaa123
-Type ||lsblk|| in your Virtual Machine to see the partition
+lsblk
 ssh smendez-@127.0.0.1 -p 4243
-git clone https://github.com/gemartin99/Born2beroot-Tester.git
 
-test evaluator
-sudo chage -l username # check password policy
-sudo ufw status #firewall status
-sudo systemctl status ssh #ssh status
+
+sudo chage -l username 
+sudo ufw status 
+sudo systemctl status ssh 
 lsb_release -a || cat /etc/os-release # os status
 getent group sudo
-getent group user42 # check user
+getent group user42 
 
-password check
+
 sudo adduser new_username
 sudo groupadd evaluating
 sudo usermod -aG evaluating new_username
-getent group evaluating # check if user is in evaluating group
-sudo chage -l new_username # check password rules
-getent group evaluating # check group
+getent group evaluating 
+sudo chage -l new_username
+getent group evaluating 
 hostnamectl #host login name
-sudo hostnamectl set-hostname new_username #
+sudo hostnamectl set-hostname new_username 
 sudo nano /etc/hosts # change host name in this file
 
-lsblk # check partitions
+lsblk
 dpkg -l | grep sudo – # check if sudo is installed
-cd /var/log/sudo/ # check if there is a file
+cd /var/log/sudo/ 
 
-dpkg -l | grep ufw – # check if ufw installed
+dpkg -l | grep ufw –
 sudo ufw status numbered
-sudo ufw allow 8080 # add new port, then check status
+sudo ufw allow 8080 
 sudo ufw delete rule_number
 
-dpkg -l | grep ssh – # checking ssh
-ssh smendez-@127.0.0.1 -p 4243 # connect in my terminal
+dpkg -l | grep ssh –
+ssh smendez-@127.0.0.1 -p 4243 
 
 cd /usr/local/bin/ #check and explain the 10m script
-sudo crontab -u root -e # put one minute rule with */1 * * * *
+sudo crontab -u root -e 
 sudo cronstop
 sudo cronstart
 

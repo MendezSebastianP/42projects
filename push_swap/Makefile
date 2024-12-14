@@ -6,11 +6,11 @@
 #    By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/10 10:54:46 by smendez-          #+#    #+#              #
-#    Updated: 2024/12/10 12:34:07 by smendez-         ###   ########.fr        #
+#    Updated: 2024/12/14 16:03:47 by smendez-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC =   ft_nbrchardechex.c ft_printf.c ft_nbrchardec.c outils1.c swap_iserror.c
+SRC =   $(wildcard *.c)
 
 OBJS = $(SRC:.c=.o)
 
@@ -18,7 +18,7 @@ OBJS = $(SRC:.c=.o)
 NAME = push_swap.a
 CC = gcc
 AR = ar
-FLAGS = -Wall -Wextra -Werror
+# FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
