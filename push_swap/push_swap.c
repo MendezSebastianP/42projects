@@ -200,8 +200,8 @@ void	push_swap(int argc, char **argv)
 	free_list(b2);
 }
 
-int	main(int argc, char *argv[])
+/* int	main(int argc, char *argv[])
 {
 	push_swap(argc, argv);
 	return (0);
-}
+} */
