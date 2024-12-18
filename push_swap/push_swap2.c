@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:50:45 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/18 14:53:26 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:17:26 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ int	move_step(t_list **b1, t_list **b2, int a, int b)
 		return(spush(b1, b2), ft_printf("pa\n"));
 }
 
-int	tmove_stack(t_list **b1, int index) // give the place in the stack
+int	place_stack(t_list **b1, int index) // give the place in the stack
 {
 	int	a;
 	int	size_b1;
@@ -175,7 +175,7 @@ int	tmove_stack(t_list **b1, int index) // give the place in the stack
 	return (a);
 }
 
-int	tmove_maximum(t_list **b2, int index) // give the place in the stack for the maxumum
+int	place_maximum(t_list **b2) // give the place in the stack for the maxumum
 {
 	int	b;
 	int	size_b2;
@@ -184,51 +184,39 @@ int	tmove_maximum(t_list **b2, int index) // give the place in the stack for the
 	size_b2 = ft_lstsize(*b2);
 	index_max = index_lst_max(b2);
 	b = (size_b2 / 2 > content_list(*b2, index_max));
-	if (size_b2 % 2 == 1 && size_b2 / 2 == index)
+	if (size_b2 % 2 == 1 && size_b2 / 2 == index_max)
 		b = 2;
 	if (index_max == 0)
 		return (-1);
 	return (b);
 }
 
-int	pos_list(t_list **b1, t_list **b2, int index)
-{
-	int	a;
-	int	b;
-	int	size_b1;
-	int	size_b2;
-	int	index_max;
-
-	size_b1 = ft_lstsize(*b1);
-	size_b2 = ft_lstsize(*b2);
-	index_max = index_lst_max(b2);
-	a = (size_b1 / 2 > content_list(*b1, index));
-	if (size_b1 % 2 == 1 && size_b1 / 2 == index)
-		a = 2;
-	b = (size_b2 / 2 > content_list(*b2, index_max));
-	if (size_b2 % 2 == 1 && size_b2 / 2 == index)
-		b = 2;
-	if (a != 1 && b != 1 && a != -1 && b != -1) //rr (a = 0 && b = 0 || a = 0 && b = 2 || a = 2 && b = 0 || a = 2 && b = 2)
-		return(1);
-	if (a == 1 && b == 1 || a == 1 && b == 2 || a == 2 && b == 1) //rrr
-		return(2);
-	if (a == 0 && b == 1 || a == 0 && b == -1 || a ==2 && b == -1)// ra
-		return(3);
-	if (a == -1 && b == 0 || a == -1 && b == 2)//rb
-		return(4);
-	if (a == 1 && b == 0 || a == 1 && b == -1)//rra
-		return(5);
-	if (a == -1 && b == -1)
-		return(6);
-}
 
 void short_push(t_list **b1, t_list **b2, int index)
 {
 	int	index_max;
+	int	pos_b1;
+	int	pos_b2;
 
-	index_max = index_lst_max(b2);
-	
-	
+	pos_b1 = place_stack(b1, index);
+	pos_b2 = place_maximum(b2);
+	move_step(b1, b2, pos_b1, pos_b2);
+}
+
+
+
+void big_push(t_list **b1, t_list **b2, int index)
+{
+	int	index_b2;
+	int	pos_b1;
+	int	pos_b2;
+	int	b1content;
+
+	b1content = content_list(b1, index);
+	index_b2 = index_closet(b1content, b2);
+	pos_b1 = place_stack(b1, index);
+	pos_b2 = place_stack(b2, index_b2);
+	move_step(b1, b2, pos_b1, pos_b2);
 }
 
 
@@ -241,6 +229,10 @@ void	move(t_list **b1, t_list **b2, int index)
 	dest_index = index_closet(p, *b2);
 	if (dest_index == -2)
 		short_push(b1, b2, index);
+	else
+	{
+		big_push(b1, b2, index);
+	}
 }
 
 /* void move(t_list **b1, t_list **b2, int index)
