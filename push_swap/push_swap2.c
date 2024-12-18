@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:50:45 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/18 13:58:03 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/18 14:28:02 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ int	index_closet(int b1, t_list *b2)
 		j = index_lst_max(start);
 	return (j);
 }
-int	pos_list(t_list **b1, t_list **b2, int index) // 
+int	pos_list(t_list **b1, t_list **b2, int index)
 {
 	int	a;
 	int	b;
@@ -153,17 +153,25 @@ int	pos_list(t_list **b1, t_list **b2, int index) //
 	size_b1 = ft_lstsize(*b1);
 	size_b2 = ft_lstsize(*b2);
 	index_max = index_lst_max(b2);
-	a = (size_b1 / 2 > content_list(*b1, index)) * 2;
+	a = (size_b1 / 2 > content_list(*b1, index));
 	if (size_b1 % 2 == 1 && size_b1 / 2 == index)
-		a = 4;
-	b = (size_b2 / 2 > content_list(*b2, index)) ;
+		a = 2;
+	b = (size_b2 / 2 > content_list(*b2, index_max));
 	if (size_b2 % 2 == 1 && size_b2 / 2 == index)
-		b = 6;
-	if (index + index_max == 0)
-		return (11);
-	return (a + b);
+		b = 2;
+	if (a != 1 && b != 1 && a != -1 && b != -1) //rr (a = 0 && b = 0 || a = 0 && b = 2 || a = 2 && b = 0 || a = 2 && b = 2)
+		return(1);
+	if (a == 1 && b == 1 || a == 1 && b == 2 || a == 2 && b == 1) //rrr
+		return(2);
+	if (a == 0 && b == 1 || a == 0 && b == -1 || a ==2 && b == -1)// ra
+		return(3);
+	if (a == -1 && b == 0 || a == -1 && b == 2)//rb
+		return(4);
+	if (a == 1 && b == 0 || a == 1 && b == -1)//rra
+		return(5);
+	if (a == -1 && b == -1)
+		return(6)
 }
-
 
 void short_push(t_list **b1, t_list **b2, int index)
 {
