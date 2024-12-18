@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:50:45 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/18 15:17:26 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:55:13 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int	*n_moves(t_list *b1) // create a empty malloc with n elements
 }
 
 // search in the previous malloc the smallest index
-int	index_min(int *nmoves) 
-	{
+int	index_min(int *nmoves)
+{
 	if (!nmoves)
 		return -1;
 	int smallest;
@@ -143,7 +143,8 @@ int	index_closet(int b1, t_list *b2)
 	return (j);
 }
 
-int	move_step(t_list **b1, t_list **b2, int a, int b)
+// according the position of b1 and b2 it will action one step foward in the moves
+int	move_step(t_list **b1, t_list **b2, int a, int b) 
 {
 	if (a != 1 && b != 1 && a != -1 && b != -1) //rr (a = 0 && b = 0 || a = 0 && b = 2 || a = 2 && b = 0 || a = 2 && b = 2)
 		return(rr(b1, b2), ft_printf("rr\n"));
@@ -159,6 +160,25 @@ int	move_step(t_list **b1, t_list **b2, int a, int b)
 		return(r_rot(b1), ft_printf("rrb\n"));
 	if (a == -1 && b == -1) // pa
 		return(spush(b1, b2), ft_printf("pa\n"));
+}
+// count how many moves until done
+int	count_moves(t_list **b1, t_list **b2, int index)
+{
+	int	closest_b2;
+	int	b1content;
+	int	b1len;
+	int	b2len;
+	int	mvb1;
+	int	mvb2;
+
+	b1content = content_list(b1, index);
+	closest_b2 = index_closet(b1content, b2);
+	b1len = ft_lstsize(b1);
+	b2len = ft_lstsize(b2);
+	if (b1len / 2 < index)
+		mvb1 = b1len - index;
+	else
+		mvb1 = 
 }
 
 int	place_stack(t_list **b1, int index) // give the place in the stack
@@ -219,6 +239,19 @@ void big_push(t_list **b1, t_list **b2, int index)
 	move_step(b1, b2, pos_b1, pos_b2);
 }
 
+int	count_moves(t_list **b1, t_list **b2, int index)
+{
+	int	index_b2;
+	int	pos_b1;
+	int	pos_b2;
+	int	b1content;
+
+	b1content = content_list(b1, index);
+	index_b2 = index_closet(b1content, b2);
+	pos_b1 = place_stack(b1, index);
+	pos_b2 = place_stack(b2, index_b2);
+	
+}
 
 void	move(t_list **b1, t_list **b2, int index)
 {
