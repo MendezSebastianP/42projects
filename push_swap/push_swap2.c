@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:50:45 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/18 19:30:05 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/18 19:59:24 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -310,6 +310,19 @@ void sort_3last(t_list **list)
 		rotate(list);
 }
 
+int	test_isok(t_list *b1)
+{
+	if (b1->next == NULL)
+		return (0);
+	while (b1->next)
+	{
+		if (*(int *)b1->content > *(int *)b1->next->content)
+			return(0);
+		b1 = b1->next;
+	}
+	return (1);
+}
+
 void last_please(t_list **b1, t_list **b2)
 {
 	int content_a;
@@ -321,11 +334,17 @@ void last_please(t_list **b1, t_list **b2)
 		content_a = *(int *)(*b1)->content;
 		content_b = *(int *)(*b2)->content;
 		content_c = *(int*)(ft_lstlast(*b1)->content);
-		if (content_a > content_b && content_b > content_c)
+		if ((content_a > content_b && content_b > content_c) ||
+		test_isok (*b1) == 1 && content_b < content_a ||
+		test_isok (*b1) == 1 && content_b > content_c)
 			spush(b2, b1);
 		else
 			r_rot(b1);
-	}	
+	}
+	if (*(int *)(*b1)->content > *(int*)(ft_lstlast(*b1)->content))
+		rotate(b1);
+	while (test_isok(*b1) == 0)
+		r_rot(b1);
 }
 
 void	print_s1(t_list *b1) // delete
