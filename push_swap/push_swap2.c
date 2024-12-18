@@ -6,13 +6,37 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:50:45 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/17 17:38:08 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/18 13:58:03 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*n_moves(t_list *b1)
+int	content_list(t_list *b1, int index) // show the content from an i index
+{
+	int	i;
+	t_list	*current;
+
+	i = 0;
+	if (b1 == NULL)
+		return (0);
+	if (index == -1)
+	{
+		current = ft_lstlast(b1);
+		return (*(int *)current->content);
+	}
+	if (ft_lstsize(b1) < index)
+		return (0);
+	current = b1;
+	while (i < index)
+		{
+			current = current->next;
+			i++;
+		}
+	return (*(int *)current->content);
+}
+
+int	*n_moves(t_list *b1) // create a empty malloc with n elements
 {
 	int	i;
 	int	*n1;
@@ -25,7 +49,8 @@ int	*n_moves(t_list *b1)
 	return (n1);
 }
 
-int	index_min(int *nmoves)
+// search in the previous malloc the smallest index
+int	index_min(int *nmoves) 
 	{
 	if (!nmoves)
 		return -1;
@@ -49,7 +74,8 @@ int	index_min(int *nmoves)
 	return smallest_index;
 }
 
-int index_lst_max(t_list *nmoves)
+// will search in a linked list the index from the biggest value
+int index_lst_max(t_list *nmoves) 
 {
     if (!nmoves)
         return -1;
@@ -81,6 +107,16 @@ int index_lst_max(t_list *nmoves)
 		
 } */
 
+/**
+ * @brief Finds the index of the element in the list that is closest to a given value, 
+ *        considering only elements smaller than the given value.
+ *
+ *
+ * @param b1 The reference value to compare elements against.
+ * @param b2 Pointer to the head of the linked list (t_list) to search within.
+ * @return The index of the closest element in the list smaller than `b1`, or
+ *         the index of the largest element in the list if no such element exists.
+ */
 int	index_closet(int b1, t_list *b2)
 {
 	int i;
@@ -105,6 +141,49 @@ int	index_closet(int b1, t_list *b2)
 	if (j == -2)
 		j = index_lst_max(start);
 	return (j);
+}
+int	pos_list(t_list **b1, t_list **b2, int index) // 
+{
+	int	a;
+	int	b;
+	int	size_b1;
+	int	size_b2;
+	int	index_max;
+
+	size_b1 = ft_lstsize(*b1);
+	size_b2 = ft_lstsize(*b2);
+	index_max = index_lst_max(b2);
+	a = (size_b1 / 2 > content_list(*b1, index)) * 2;
+	if (size_b1 % 2 == 1 && size_b1 / 2 == index)
+		a = 4;
+	b = (size_b2 / 2 > content_list(*b2, index)) ;
+	if (size_b2 % 2 == 1 && size_b2 / 2 == index)
+		b = 6;
+	if (index + index_max == 0)
+		return (11);
+	return (a + b);
+}
+
+
+void short_push(t_list **b1, t_list **b2, int index)
+{
+	int	index_max;
+
+	index_max = index_lst_max(b2);
+	
+	
+}
+
+
+void	move(t_list **b1, t_list **b2, int index)
+{
+	int	dest_index;
+	int	p;
+	
+	p = content_list(*b1, index);
+	dest_index = index_closet(p, *b2);
+	if (dest_index == -2)
+		short_push(b1, b2, index);
 }
 
 /* void move(t_list **b1, t_list **b2, int index)
