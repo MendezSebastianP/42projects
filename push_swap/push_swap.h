@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/14 15:50:13 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/18 19:04:52 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	print_both(char **argv1, char **argv2, void (f)(t_list **, t_list **));
 void	print_single(char **argv, void (f)(t_list **));
 t_list	*ptr_to_list(char *argv[]);
 t_list	*ptr_to_numblist(char *argv[]);
-void	push_swap(int argc, char **argv);
+int	push_swap(int argc, char **argv);
 void	r_rot(t_list **list);
 void	rotate(t_list **list);
 void	rr(t_list **list_a, t_list ** list_b);
