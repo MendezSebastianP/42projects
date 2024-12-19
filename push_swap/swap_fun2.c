@@ -1,9 +1,6 @@
 #include "push_swap.h"
 
-void	lstnull(t_list **list)
-{
-	
-}
+
 
 void	r_rot(t_list **list)
 {

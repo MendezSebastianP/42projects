@@ -6,11 +6,12 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:50:45 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/18 19:59:24 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/19 11:44:51 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 int	content_list(t_list *b1, int index) // show the content from an i index
 {
@@ -159,7 +160,7 @@ int	move_step(t_list **b1, t_list **b2, int a, int b)
 	if (a == -1 && b == 1)
 		return(r_rot(b1), ft_printf("rrb\n"));
 	if (a == -1 && b == -1) // pa
-		return(spush(b1, b2), ft_printf("pa\n"));
+		return(spush(b1, b2), printf("pa\n"));
 	return (-1);
 }
 
@@ -220,7 +221,7 @@ int	place_maximum(t_list **b2) // give the place in the stack for the maxumum
 	return (b);
 }
 
-
+// when the number to push is the smallest one
 void short_push(t_list **b1, t_list **b2, int index)
 {
 	int	index_max;
@@ -233,7 +234,7 @@ void short_push(t_list **b1, t_list **b2, int index)
 }
 
 
-
+// when the number to push is not the smallest one
 void big_push(t_list **b1, t_list **b2, int index)
 {
 	int	index_b2;
@@ -271,6 +272,8 @@ void	algo_badass(t_list **b1, t_list **b2)
 
 	i = 0;
 	nmoves = n_moves(*b1); // malloc
+	if (!nmoves || nmoves == 0)
+		return ;
 	lenb1 = ft_lstsize(*b1);
 	while (i < lenb1)
 	{
@@ -288,10 +291,11 @@ void sort_3last(t_list **list)
 	int second;
 	int last;
 
+	if (!list || !(*list) || !(*list)->next || !(*list)->next->next)
+        	return;
 	first = *(int *)(*list)->content;
 	second = *(int *)(*list)->next->content;
 	last = *(int *)(*list)->next->next->content;
-
 	if (first < second && second > last && first > last)
 		r_rot(list);
 	if (first > second && second > last)
@@ -370,7 +374,7 @@ int	push_swap(int argc, char **argv)
 	b2 = NULL;
 	print_s1(b1);
 	if (swap_iserror(argc, argv) == 1)
-		return (ft_printf("Error\n"));
+		return (free_list(b1), ft_printf("Error\n"));
 	if (ft_lstsize(b1) > 3)
 		spush(&b1, &b2);
 	if (ft_lstsize(b1) > 3)

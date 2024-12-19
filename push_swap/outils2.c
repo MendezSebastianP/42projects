@@ -77,11 +77,11 @@ t_list	*ptr_to_numblist(char *argv[])
 	{
 		number = malloc(sizeof(int));
 		if (!number)
-			return(free_list(newlst), NULL);
+			return(NULL);
 		*number = ft_atoi(argv[i]);
 		newob = ft_lstnew(number);
 		if (!newob)
-			return (free(number), free_list(newlst), NULL);
+			return (free(number), NULL);
 		ft_lstadd_back(&newlst, newob);
 		i++;
 	}
