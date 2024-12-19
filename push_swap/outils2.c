@@ -37,6 +37,7 @@ char *free_list(t_list *list)
     {
         tmp = list;
         list = list->next;
+	free(tmp->content);
         free(tmp);
     }
     return (NULL);
