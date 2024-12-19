@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:50:45 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/19 14:44:06 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:17:59 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,8 +154,6 @@ int	index_closet(int b1, t_list *b2)
 		i++;
 		b2 = b2->next;
 	}
-	ft_printf("min dif b2 :%d, content b1: %d, index choisi: %d\n", k, b1, j);
-	
 	if (j == -2)
 		j = index_lst_max(start);
 	return (j);
@@ -175,30 +173,12 @@ int	move_step(t_list **b1, t_list **b2, int a, int b)
 	if (a == 1 && b == 0 || a == 1 && b == -1) //rra
 		return(r_rot(b1), ft_printf("rra\n"));
 	if (a == -1 && b == 1)
-		return(print_s1(*b1), print_s1(*b2), r_rot(b2),  ft_printf("rrb, %d %d\n", a, b)); //rrb
+		return(r_rot(b2),  ft_printf("rrb\n")); //rrb
 	if (a == -1 && b == -1) // pa
 		return(spush(b1, b2), ft_printf("pa\n"));
 	return (-1);
 }
 
-/* int	move_step(t_list **b1, t_list **b2, int a, int b) 
-{
-	if (a != 1 && b != 1 && a != -1 && b != -1) //rr (a = 0 && b = 0 || a = 0 && b = 2 || a = 2 && b = 0 || a = 2 && b = 2)
-		return(rr(b1, b2), write(1, "rr\n", 3));
-	if (a == 1 && b == 1 || a == 1 && b == 2 || a == 2 && b == 1) //rrr
-		return(rrr(b1, b2), write(1, "rr\n", 3));
-	if (a == 0 && b == 1 || a == 0 && b == -1 || a ==2 && b == -1) // ra
-		return(rotate(b1), write(1, "ra\n", 3));
-	if (a == -1 && b == 0 || a == -1 && b == 2) //rb
-		return(rotate(b2), write(1, "rb\n", 3));
-	if (a == 1 && b == 0 || a == 1 && b == -1) //rra
-		return(r_rot(b1), write(1, "rra\n", 4));
-	if (a == -1 && b == 1)
-		return(r_rot(b1), write(1, "rrb\n", 4));
-	if (a == -1 && b == -1) // pa
-		return(spush(b1, b2), write(1, "pa\n", 3));
-	return (-1);
-} */
 
 // count how many moves until done
 int	count_moves(t_list **b1, t_list **b2, int index)
@@ -281,10 +261,8 @@ void big_push(t_list **b1, t_list **b2, int index)
 
 	b1content = content_list(*b1, index);
 	index_b2 = index_closet(b1content, *b2);
-	printf("\n\n ICIIIII???????????? %d\n", index_b2);
 	pos_b1 = place_stack(b1, index);
 	pos_b2 = place_stack(b2, index_b2);
-	printf("\n\n OOOOOOOUUUUU ICI??? %d\n", pos_b2);
 	move_step(b1, b2, pos_b1, pos_b2);
 }
 
@@ -299,7 +277,6 @@ void	move(t_list **b1, t_list **b2, int index)
 		short_push(b1, b2, index);
 	else
 	{
-		printf("\n\nBIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIG PUUUUUUUUUUUUUUUUUSH \n");
 		big_push(b1, b2, index);
 	}
 }
@@ -318,17 +295,9 @@ void	algo_badass(t_list **b1, t_list **b2)
 	while (i < lenb1)
 	{
 		nmoves[i] = count_moves(b1, b2, i) + 1;
-		ft_printf("index : %d, moves : %d\n", i, nmoves[i]);
 		i++;
 	}
 	i = index_min(nmoves);
-	int j = 0;
-	while (j < lenb1)
-	{
-		printf("\n%d____%d\n",j, nmoves[j]);
-		j++;
-	}
-	ft_printf("|||||||||||||||||index min: %d\n", i);
 	move(b1, b2, i);
 	free(nmoves);
 }
