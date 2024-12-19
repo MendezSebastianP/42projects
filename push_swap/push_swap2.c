@@ -6,12 +6,27 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:50:45 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/19 11:44:51 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/19 14:44:06 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
+
+void	print_s1(t_list *b1) // delete
+{
+
+	t_list 	*b1_free;
+	int	i = 1;
+	b1_free = b1;
+	ft_printf("   |T     | \n");
+	while (b1 != NULL)
+	{
+		ft_printf("%d- |__%d___| \n", i++, *(int *)b1->content);
+		b1 = b1->next;
+	}
+}
+
 
 int	content_list(t_list *b1, int index) // show the content from an i index
 {
@@ -43,10 +58,10 @@ int	*n_moves(t_list *b1) // create a empty malloc with n elements
 	int	*n1;
 
 	i = ft_lstsize(b1);
-	n1 = malloc(i * sizeof(int) + 1);
+	n1 = malloc((i + 1) * sizeof(int));
 	if (!n1)
 		return (0);
-	n1[i + 1] = 0;
+	n1[i] = 0;
 	return (n1);
 }
 
@@ -139,6 +154,8 @@ int	index_closet(int b1, t_list *b2)
 		i++;
 		b2 = b2->next;
 	}
+	ft_printf("min dif b2 :%d, content b1: %d, index choisi: %d\n", k, b1, j);
+	
 	if (j == -2)
 		j = index_lst_max(start);
 	return (j);
@@ -148,21 +165,40 @@ int	index_closet(int b1, t_list *b2)
 int	move_step(t_list **b1, t_list **b2, int a, int b) 
 {
 	if (a != 1 && b != 1 && a != -1 && b != -1) //rr (a = 0 && b = 0 || a = 0 && b = 2 || a = 2 && b = 0 || a = 2 && b = 2)
-		return(rr(b1, b2), ft_printf("rr\n"));
+		return(rr(b1, b2), printf("rr\n"));
 	if (a == 1 && b == 1 || a == 1 && b == 2 || a == 2 && b == 1) //rrr
-		return(rrr(b1, b2), ft_printf("rr\n"));
+		return(rrr(b1, b2), printf("rr\n"));
 	if (a == 0 && b == 1 || a == 0 && b == -1 || a ==2 && b == -1) // ra
-		return(rotate(b1), ft_printf("ra\n"));
+		return(rotate(b1), printf("ra\n"));
 	if (a == -1 && b == 0 || a == -1 && b == 2) //rb
-		return(rotate(b2), ft_printf("rb\n"));
+		return(rotate(b2), printf("rb\n"));
 	if (a == 1 && b == 0 || a == 1 && b == -1) //rra
 		return(r_rot(b1), ft_printf("rra\n"));
 	if (a == -1 && b == 1)
-		return(r_rot(b1), ft_printf("rrb\n"));
+		return(print_s1(*b1), print_s1(*b2), r_rot(b2),  ft_printf("rrb, %d %d\n", a, b)); //rrb
 	if (a == -1 && b == -1) // pa
-		return(spush(b1, b2), printf("pa\n"));
+		return(spush(b1, b2), ft_printf("pa\n"));
 	return (-1);
 }
+
+/* int	move_step(t_list **b1, t_list **b2, int a, int b) 
+{
+	if (a != 1 && b != 1 && a != -1 && b != -1) //rr (a = 0 && b = 0 || a = 0 && b = 2 || a = 2 && b = 0 || a = 2 && b = 2)
+		return(rr(b1, b2), write(1, "rr\n", 3));
+	if (a == 1 && b == 1 || a == 1 && b == 2 || a == 2 && b == 1) //rrr
+		return(rrr(b1, b2), write(1, "rr\n", 3));
+	if (a == 0 && b == 1 || a == 0 && b == -1 || a ==2 && b == -1) // ra
+		return(rotate(b1), write(1, "ra\n", 3));
+	if (a == -1 && b == 0 || a == -1 && b == 2) //rb
+		return(rotate(b2), write(1, "rb\n", 3));
+	if (a == 1 && b == 0 || a == 1 && b == -1) //rra
+		return(r_rot(b1), write(1, "rra\n", 4));
+	if (a == -1 && b == 1)
+		return(r_rot(b1), write(1, "rrb\n", 4));
+	if (a == -1 && b == -1) // pa
+		return(spush(b1, b2), write(1, "pa\n", 3));
+	return (-1);
+} */
 
 // count how many moves until done
 int	count_moves(t_list **b1, t_list **b2, int index)
@@ -197,7 +233,8 @@ int	place_stack(t_list **b1, int index) // give the place in the stack
 	int	size_b1;
 
 	size_b1 = ft_lstsize(*b1);
-	a = (size_b1 / 2 > content_list(*b1, index));
+	// a = (size_b1 / 2 > content_list(*b1, index));
+	a = (size_b1 / 2 < index);
 	if (size_b1 % 2 == 1 && size_b1 / 2 == index)
 		a = 2;
 	if (index == 0)
@@ -244,8 +281,10 @@ void big_push(t_list **b1, t_list **b2, int index)
 
 	b1content = content_list(*b1, index);
 	index_b2 = index_closet(b1content, *b2);
+	printf("\n\n ICIIIII???????????? %d\n", index_b2);
 	pos_b1 = place_stack(b1, index);
 	pos_b2 = place_stack(b2, index_b2);
+	printf("\n\n OOOOOOOUUUUU ICI??? %d\n", pos_b2);
 	move_step(b1, b2, pos_b1, pos_b2);
 }
 
@@ -260,6 +299,7 @@ void	move(t_list **b1, t_list **b2, int index)
 		short_push(b1, b2, index);
 	else
 	{
+		printf("\n\nBIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIG PUUUUUUUUUUUUUUUUUSH \n");
 		big_push(b1, b2, index);
 	}
 }
@@ -278,9 +318,17 @@ void	algo_badass(t_list **b1, t_list **b2)
 	while (i < lenb1)
 	{
 		nmoves[i] = count_moves(b1, b2, i) + 1;
+		ft_printf("index : %d, moves : %d\n", i, nmoves[i]);
 		i++;
 	}
 	i = index_min(nmoves);
+	int j = 0;
+	while (j < lenb1)
+	{
+		printf("\n%d____%d\n",j, nmoves[j]);
+		j++;
+	}
+	ft_printf("|||||||||||||||||index min: %d\n", i);
 	move(b1, b2, i);
 	free(nmoves);
 }
@@ -349,20 +397,6 @@ void last_please(t_list **b1, t_list **b2)
 		rotate(b1);
 	while (test_isok(*b1) == 0)
 		r_rot(b1);
-}
-
-void	print_s1(t_list *b1) // delete
-{
-
-	t_list 	*b1_free;
-	int	i = 1;
-	b1_free = b1;
-	ft_printf("   |T     | \n");
-	while (b1 != NULL)
-	{
-		ft_printf("%d- |__%d___| \n", i++, *(int *)b1->content);
-		b1 = b1->next;
-	}
 }
 
 int	push_swap(int argc, char **argv)
