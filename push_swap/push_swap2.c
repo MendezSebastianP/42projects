@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:50:45 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/20 11:08:20 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/20 12:25:35 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ int	move_step(t_list **b1, t_list **b2, int a, int b)
 	if (a != 1 && b != 1 && a != -1 && b != -1) //rr (a = 0 && b = 0 || a = 0 && b = 2 || a = 2 && b = 0 || a = 2 && b = 2)
 		return(rr(b1, b2), ft_printf("rr\n"));
 	if (a == 1 && b == 1 || a == 1 && b == 2 || a == 2 && b == 1) //rrr
-		return(rrr(b1, b2), ft_printf("rr\n"));
+		return(rrr(b1, b2), ft_printf("rrr\n"));
 	if (a == 0 && b == 1 || a == 0 && b == -1 || a ==2 && b == -1) // ra
 		return(rotate(b1), ft_printf("ra\n"));
 	if (a == -1 && b == 0 || a == -1 && b == 2) //rb
@@ -183,7 +183,6 @@ int	move_step(t_list **b1, t_list **b2, int a, int b)
 // count how many moves until done
 int	count_moves(t_list **b1, t_list **b2, int index)
 {
-	int	closest_b2;
 	int	b1content;
 	int	b1len;
 	int	b2len;
@@ -191,20 +190,20 @@ int	count_moves(t_list **b1, t_list **b2, int index)
 	int	mvb2;
 
 	b1content = content_list(*b1, index);
-	closest_b2 = index_closet(b1content, *b2);
 	b1len = ft_lstsize(*b1);
 	b2len = ft_lstsize(*b2);
 	mvb1 = index;
 	if (b1len / 2 < index)
 		mvb1 = index - b1len;
 	mvb2 = index_closet(b1content, *b2);
-	if (b2len / 2 < index)
+	//printf("index closet: %d\n", mvb2);
+	if (b2len / 2 < mvb2) // WE NEED TO ADD WHEN mvb2 == 2 because you can use either rrr or rr
 		mvb2 = index - b2len;
-	if (mvb1 > 0 && mvb2 > 0)
-		return (((mvb1 > mvb2) * mvb1) + ((mvb1 < mvb2) * mvb2)); // we keep the biggest
+	if (mvb1 >= 0 && mvb2 >= 0)
+		return (((mvb1 >= mvb2) * mvb1) + ((mvb1 < mvb2) * mvb2)); // we keep the biggest
 	if (mvb1 < 0 && mvb2 < 0)
-		return (-1 * (((mvb1 > mvb2) * mvb1) + ((mvb1 < mvb2) * mvb2))); // we keep the biggest
-	return (-1);
+		return (-1 * (((mvb1 > mvb2) * mvb1) + ((mvb1 < mvb2) * mvb2)));
+	return (abs(mvb1) + abs(mvb2)); // we sum both the abs value
 }
 
 int	place_stack(t_list **b1, int index) // give the place in the stack
@@ -297,6 +296,12 @@ void	algo_badass(t_list **b1, t_list **b2)
 		nmoves[i] = count_moves(b1, b2, i) + 1;
 		i++;
 	}
+	int j = 0;
+	while (j < lenb1)
+		{
+			//ft_printf("%d-%d --- %d\n", j, content_list(*b1, j), nmoves[j]);
+			j++;
+		}
 	i = index_min(nmoves);
 	move(b1, b2, i);
 	free(nmoves);
