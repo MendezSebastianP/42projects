@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:50:45 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/19 15:17:59 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/20 11:08:20 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,13 +163,13 @@ int	index_closet(int b1, t_list *b2)
 int	move_step(t_list **b1, t_list **b2, int a, int b) 
 {
 	if (a != 1 && b != 1 && a != -1 && b != -1) //rr (a = 0 && b = 0 || a = 0 && b = 2 || a = 2 && b = 0 || a = 2 && b = 2)
-		return(rr(b1, b2), printf("rr\n"));
+		return(rr(b1, b2), ft_printf("rr\n"));
 	if (a == 1 && b == 1 || a == 1 && b == 2 || a == 2 && b == 1) //rrr
-		return(rrr(b1, b2), printf("rr\n"));
+		return(rrr(b1, b2), ft_printf("rr\n"));
 	if (a == 0 && b == 1 || a == 0 && b == -1 || a ==2 && b == -1) // ra
-		return(rotate(b1), printf("ra\n"));
+		return(rotate(b1), ft_printf("ra\n"));
 	if (a == -1 && b == 0 || a == -1 && b == 2) //rb
-		return(rotate(b2), printf("rb\n"));
+		return(rotate(b2), ft_printf("rb\n"));
 	if (a == 1 && b == 0 || a == 1 && b == -1) //rra
 		return(r_rot(b1), ft_printf("rra\n"));
 	if (a == -1 && b == 1)
@@ -302,33 +302,28 @@ void	algo_badass(t_list **b1, t_list **b2)
 	free(nmoves);
 }
 
-void sort_3last(t_list **list)
+int sort_3last(t_list **list)
 {
 	int first;
 	int second;
 	int last;
 
 	if (!list || !(*list) || !(*list)->next || !(*list)->next->next)
-        	return;
+        	return (-1);
 	first = *(int *)(*list)->content;
 	second = *(int *)(*list)->next->content;
 	last = *(int *)(*list)->next->next->content;
 	if (first < second && second > last && first > last)
-		r_rot(list);
+		return(r_rot(list),  ft_printf("rra\n"));
 	if (first > second && second > last)
-	{
-		sswap(list);
-		r_rot(list);
-	}
+		return(sswap(list), r_rot(list), ft_printf("sa\nrra\n"));
 	if (first < second && second > last && first < last)
-	{
-		sswap(list);
-		rotate(list);
-	}
+		return(sswap(list), rotate(list), ft_printf("sa\nra\n"));
 	if (first > second && second < last && first < last)
-		sswap(list);
+		return(sswap(list),  ft_printf("sa\n"));
 	if (first > second && second < last && first > last)
-		rotate(list);
+		return(rotate(list),  ft_printf("ra\n"));
+	return (0);
 }
 
 int	test_isok(t_list *b1)
@@ -358,14 +353,14 @@ void last_please(t_list **b1, t_list **b2)
 		if ((content_a > content_b && content_b > content_c) ||
 		test_isok (*b1) == 1 && content_b < content_a ||
 		test_isok (*b1) == 1 && content_b > content_c)
-			spush(b2, b1);
+			(spush(b2, b1), ft_printf("pb\n"));
 		else
-			r_rot(b1);
+			(r_rot(b1), ft_printf("rra\n"));
 	}
 	if (*(int *)(*b1)->content > *(int*)(ft_lstlast(*b1)->content))
-		rotate(b1);
+		(rotate(b1), ft_printf("ra\n"));
 	while (test_isok(*b1) == 0)
-		r_rot(b1);
+		(r_rot(b1), ft_printf("rra\n"));
 }
 
 int	push_swap(int argc, char **argv)
@@ -379,11 +374,11 @@ int	push_swap(int argc, char **argv)
 	if (swap_iserror(argc, argv) == 1)
 		return (free_list(b1), ft_printf("Error\n"));
 	if (ft_lstsize(b1) > 3)
-		spush(&b1, &b2);
+		(spush(&b1, &b2), ft_printf("pa\n"));
 	if (ft_lstsize(b1) > 3)
-		spush(&b1, &b2);
-	while(ft_lstsize(b1) > 3)
-		algo_badass(&b1,&b2);
+		(spush(&b1, &b2), ft_printf("pa\n"));
+	while (ft_lstsize(b1) > 3)
+		algo_badass(&b1, &b2);
 	sort_3last(&b1);
 	if (b2)
 		last_please(&b1, &b2);
