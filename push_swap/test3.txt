@@ -567,7 +567,7 @@ rrr
 rrb
 pa
 ra
-ra
+./testpush/42sp-push_swap/push_swap    | wc -l
 ra
 rrb
 pa
