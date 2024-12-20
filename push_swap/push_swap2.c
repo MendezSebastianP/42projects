@@ -6,14 +6,14 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:50:45 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/20 12:25:35 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:47:10 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-void	print_s1(t_list *b1) // delete
+void	print_s1(t_list *b1) 
 {
 
 	t_list 	*b1_free;
@@ -27,6 +27,36 @@ void	print_s1(t_list *b1) // delete
 	}
 }
 
+void	print_s2(t_list *b1, t_list *b2) 
+{
+
+	t_list 	*b1_free;
+	int	i = 1;
+	b1_free = b1;
+	ft_printf("   |T     | \n");
+	while (b1 != NULL || b2 != NULL)
+	{
+		if (b1 != NULL)
+		{
+			ft_printf("|__%d___|",  *(int *)b1->content);
+		}
+		if (b2 != NULL)
+		{
+			if(b1 == NULL)
+			{
+				ft_printf("|______|");
+			}
+			ft_printf("|__%d___|",  *(int *)b2->content);
+			b2 = b2->next;
+		}
+		if (b1 != NULL)
+		{
+			b1 = b1->next;
+		}
+		ft_printf("\n");
+		i++;
+	}
+}
 
 int	content_list(t_list *b1, int index) // show the content from an i index
 {
@@ -198,11 +228,12 @@ int	count_moves(t_list **b1, t_list **b2, int index)
 	mvb2 = index_closet(b1content, *b2);
 	//printf("index closet: %d\n", mvb2);
 	if (b2len / 2 < mvb2) // WE NEED TO ADD WHEN mvb2 == 2 because you can use either rrr or rr
-		mvb2 = index - b2len;
-	if (mvb1 >= 0 && mvb2 >= 0)
+		mvb2 = mvb2 - b2len;
+	// ft_printf("%d | mvb1 = %d |||| mvb2 = %d\n", content_list(*b1, index), mvb1, mvb2);
+	if (mvb1 > 0 && mvb2 > 0)
 		return (((mvb1 >= mvb2) * mvb1) + ((mvb1 < mvb2) * mvb2)); // we keep the biggest
 	if (mvb1 < 0 && mvb2 < 0)
-		return (-1 * (((mvb1 > mvb2) * mvb1) + ((mvb1 < mvb2) * mvb2)));
+		return (-1 * (((mvb1 <= mvb2) * mvb1) + ((mvb1 > mvb2) * mvb2)));
 	return (abs(mvb1) + abs(mvb2)); // we sum both the abs value
 }
 
@@ -296,15 +327,27 @@ void	algo_badass(t_list **b1, t_list **b2)
 		nmoves[i] = count_moves(b1, b2, i) + 1;
 		i++;
 	}
-	int j = 0;
-	while (j < lenb1)
-		{
-			//ft_printf("%d-%d --- %d\n", j, content_list(*b1, j), nmoves[j]);
-			j++;
-		}
+	// int j = 0;
+	// while (j < lenb1)
+	// 	// {
+	// 	// 	ft_printf("%d-%d --- %d\n", j, content_list(*b1, j), nmoves[j]);
+	// 	// 	j++;
+	// 	// }
 	i = index_min(nmoves);
 	move(b1, b2, i);
 	free(nmoves);
+}
+int	test_isok(t_list *b1)
+{
+	if (b1->next == NULL)
+		return (0);
+	while (b1->next)
+	{
+		if (*(int *)b1->content > *(int *)b1->next->content)
+			return(0);
+		b1 = b1->next;
+	}
+	return (1);
 }
 
 int sort_3last(t_list **list)
@@ -313,7 +356,8 @@ int sort_3last(t_list **list)
 	int second;
 	int last;
 
-	if (!list || !(*list) || !(*list)->next || !(*list)->next->next)
+	if (!list || !(*list) || !(*list)->next || !(*list)->next->next ||
+	test_isok(*list) == 1)
         	return (-1);
 	first = *(int *)(*list)->content;
 	second = *(int *)(*list)->next->content;
@@ -331,25 +375,14 @@ int sort_3last(t_list **list)
 	return (0);
 }
 
-int	test_isok(t_list *b1)
-{
-	if (b1->next == NULL)
-		return (0);
-	while (b1->next)
-	{
-		if (*(int *)b1->content > *(int *)b1->next->content)
-			return(0);
-		b1 = b1->next;
-	}
-	return (1);
-}
 
 void last_please(t_list **b1, t_list **b2)
 {
 	int content_a;
 	int content_b;
 	int content_c;
-
+	if (*(int*)(ft_lstlast(*b2)->content) > *(int *)(*b2)->content)
+		(r_rot(b2), ft_printf("rra\n"));
 	while (ft_lstsize(*b2) > 0)
 	{
 		content_a = *(int *)(*b1)->content;
@@ -366,6 +399,7 @@ void last_please(t_list **b1, t_list **b2)
 		(rotate(b1), ft_printf("ra\n"));
 	while (test_isok(*b1) == 0)
 		(r_rot(b1), ft_printf("rra\n"));
+	
 }
 
 int	push_swap(int argc, char **argv)
@@ -375,7 +409,8 @@ int	push_swap(int argc, char **argv)
 
 	b1 = ptr_to_numblist(argv);
 	b2 = NULL;
-	print_s1(b1);
+	 print_s1(b1);
+
 	if (swap_iserror(argc, argv) == 1)
 		return (free_list(b1), ft_printf("Error\n"));
 	if (ft_lstsize(b1) > 3)
@@ -383,11 +418,11 @@ int	push_swap(int argc, char **argv)
 	if (ft_lstsize(b1) > 3)
 		(spush(&b1, &b2), ft_printf("pa\n"));
 	while (ft_lstsize(b1) > 3)
-		algo_badass(&b1, &b2);
+		(algo_badass(&b1, &b2)/* , print_s2(b1, b2) */); 
 	sort_3last(&b1);
 	if (b2)
 		last_please(&b1, &b2);
-	print_s1(b1);
+	 print_s1(b1);
 	free_list(b1);
 	free_list(b2);
 	return (0);
