@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:50:45 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/21 16:43:04 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/21 18:38:53 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -513,9 +513,13 @@ void last_please(t_list **b1, t_list **b2)
 	}
 	if (*(int *)(*b1)->content > *(int*)(ft_lstlast(*b1)->content))
 		(rotate(b1), ft_printf("ra\n"));
+	// if (ft_lstsize(*b1) / 2 >= index_lst_max(*b1))
+	// {
+	while (test_isok(*b1) == 0 && ft_lstsize(*b1) / 2 >= index_lst_max(*b1))
+			(rotate(b1), ft_printf("ra\n"));
+	//}
 	while (test_isok(*b1) == 0)
 		(r_rot(b1), ft_printf("rra\n"));
-	
 }
 
 /**
