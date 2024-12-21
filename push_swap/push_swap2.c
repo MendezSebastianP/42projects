@@ -6,14 +6,22 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:50:45 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/20 18:25:17 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/21 12:40:12 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-void	print_s1(t_list *b1) 
+// print a single stack
+/**
+ * @brief Print a single stack from a linked list (t_list).
+ *
+ *
+ * @param b1 The linked list with the numbers from the stack.
+ * @return (void).
+ */
+void	print_s1(t_list *b1)
 {
 
 	t_list 	*b1_free;
@@ -27,7 +35,15 @@ void	print_s1(t_list *b1)
 	}
 }
 
-void	print_s2(t_list *b1, t_list *b2) 
+/**
+ * @brief Print both stacks, even if one is longuer than the other.
+ *
+ *
+ * @param b1 Stack A (single simple linked list).
+ * @param b2 Stack B (single simple linked list).
+ * @return (void).
+ */
+void	print_s2(t_list *b1, t_list *b2)
 {
 
 	t_list 	*b1_free;
@@ -58,7 +74,17 @@ void	print_s2(t_list *b1, t_list *b2)
 	}
 }
 
-int	content_list(t_list *b1, int index) // show the content from an i index
+// show the content from a node in an i index
+/**
+ * @brief It takes the content from the node in the choosen index.
+ *
+ *
+ * @param b1 Stack A (single simple linked list).
+ * @param index The place of the node in a single simple linked list. 0
+ * is the first node, 1 the second...
+ * @return An integer.
+ */
+int	content_list(t_list *b1, int index)
 {
 	int	i;
 	t_list	*current;
@@ -82,7 +108,17 @@ int	content_list(t_list *b1, int index) // show the content from an i index
 	return (*(int *)current->content);
 }
 
-int	*n_moves(t_list *b1) // create a empty malloc with n elements
+
+/**
+ * @brief Allocates an integer array with the same size as the linked list.
+ *
+ * This function creates a dynamically allocated array of integers with a length
+ * equal to the number of nodes in the linked list. The last element is set to 0.
+ *
+ * @param b1 The linked list.
+ * @return A pointer to the integer array, or NULL if allocation fails.
+ */
+int	*n_moves(t_list *b1)
 {
 	int	i;
 	int	*n1;
@@ -95,7 +131,15 @@ int	*n_moves(t_list *b1) // create a empty malloc with n elements
 	return (n1);
 }
 
-// search in the previous malloc the smallest index
+/**
+ * @brief Finds the index of the smallest value in an integer array.
+ *
+ * This function searches through the array to find the index of the smallest
+ * integer. If the array is NULL, it returns -1.
+ *
+ * @param nmoves The array of integers.
+ * @return The index of the smallest value, or -1 if the array is NULL.
+ */
 int	index_min(int *nmoves)
 {
 	if (!nmoves)
@@ -120,7 +164,15 @@ int	index_min(int *nmoves)
 	return smallest_index;
 }
 
-// will search in a linked list the index from the biggest value
+/**
+ * @brief Finds the index of the largest value in a linked list.
+ *
+ * This function traverses the linked list to identify the node with the largest
+ * integer value and returns its index. If the list is empty, it returns -1.
+ *
+ * @param nmoves The linked list.
+ * @return The index of the largest value, or -1 if the list is NULL.
+ */
 int index_lst_max(t_list *nmoves) 
 {
     if (!nmoves)
@@ -148,20 +200,18 @@ int index_lst_max(t_list *nmoves)
     return biggest_index;
 }
 
-/* int	count_moves(t_list *b1, t_list *b2)
-{
-		
-} */
 
 /**
- * @brief Finds the index of the element in the list that is closest to a given value, 
- *        considering only elements smaller than the given value.
+ * @brief Finds the index of the closest smaller element in the list.
  *
+ * This function searches the linked list for the element closest to a given
+ * value (`b1`) but smaller than it. If no such element exists, it returns the
+ * index of the largest element in the list.
  *
  * @param b1 The reference value to compare elements against.
- * @param b2 Pointer to the head of the linked list (t_list) to search within.
- * @return The index of the closest element in the list smaller than `b1`, or
- *         the index of the largest element in the list if no such element exists.
+ * @param b2 Pointer to the head of the linked list to search within.
+ * @return The index of the closest smaller element, or the index of the largest
+ *         element if no smaller element is found.
  */
 int	index_closet(int b1, t_list *b2)
 {
@@ -189,10 +239,31 @@ int	index_closet(int b1, t_list *b2)
 	return (j);
 }
 
-// according the position of b1 and b2 it will action one step foward in the moves
-int	move_step(t_list **b1, t_list **b2, int a, int b) 
+/**
+ * @brief Performs a move based on the positions of two stacks.
+ *
+ * Depending on the values of `a` and `b`, this function executes one of several
+ * stack operations (e.g., rotate, reverse rotate, push) and prints the corresponding
+ * action. It handles combined moves when possible.
+ * 
+ * - 1 value means that the node is in the second hafl of the stack.
+ * 
+ * - 0 value means that the node is in the first hafl of the stack.
+ * 
+ * - 2 value means that the node is in the perfect half of the stack (odd numbers).
+ * 
+ * - -1 value means that the node is in the index 0.
+ *
+ * @param b1 Pointer to Stack A.
+ * @param b2 Pointer to Stack B.
+ * @param a Move indicator for Stack A.
+ * @param b Move indicator for Stack B.
+ *           
+ * @return 0 on successful move execution, or -1 if the move is not recognized.
+ */
+int	move_step(t_list **b1, t_list **b2, int a, int b)
 {
-	if (a != 1 && b != 1 && a != -1 && b != -1) //rr (a = 0 && b = 0 || a = 0 && b = 2 || a = 2 && b = 0 || a = 2 && b = 2)
+	if (a != 1 && b != 1 && a != -1 && b != -1)
 		return(rr(b1, b2), ft_printf("rr\n"));
 	if (a == 1 && b == 1 || a == 1 && b == 2 || a == 2 && b == 1) //rrr
 		return(rrr(b1, b2), ft_printf("rrr\n"));
@@ -210,7 +281,18 @@ int	move_step(t_list **b1, t_list **b2, int a, int b)
 }
 
 
-// count how many moves until done
+/**
+ * @brief Calculates the number of moves needed to complete an operation.
+ *
+ * This function determines the total number of moves required to perform a specific
+ * operation based on the positions of elements in Stack A and Stack B. It considers
+ * both forward and reverse rotations to find the most efficient path.
+ *
+ * @param b1 Pointer to Stack A.
+ * @param b2 Pointer to Stack B.
+ * @param index The index in Stack A for which moves are being calculated.
+ * @return The total number of moves required.
+ */
 int	count_moves(t_list **b1, t_list **b2, int index)
 {
 	int	b1content;
@@ -237,6 +319,20 @@ int	count_moves(t_list **b1, t_list **b2, int index)
 	return (abs(mvb1) + abs(mvb2)); // we sum both the abs value
 }
 
+/**
+ * @brief Determines the position of an element in the stack.
+ *
+ * This function checks if the given index is in the first half or the second half
+ * of the stack. It returns:
+ * - -1 if the index is 0
+ * - 0 if it's in the first half
+ * - 1 if it's in the second half
+ * - 2 if it's exactly in the middle of an odd-sized stack
+ *
+ * @param b1 Pointer to the first stack.
+ * @param index The index of the element.
+ * @return int Position indicator.
+ */
 int	place_stack(t_list **b1, int index) // give the place in the stack
 {
 	int	a;
@@ -252,6 +348,15 @@ int	place_stack(t_list **b1, int index) // give the place in the stack
 	return (a);
 }
 
+/**
+ * @brief Finds the position of the maximum element in the stack.
+ *
+ * This function locates the index of the largest element in stack b2 and determines
+ * its position relative to the middle of the stack.
+ *
+ * @param b2 Pointer to the second stack.
+ * @return int Position indicator of the maximum element.
+ */
 int	place_maximum(t_list **b2) // give the place in the stack for the maxumum
 {
 	int	b;
@@ -268,7 +373,15 @@ int	place_maximum(t_list **b2) // give the place in the stack for the maxumum
 	return (b);
 }
 
-// when the number to push is the smallest one
+/**
+ * @brief Pushes the smallest number to the second stack.
+ *
+ * This function handles pushing the smallest element from stack b1 to stack b2.
+ *
+ * @param b1 Pointer to the first stack.
+ * @param b2 Pointer to the second stack.
+ * @param index The index of the element to push.
+ */
 void short_push(t_list **b1, t_list **b2, int index)
 {
 	int	index_max;
@@ -281,7 +394,15 @@ void short_push(t_list **b1, t_list **b2, int index)
 }
 
 
-// when the number to push is not the smallest one
+/**
+ * @brief Pushes a number to the second stack.
+ *
+ * This function handles pushing an element from stack b1 to stack b2 that is not the smallest.
+ *
+ * @param b1 Pointer to the first stack.
+ * @param b2 Pointer to the second stack.
+ * @param index The index of the element to push.
+ */
 void big_push(t_list **b1, t_list **b2, int index)
 {
 	int	index_b2;
@@ -296,6 +417,16 @@ void big_push(t_list **b1, t_list **b2, int index)
 	move_step(b1, b2, pos_b1, pos_b2);
 }
 
+/**
+ * @brief Moves an element from stack b1 to the appropriate position in stack b2.
+ *
+ * This function decides whether to perform a short push or a big push based on the
+ * destination index.
+ *
+ * @param b1 Pointer to the first stack.
+ * @param b2 Pointer to the second stack.
+ * @param index The index of the element to move.
+ */
 void	move(t_list **b1, t_list **b2, int index)
 {
 	int	dest_index;
@@ -311,6 +442,15 @@ void	move(t_list **b1, t_list **b2, int index)
 	}
 }
 
+/**
+ * @brief Chooses the best move to perform based on the number of required moves.
+ *
+ * This function calculates the number of moves needed for each element in stack b1
+ * and selects the one with the least moves to perform.
+ *
+ * @param b1 Pointer to the first stack.
+ * @param b2 Pointer to the second stack.
+ */
 void	algo_badass(t_list **b1, t_list **b2)
 {
 	int	*nmoves;
@@ -337,6 +477,15 @@ void	algo_badass(t_list **b1, t_list **b2)
 	move(b1, b2, i);
 	free(nmoves);
 }
+
+/**
+ * @brief Checks if the stack is sorted in ascending order.
+ *
+ * This function verifies whether all elements in stack b1 are in the correct order.
+ *
+ * @param b1 The first stack.
+ * @return int 1 if sorted, 0 otherwise.
+ */
 int	test_isok(t_list *b1)
 {
 	if (b1->next == NULL)
@@ -350,6 +499,15 @@ int	test_isok(t_list *b1)
 	return (1);
 }
 
+/**
+ * @brief Sorts the last three elements in the stack.
+ *
+ * This function specifically handles sorting when there are only three elements left
+ * in stack b1 using swaps and rotations.
+ *
+ * @param list Pointer to the stack.
+ * @return int -1 if already sorted, 0 otherwise.
+ */
 int sort_3last(t_list **list)
 {
 	int first;
@@ -375,7 +533,15 @@ int sort_3last(t_list **list)
 	return (0);
 }
 
-
+/**
+ * @brief Finalizes the sorting by moving all elements back to stack b1.
+ *
+ * This function ensures that all elements are correctly placed in stack b1 by
+ * performing the necessary push and rotate operations.
+ *
+ * @param b1 Pointer to the first stack.
+ * @param b2 Pointer to the second stack.
+ */
 void last_please(t_list **b1, t_list **b2)
 {
 	int content_a;
@@ -402,6 +568,16 @@ void last_please(t_list **b1, t_list **b2)
 	
 }
 
+/**
+ * @brief The main function to execute the push_swap algorithm.
+ *
+ * This function initializes the stacks, checks for errors, and performs the sorting
+ * using various helper functions. It also handles memory cleanup.
+ *
+ * @param argc Argument count.
+ * @param argv Argument vector.
+ * @return int Exit status.
+ */
 int	push_swap(int argc, char **argv)
 {
 	t_list	*b1;
