@@ -6,13 +6,19 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:50:45 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/21 15:13:43 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/21 15:38:48 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
+int	ft_abs(int a)
+{
+	if (a >= 0)
+		return (a);
+	else
+		return (a * -1);
+}
 
 // show the content from a node in an i index
 /**
@@ -205,13 +211,13 @@ int	move_step(t_list **b1, t_list **b2, int a, int b)
 {
 	if (a != 1 && b != 1 && a != -1 && b != -1)
 		return(rr(b1, b2), ft_printf("rr\n"));
-	if (a == 1 && b == 1 || a == 1 && b == 2 || a == 2 && b == 1) //rrr
+	if ((a == 1 && b == 1) || (a == 1 && b == 2) || (a == 2 && b == 1)) //rrr
 		return(rrr(b1, b2), ft_printf("rrr\n"));
-	if (a == 0 && b == 1 || a == 0 && b == -1 || a ==2 && b == -1) // ra
+	if ((a == 0 && b == 1) || (a == 0 && b == -1) || (a ==2 && b == -1)) // ra
 		return(rotate(b1), ft_printf("ra\n"));
-	if (a == -1 && b == 0 || a == -1 && b == 2) //rb
+	if ((a == -1 && b == 0) || (a == -1 && b == 2)) //rb
 		return(rotate(b2), ft_printf("rb\n"));
-	if (a == 1 && b == 0 || a == 1 && b == -1) //rra
+	if ((a == 1 && b == 0) || (a == 1 && b == -1)) //rra
 		return(r_rot(b1), ft_printf("rra\n"));
 	if (a == -1 && b == 1)
 		return(r_rot(b2),  ft_printf("rrb\n")); //rrb
@@ -256,7 +262,7 @@ int	count_moves(t_list **b1, t_list **b2, int index)
 		return (((mvb1 >= mvb2) * mvb1) + ((mvb1 < mvb2) * mvb2)); // we keep the biggest
 	if (mvb1 < 0 && mvb2 < 0)
 		return (-1 * (((mvb1 <= mvb2) * mvb1) + ((mvb1 > mvb2) * mvb2)));
-	return (abs(mvb1) + abs(mvb2)); // we sum both the abs value
+	return (ft_abs(mvb1) + ft_abs(mvb2)); // we sum both the abs value
 }
 
 /**
@@ -324,7 +330,6 @@ int	place_maximum(t_list **b2) // give the place in the stack for the maxumum
  */
 void short_push(t_list **b1, t_list **b2, int index)
 {
-	int	index_max;
 	int	pos_b1;
 	int	pos_b2;
 
@@ -499,8 +504,8 @@ void last_please(t_list **b1, t_list **b2)
 		content_b = *(int *)(*b2)->content;
 		content_c = *(int*)(ft_lstlast(*b1)->content);
 		if ((content_a > content_b && content_b > content_c) ||
-		test_isok (*b1) == 1 && content_b < content_a ||
-		test_isok (*b1) == 1 && content_b > content_c)
+		(test_isok (*b1) == 1 && content_b < content_a) ||
+		(test_isok (*b1) == 1 && content_b > content_c))
 			(spush(b2, b1), ft_printf("pb\n"));
 		else
 			(r_rot(b1), ft_printf("rra\n"));

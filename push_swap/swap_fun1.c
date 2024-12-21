@@ -26,7 +26,6 @@ void spush(t_list **list_a, t_list **list_b)
 {
 	t_list *first_a;
 	t_list *second_a;
-	t_list	*temp;
 	int	rule;
 
 	rule = 0;

@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:36:58 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/13 10:59:05 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/21 15:40:25 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	ft_isdigit(int c)
 int	is_single_dup(char *a, char *b)
 {
 	int	i;
-	int	j;
 	int	len_a;
 	int	len_b;
 
@@ -46,7 +45,7 @@ int	is_single_dup(char *a, char *b)
 	return (1);
 }
 
-int	is_dup(int argc, char *argv[])
+int	is_dup(char *argv[])
 {
 	int	i;
 	int	j;
@@ -116,7 +115,7 @@ int	swap_iserror(int argc, char *argv[])
 		}
 		i++;
 	}
-	if (is_dup(argc, argv) > 0)
+	if (is_dup(argv) > 0)
 		return (1);
 	return (0);
 }
