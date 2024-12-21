@@ -1,7 +1,5 @@
 #include "push_swap.h"
 
-
-
 void	r_rot(t_list **list)
 {
 	t_list	*first;
