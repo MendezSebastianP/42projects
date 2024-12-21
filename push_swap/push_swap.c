@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:50:45 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/21 15:38:48 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/21 16:43:04 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,7 +222,7 @@ int	move_step(t_list **b1, t_list **b2, int a, int b)
 	if (a == -1 && b == 1)
 		return(r_rot(b2),  ft_printf("rrb\n")); //rrb
 	if (a == -1 && b == -1) // pa
-		return(spush(b1, b2), ft_printf("pa\n"));
+		return(spush(b1, b2), ft_printf("pb\n"));
 	return (-1);
 }
 
@@ -466,15 +466,16 @@ int sort_3last(t_list **list)
 	if (!list || !(*list) || !(*list)->next || !(*list)->next->next ||
 	test_isok(*list) == 1)
         	return (-1);
+
 	first = *(int *)(*list)->content;
 	second = *(int *)(*list)->next->content;
 	last = *(int *)(*list)->next->next->content;
 	if (first < second && second > last && first > last)
 		return(r_rot(list),  ft_printf("rra\n"));
 	if (first > second && second > last)
-		return(sswap(list), r_rot(list), ft_printf("sa\nrra\n"));
+		return(sswap(list), ft_printf("sa\n"), r_rot(list), ft_printf("rra\n"));
 	if (first < second && second > last && first < last)
-		return(sswap(list), rotate(list), ft_printf("sa\nra\n"));
+		return(sswap(list), ft_printf("sa\n"), rotate(list), ft_printf("ra\n"));
 	if (first > second && second < last && first < last)
 		return(sswap(list),  ft_printf("sa\n"));
 	if (first > second && second < last && first > last)
@@ -497,7 +498,7 @@ void last_please(t_list **b1, t_list **b2)
 	int content_b;
 	int content_c;
 	if (*(int*)(ft_lstlast(*b2)->content) > *(int *)(*b2)->content)
-		(r_rot(b2), ft_printf("rra\n"));
+		(r_rot(b2), ft_printf("rrb\n"));
 	while (ft_lstsize(*b2) > 0)
 	{
 		content_a = *(int *)(*b1)->content;
@@ -506,7 +507,7 @@ void last_please(t_list **b1, t_list **b2)
 		if ((content_a > content_b && content_b > content_c) ||
 		(test_isok (*b1) == 1 && content_b < content_a) ||
 		(test_isok (*b1) == 1 && content_b > content_c))
-			(spush(b2, b1), ft_printf("pb\n"));
+			(spush(b2, b1), ft_printf("pa\n"));
 		else
 			(r_rot(b1), ft_printf("rra\n"));
 	}
@@ -527,6 +528,7 @@ void last_please(t_list **b1, t_list **b2)
  * @param argv Argument vector.
  * @return int Exit status.
  */
+#include <stdio.h>
 int	push_swap(int argc, char **argv)
 {
 	t_list	*b1;
@@ -535,19 +537,17 @@ int	push_swap(int argc, char **argv)
 	b1 = ptr_to_numblist(argv);
 	b2 = NULL;
 	// print_s1(b1);
-
 	if (swap_iserror(argc, argv) == 1)
 		return (free_list(b1), ft_printf("Error\n"));
 	if (ft_lstsize(b1) > 3)
-		(spush(&b1, &b2), ft_printf("pa\n"));
+		(spush(&b1, &b2), ft_printf("pb\n"));
 	if (ft_lstsize(b1) > 3)
-		(spush(&b1, &b2), ft_printf("pa\n"));
+		(spush(&b1, &b2), ft_printf("pb\n"));
 	while (ft_lstsize(b1) > 3)
-		(algo_badass(&b1, &b2)/* , print_s2(b1, b2) */); 
+		(algo_badass(&b1, &b2)/* , print_s2(b1, b2) */);
 	sort_3last(&b1);
 	if (b2)
 		last_please(&b1, &b2);
-	// print_s1(b1);
 	free_list(b1);
 	free_list(b2);
 	return (0);
