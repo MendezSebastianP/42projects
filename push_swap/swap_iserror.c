@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:36:58 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/21 15:40:25 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/22 12:40:27 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,10 @@ int	swap_iserror(int argc, char *argv[])
 			return (1);
 		while(argv[i][j])
 		{
-			if (argv[i][j] == '-')
+			if (argv[i][j] == '-' || argv[i][j] == '+' || argv[i][j] == '\\')
 				j++;
-			if (ft_isdigit(argv[i][j]) != 1 || !argv[i][j])
+			if (ft_isdigit(argv[i][j]) != 1 || !argv[i][j]
+			|| argv[i][j] == '\\')
 				return (1);
 			j++;
 		}
