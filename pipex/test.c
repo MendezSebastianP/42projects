@@ -6,7 +6,7 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 
-/* void error_exit(const char *msg) {
+void error_exit(const char *msg) {
     perror(msg);
     exit(EXIT_FAILURE);
 }
@@ -60,4 +60,4 @@ int main(int argc, char *argv[]) {
     waitpid(pid2, NULL, 0);
 
     return 0;
-} */
+}
