@@ -11,10 +11,9 @@
 /* ************************************************************************** */
 
 #include "pipex.h"
+// error
 
-
-
-/* int	main(int argc, char *argv[]) 
+int	main(int argc, char *argv[]) 
 {
 	int fd[2];
 	int pid[2];
@@ -58,99 +57,6 @@
 	waitpid(pid[0], NULL, 0);
 	waitpid(pid[1], NULL, 0);
 	return (0);
-} */
-
-char	*get_home(char *envp[])
-{
-	int i;
-	int j;
-	char *env_variable;
-	char *p1;
-
-	i = 0;
-	p1 = "HOME=";
-	while(envp[i])
-	{
-		j = 0;
-		while(envp[i][j] == p1[j])
-			j++;
-		if (j == 5)
-			return (envp[i] + j);
-		i++;
-	}
-	return(NULL);
 }
-
-char	**get_path(char *envp[])
-{
-	int i;
-	int j;
-	char *env_variable;
-	char *p1;
-	char **path1;
-
-	i = 0;
-	p1 = "PATH=";
-	while(envp[i])
-	{
-		j = 0;
-		while(envp[i][j] == p1[j])
-			j++;
-		if (j == 5)
-		{
-			path1 = ft_split(envp[i] + j, ':');
-			return(path1);
-		}
-		i++;
-	}
-	return(NULL);
-}
-
-char *get_path_command(char **paths, char *command)
-{
-	int i;
-	int j;
-	char *temp;
-
-	i = 0;
-	j = 0;
-	while(j == 0 && paths[i])
-	{
-		temp = ft_strjoin(paths[i++], "\\"); // il rajoute a chaque fois...
-		temp = ft_strjoin(temp, command);
-		j = access(temp, F_OK);
-	}
-	if (j == 0)
-		return (temp);
-	free(temp);
-	return (NULL);
-}
-
-/* int main(int argc, char *argv[], char *envp[])
-{
-	char **test;
-	int i = 0;
-
-	test = get_path(envp);
-	while(test[i])
-	{
-		printf("%s\n", test[i++]);
-	}
-	i = 0;
-	while(test[i])
-		free(test[i++]);
-	free(test);
-	return (0);
-} */
-int main(int argc, char *argv[], char *envp[])
-{
-	char **test;
-	int i = 0;
-
-	test = get_path(envp);
-	printf("%s\n", get_path_command(test, argv[1]));
-	return (0);
-}
-
 // ./a.out /bin/cat /usr/bin/wc test1.txt out.txt qui equivaut a
 // < test1.txt cat | wc > out.txt

@@ -29,7 +29,10 @@ char	*ft_strdup(const char *s, int line);
 char	*get_all_lines(int fd);
 size_t	sl(const char *c);
 void	*ft_calloc(size_t nitems, size_t size);
-int		isin(const char *set, const char c, int buffersize);
 char	*ft_realloc(char *oldlloc, size_t buffersize);
+char	*ft_strtrim(char const *s1, const char *set);
+char	**ft_split(char const *s, char c);
+char	*ft_strjoin(char const *s1, const char *s2);
+size_t	ft_strlen(const char *c);
 
 #endif //FT_H
