@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "pipex.h"
 
 static int	splitlen(char const *s1, char c1)
 {
@@ -45,21 +45,34 @@ static char	**cleanexit(char **a)
 	return (NULL);
 }
 
+int	if_next_quote(char const *s, int start_s, char c, int i)
+{
+	if (s[start_s] == '\'')
+	{
+		i = start_s + 1;
+		while (s[i] != '\'' && s[i])
+			i++;
+		if (s[i])
+			return (i - 1);
+	}
+	else
+	{
+		while (s[i] != c && s[i])
+			i++;
+	}
+	return (i);
+}
+
 static char	*t2f(char const *s, int start_s, char c)
 {
 	int		i;
-	int		j;
 	int		len_s;
 	char	*t2;
 
+	i = start_s;
+	i = if_next_quote(s, start_s, c, i);
+	len_s = i - start_s;
 	i = 0;
-	j = start_s;
-	len_s = 0;
-	while (s[j] != c && s[j])
-	{
-		len_s++;
-		j++;
-	}
 	t2 = malloc((len_s + 1) * sizeof(char));
 	if (t2 == NULL)
 		return (NULL);
@@ -90,17 +103,15 @@ char	**ft_split(char const *s, char c)
 		if (!s[i])
 			break ;
 		t1[j] = t2f(s, i, c);
-		if (t1[j] == NULL)
+		if (t1[j++] == NULL)
 			return (cleanexit(t1));
-		j++;
-		while (s[i] != c && s[i])
-			i++;
+		i = if_next_quote(s, i, c, i);
 	}
 	t1[j] = NULL;
 	return (t1);
 }
 
-/* #include <stdio.h>
+#include <stdio.h>
 
 int	main(int c, char *v[])
 {
@@ -124,4 +135,3 @@ int	main(int c, char *v[])
 	free(a);
 	return (0);
 }
- */

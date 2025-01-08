@@ -34,6 +34,7 @@ char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char const *s1, const char *s2);
 size_t	ft_strlen(const char *c);
 char	*ft_strdup(const char *s);
+int     isin_str(char *str, char *c);
 
 
 #endif //FT_H

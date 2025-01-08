@@ -66,16 +66,64 @@ char    *ft_replace(char *str, char *r, char *old)
     return (new_str);
 }
 
-char *replaceif(char *str)
+char *ft_cut(char *str, int start, int end)
 {
-        if ((ft_count_c(str, "'") % 2) != 0)
+        int i;
+        int j;
+        char *temp;
+
+        i = 0;
+        temp = malloc(end - start + 1);
+        if(!temp)
+                return (NULL);
+        while (start < end && str[start])
+        {
+                temp[i++] = str[start++];
+        }
+        temp[i] = '\0';
+        return (temp);
+}
+
+int next_c(char *str, char c)
+{
+        int i;
+
+        i = 0;
+        while (str[i] != c && str[i])
+                i++;
+        return (i);
+}
+char *ft_step_in(char *str)
+{
+        int i;
+        int j;
+        int k;
+        char *temp;
+        char *temp2;
+        char *base;
+
+        if ((ft_count_c(str, "\'") % 2) != 0 || ft_count_c(str, "\'") == 0)
                 return (str);
-        
+        k = ft_count_c(str, "\'") / 2;
+        i = next_c(str, '\'');
+        temp = ft_strdup(str);
+        while (k > 0)
+        {
+                (base = ft_cut(temp, 0, i), free(temp));
+                temp2 = ft_cut(temp, i, i + 2 + next_c(temp + i + 1, '\''));
+                temp2 = ft_replace(temp2, "+++", " ");
+                temp2 = ft_strjoin(base, temp2);
+                i = i + 2 + next_c(temp + i + 1, '\'');
+                temp = ft_strjoin(temp2, temp + i);
+                i = ft_strlen(temp2) + next_c(temp + ft_strlen(temp2), '\'');
+                (free(temp2), free(base), k--);
+        }
+        return (temp);
 }
 
 int main(int argc, char *argv[])
 {
-        char *test = ft_replace(argv[1], argv[2], argv[3]);
+        char *test = ft_step_in(argv[1]);
         printf("%s\n", test);
         free(test);
         return (0);
