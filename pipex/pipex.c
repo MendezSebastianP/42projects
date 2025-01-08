@@ -120,7 +120,6 @@ int	main(int argc, char *argv[], char *envp[])
 	
 	paths = get_path(envp);
 
-
 	if (pipe(fd) == -1)
 	{
 		perror("pipe");
@@ -134,7 +133,6 @@ int	main(int argc, char *argv[], char *envp[])
 		close(fd[1]);
 		temp = ft_strjoin(argv[2], ft_strjoin(" ", argv[1]));
 		temp2 = ft_split(temp, ' ');
-		//char *cat_args[] = {argv[2], argv[1], NULL}; // split this
 		execve(get_path_command(paths, no_args_cmd(argv[2])), temp2, envp);
 		perror("execve (cat)");
         exit(1);
@@ -148,7 +146,6 @@ int	main(int argc, char *argv[], char *envp[])
 		fd_out = open(argv[4], O_RDWR);
 		dup2(fd_out, STDOUT_FILENO);
 		temp2 = ft_split(argv[3], ' ');
-		// char *wc_args[] = {argv[3], NULL};
 		execve(get_path_command(paths, no_args_cmd(argv[3])), temp2, envp);
 		perror("execve (wc)");
         exit(1);
