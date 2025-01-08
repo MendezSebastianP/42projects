@@ -53,7 +53,7 @@ int	if_next_quote(char const *s, int start_s, char c, int i)
 		while (s[i] != '\'' && s[i])
 			i++;
 		if (s[i])
-			return (i - 1);
+			return (i + 1);
 	}
 	else
 	{
@@ -71,6 +71,11 @@ static char	*t2f(char const *s, int start_s, char c)
 
 	i = start_s;
 	i = if_next_quote(s, start_s, c, i);
+	if (s[start_s] == '\'')
+	{
+		start_s++;
+		i--;
+	}
 	len_s = i - start_s;
 	i = 0;
 	t2 = malloc((len_s + 1) * sizeof(char));
@@ -111,7 +116,7 @@ char	**ft_split(char const *s, char c)
 	return (t1);
 }
 
-#include <stdio.h>
+/* #include <stdio.h>
 
 int	main(int c, char *v[])
 {
@@ -134,4 +139,4 @@ int	main(int c, char *v[])
 	}
 	free(a);
 	return (0);
-}
+} */
