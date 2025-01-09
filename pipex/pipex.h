@@ -15,8 +15,10 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
-#include <stdio.h>
-#include <sys/wait.h>
+# include <stdarg.h>
+# include <stdio.h>
+# include <sys/wait.h>
+
 
 
 # ifndef BUFFER_SIZE
@@ -30,11 +32,25 @@ size_t	sl(const char *c);
 void	*ft_calloc(size_t nitems, size_t size);
 char	*ft_realloc(char *oldlloc, size_t buffersize);
 char	*ft_strtrim(char const *s1, const char *set);
-char	**ft_split(char const *s, char c);
+char	**ft_split(char *s, char c);
 char	*ft_strjoin(char const *s1, const char *s2);
 size_t	ft_strlen(const char *c);
 char	*ft_strdup(const char *s);
 int     isin_str(char *str, char *c);
+char    *ft_replace(char *str, char *r, char *old);
+
+// printf
+int	ft_printf(const char *format, ...);
+char	*ft_nbrchardec(int nbr, int unsigned1, char *mainmalloc, int index);
+int	ft_sizenbr_base(long int numb, char *base, int unsigned1);
+char	*ft_straddend(char *malloc1, char *toadd, int index);
+char	*ft_nbrcharhex(int nbr, char *base, char *mainmalloc, int index);
+size_t	ft_strlen(const char *c);
+size_t	ft_strlennull(const char *c);
+int	ft_print_adress(void *ptr);
+int	ft_putstr_fd(char *s, int fd, int size);
+char	*ft_adresschar(void *ptr, char *mainmalloc, int index);
+int	isformat(const char c);
 
 
 #endif //FT_H

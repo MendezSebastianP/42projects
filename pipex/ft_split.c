@@ -45,11 +45,32 @@ static char	**cleanexit(char **a)
 	return (NULL);
 }
 
+int	no_space_until_q(char const *s, int start_s, char c)
+{
+	while (s[start_s] != '\'')
+	{
+		if (s[start_s] == c)
+			return (0);
+		start_s++;
+	}
+	return (1);
+}
+
 int	if_next_quote(char const *s, int start_s, char c, int i)
 {
 	if (s[start_s] == '\'')
 	{
 		i = start_s + 1;
+		while (s[i] != '\'' && s[i])
+			i++;
+		if (s[i])
+			return (i + 1);
+	}
+	else if (no_space_until_q(s, start_s, c) == 1)
+	{
+		while (s[i] != '\'' && s[i])
+			i++;
+		i++;
 		while (s[i] != '\'' && s[i])
 			i++;
 		if (s[i])
@@ -90,12 +111,28 @@ static char	*t2f(char const *s, int start_s, char c)
 	return (t2);
 }
 
-char	**ft_split(char const *s, char c)
+int	isin(char *s, char c)
+{
+	int i;
+
+	i = 0;
+	while(s[i])
+	{
+		if (s[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+char	**ft_split(char *s, char c)
 {
 	char	**t1;
 	int		i;
 	int		j;
 
+	// if (isin(s, '$') == 1)
+	// 	s = ft_replace(s, "$$", "$");
 	t1 = malloc((splitlen(s, c) + 1) * sizeof(char *));
 	if (t1 == NULL)
 		return (NULL);
@@ -116,27 +153,41 @@ char	**ft_split(char const *s, char c)
 	return (t1);
 }
 
-/* #include <stdio.h>
+// #include <stdio.h>
 
-int	main(int c, char *v[])
-{
-	int		i;
-	char	**a;
+// int	main(int c, char *v[])
+// {
+// 	int		i;
+// 	int		j;
+// 	char	**a;
 
-	(void)c;
-	i = 0;
-	a = ft_split(v[1], v[2][0]);
-	while (a[i])
-	{
-		printf("%s\n", a[i]);
-		i++;
-	}
-	i = 0;
-	while (a[i])
-	{
-		free(a[i]);
-		i++;
-	}
-	free(a);
-	return (0);
-} */
+// 	(void)c;
+// 	i = 0;
+// 	a = ft_split(v[1], v[2][0]);
+// 	while (a[i])
+// 	{
+// 		printf("%s\n", a[i]);
+// 		// j = 0;
+// 		// while(a[i][j])
+// 		// {
+// 		// 	printf("printing char index |%d| as |%c|\n", j, a[i][j]);
+// 		// 	j++;
+// 		// }
+// 		i++;
+// 	}
+// 	i = 0;
+// 	while (a[i])
+// 	{
+// 		free(a[i]);
+// 		i++;
+// 	}
+// 	free(a);
+// 	printf("\n%s\n", v[1]);
+// 	return (0);
+// }
+
+// int	main(int c, char *v[])
+// {
+// 	printf("\n%s\n", v[1]);
+// 	return (0);
+// }

@@ -121,10 +121,10 @@ char *ft_step_in(char *str)
         return (temp);
 }
 
-int main(int argc, char *argv[])
+/* int main(int argc, char *argv[])
 {
         char *test = ft_step_in(argv[1]);
         printf("%s\n", test);
         free(test);
         return (0);
-}
+} */

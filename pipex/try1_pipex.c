@@ -13,7 +13,7 @@
 #include "pipex.h"
 // error
 
-int	main(int argc, char *argv[]) 
+/* int	main(int argc, char *argv[]) 
 {
 	int fd[2];
 	int pid[2];
@@ -57,6 +57,6 @@ int	main(int argc, char *argv[])
 	waitpid(pid[0], NULL, 0);
 	waitpid(pid[1], NULL, 0);
 	return (0);
-}
+} */
 // ./a.out /bin/cat /usr/bin/wc test1.txt out.txt qui equivaut a
 // < test1.txt cat | wc > out.txt
