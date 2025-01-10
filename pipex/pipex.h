@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/23 16:51:54 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/10 12:15:31 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ char	**ft_split(char *s, char c);
 char	*ft_strjoin(char const *s1, const char *s2);
 size_t	ft_strlen(const char *c);
 char	*ft_strdup(const char *s);
+char	**cleanexit(char **a);
 
 
 #endif //FT_H

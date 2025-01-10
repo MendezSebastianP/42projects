@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:41:53 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/10 12:15:59 by smendez-         ###   ########.fr       */
+/*   Updated: 2024/12/23 18:13:22 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,59 +108,18 @@ char *no_args_cmd(char *cmd)
 	return (first_cmd);
 }
 
-void	perror_exit(char *msg)
-{
-	perror("ft_strjoin");
-        exit(EXIT_FAILURE);
-}
-
-void	pid0(int fd0, int fd1, char *argv[], char **paths)
-{
-	char *temp;
-	char *space;
-	char **temp2;
-	
-	close(fd0);
-	if (dup2(fd1, STDOUT_FILENO) == -1)
-		(perror("dup2"), exit(EXIT_FAILURE));
-	close(fd1);
-	space = ft_strjoin(" ", argv[1]);
-	temp = ft_strjoin(argv[2], space);
-	free(space);
-	temp2 = ft_split(temp, ' ');
-	free(temp);
-	execve(get_path_command(paths, no_args_cmd(argv[2])), temp2, NULL);
-	perror("execve");
-	free(temp2);
-	exit(EXIT_FAILURE);
-}
-
-void	pid1(int fd0, int fd1, char *argv[], char **paths)
-{
-	char *temp;
-	char **temp2;
-	int fd_out;
-	
-	close(fd1);
-	if (dup2(fd0, STDIN_FILENO) == -1)
-		(perror("dup2"), exit(EXIT_FAILURE));
-	close(fd0);
-	fd_out = open(argv[4], O_RDWR);
-	dup2(fd_out, STDOUT_FILENO);
-	temp2 = ft_split(argv[3], ' ');
-	execve(get_path_command(paths, no_args_cmd(argv[3])), temp2, NULL);
-	perror("execve");
-	free(temp2);
-	exit(EXIT_FAILURE);
-}
-
 int	main(int argc, char *argv[], char *envp[])
 {
 	int fd[2];
 	int pid[2];
+	int fd_out;
+	char	*cmd1;
 	char **paths;
+	char *temp;
+	char **temp2;
 	
 	paths = get_path(envp);
+
 	if (pipe(fd) == -1)
 	{
 		perror("pipe");
@@ -169,16 +128,33 @@ int	main(int argc, char *argv[], char *envp[])
 	pid[0] = fork();
 	if (pid[0] == 0) 
 	{
-		pid0(fd[0], fd[1], argv, paths);
+		close(fd[0]);
+		dup2(fd[1], STDOUT_FILENO);
+		close(fd[1]);
+		temp = ft_strjoin(argv[2], ft_strjoin(" ", argv[1]));
+		temp2 = ft_split(temp, ' ');
+		execve(get_path_command(paths, no_args_cmd(argv[2])), temp2, envp);
+		perror("execve (cat)");
+        exit(1);
 	} 
 	pid[1] = fork();
 	if (pid[1] == 0) 
 	{
-		pid1(fd[0], fd[1], argv, paths);
+		close(fd[1]);
+		dup2(fd[0], STDIN_FILENO);
+		close(fd[0]);
+		fd_out = open(argv[4], O_RDWR);
+		dup2(fd_out, STDOUT_FILENO);
+		temp2 = ft_split(argv[3], ' ');
+		execve(get_path_command(paths, no_args_cmd(argv[3])), temp2, envp);
+		perror("execve (wc)");
+        exit(1);
 	} 
-	(close(fd[0]), close(fd[1]), waitpid(pid[0], NULL, 0));
+	close(fd[0]);
+	close(fd[1]);
+	close(fd_out);
+	waitpid(pid[0], NULL, 0);
 	waitpid(pid[1], NULL, 0);
-	cleanexit(paths);
 	return (0);
 }
 

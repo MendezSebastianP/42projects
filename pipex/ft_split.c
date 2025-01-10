@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:35:37 by smendez-          #+#    #+#             */
-/*   Updated: 2024/11/18 15:32:04 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/10 12:15:05 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	splitlen(char const *s1, char c1)
 	return (k);
 }
 
-static char	**cleanexit(char **a)
+char	**cleanexit(char **a)
 {
 	int	i;
 
