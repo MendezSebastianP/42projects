@@ -60,6 +60,8 @@
     "string.h": "c",
     "stdlib.h": "c",
     "libft.h": "c",
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "safe_copy2": "cpp",
+    "pipex": "cpp"
   }
 }

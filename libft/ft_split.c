@@ -48,18 +48,14 @@ static char	**cleanexit(char **a)
 static char	*t2f(char const *s, int start_s, char c)
 {
 	int		i;
-	int		j;
 	int		len_s;
 	char	*t2;
 
+	i = start_s;
+	while (s[i] != c && s[i])
+		i++;
+	len_s = i - start_s;
 	i = 0;
-	j = start_s;
-	len_s = 0;
-	while (s[j] != c && s[j])
-	{
-		len_s++;
-		j++;
-	}
 	t2 = malloc((len_s + 1) * sizeof(char));
 	if (t2 == NULL)
 		return (NULL);
@@ -90,9 +86,8 @@ char	**ft_split(char const *s, char c)
 		if (!s[i])
 			break ;
 		t1[j] = t2f(s, i, c);
-		if (t1[j] == NULL)
+		if (t1[j++] == NULL)
 			return (cleanexit(t1));
-		j++;
 		while (s[i] != c && s[i])
 			i++;
 	}
