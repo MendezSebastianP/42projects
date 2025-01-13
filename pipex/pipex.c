@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:41:53 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/13 15:32:21 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/13 18:05:40 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,11 @@ void	pid1(int **fd1, char *argv[], char **paths, int out)
 	int *fd2;
 	int i;
 
+	// printf("%s\n",argv[out -1]);
+	// char **temp3 = ft_split(argv[out - 1], ' ');
+	// i = 0;
+	// while (temp3[i])
+	// 	printf("%s\n",temp3[i++]);
 	i = 0;
 	while (fd1[i])
 		i++;
@@ -265,7 +270,6 @@ int	main(int argc, char *argv[], char *envp[])
 		pid0(fd, argv, paths);
 	while(i < argc - 5)
 	{
-		printf("%d\n", i);
 		i++;
 		fd = ft_add_fd(fd, i);
 		if (pipe(fd[i]) == -1)

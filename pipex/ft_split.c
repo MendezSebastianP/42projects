@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:35:37 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/10 12:15:05 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:27:56 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,6 @@ char	**ft_split(char *s, char c)
 	return (t1);
 }
 
-// #include <stdio.h>
 
 // int	main(int c, char *v[])
 // {
