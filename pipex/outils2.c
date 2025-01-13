@@ -48,3 +48,21 @@ void	*ft_calloc(size_t nitems, size_t size)
 	}
 	return (t);
 }
+
+void ft_close_all(int **fd)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (fd[i])
+	{
+		j = 0;
+		while (j < 2)
+		{
+			close(fd[i][j++]);
+		}
+		i++;
+	}
+}
+

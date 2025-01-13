@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:41:53 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/13 13:10:35 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/13 13:38:33 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,19 +131,20 @@ void	perror_exit(char *msg)
 // 	exit(EXIT_FAILURE);
 // }
 
-void	pid0(int *fd, char *argv[], char **paths)
+void	pid0(int **fd1, char *argv[], char **paths)
 {
 	char **temp2;
 	int open_fd;
+	int *fd;
 
+	fd = fd1[0];
 	open_fd = open(argv[1], O_RDONLY);
 	if (dup2(open_fd, STDIN_FILENO) == -1)
 		(perror("dup2"), exit(EXIT_FAILURE));
 	close(open_fd);
-	close(fd[0]);
 	if (dup2(fd[1], STDOUT_FILENO) == -1)
 		(perror("dup2"), exit(EXIT_FAILURE));
-	close(fd[1]);
+	ft_close_all(fd1);
 	temp2 = ft_split(argv[2], ' ');
 	execve(get_path_command(paths, no_args_cmd(argv[2])), temp2, NULL);
 	perror("execve");
@@ -151,18 +152,23 @@ void	pid0(int *fd, char *argv[], char **paths)
 	exit(EXIT_FAILURE);
 }
 
-void	pid_pipe(int *fd, int *fd2, char *argv[], char **paths)
+void	pid_pipe(int **fd1, char *argv[], char **paths, int i)
 {
 	char **temp2;
+	int *fd;
+	int *fd2;
 
+	fd = fd1[i - 1];
+	fd2 = fd1[i];
 	if (dup2(fd[0], STDIN_FILENO) == -1)
 		(perror("pid_pipe out"), exit(EXIT_FAILURE));
 	if (dup2(fd2[1], STDOUT_FILENO) == -1)
 		(perror("pid_pipe out"), exit(EXIT_FAILURE));
-	close(fd[0]);
-	close(fd[1]);
-	close(fd2[0]);
-	close(fd2[1]);
+	// close(fd[0]);
+	// close(fd[1]);
+	// close(fd2[0]);
+	// close(fd2[1]);
+	ft_close_all(fd1);
 	temp2 = ft_split(argv[3], ' ');
 	execve(get_path_command(paths, no_args_cmd(argv[3])), temp2, NULL);
 	perror("execve");
@@ -170,11 +176,19 @@ void	pid_pipe(int *fd, int *fd2, char *argv[], char **paths)
 	exit(EXIT_FAILURE);
 }
 
-void	pid1(int *fd2, int *fd, char *argv[], char **paths)
+void	pid1(int **fd1, char *argv[], char **paths)
 {
 	char **temp2;
 	int fd_out;
+	int *fd;
+	int *fd2;
+	int i;
 
+	i = 0;
+	while (fd1[i])
+		i++;
+	fd2 = fd1[i - 1];
+	fd = fd1[i - 2];
 	close(fd[0]);
 	close(fd[1]);
 	if (dup2(fd2[0], STDIN_FILENO) == -1)
@@ -227,6 +241,7 @@ int	**ft_add_fd(int **fd, int len)
 	return (free(fd),new_fd);
 }
 
+
 int	main(int argc, char *argv[], char *envp[])
 {
 	int **fd;
@@ -240,23 +255,20 @@ int	main(int argc, char *argv[], char *envp[])
 	paths = get_path(envp);
 	if (pipe(fd[0]) == -1)
 		return (perror("pipe1"),1);
-	printf("fd0 %d | fd1 %d\n", fd[0][0], fd[0][1]);
 	pid[0] = fork();
 	if (pid[0] == 0) 
-		pid0(fd[0], argv, paths);
+		pid0(fd, argv, paths);
 	fd = ft_add_fd(fd, 1);
-	// i++;
+	i++;
 	if (pipe(fd[1]) == -1)
 		return (perror("pipe1"),1);
-	printf("fd0 %d | fd1 %d\n", fd[1][0], fd[1][1]);
 	pid[1] = fork();
 	if (pid[1] == 0) 
-		pid_pipe(fd[0], fd[1], argv, paths);
+		pid_pipe(fd, argv, paths, i);
 	pid[2] = fork();
 	if (pid[2] == 0) 
-		pid1(fd[1], fd[0], argv, paths);
-	(close(fd[0][0]), close(fd[0][1]));
-	(close(fd[1][0]), close(fd[1][1]));
+		pid1(fd, argv, paths);
+	ft_close_all(fd);
 	waitpid(pid[0], NULL, 0);
 	waitpid(pid[1], NULL, 0);
 	waitpid(pid[2], NULL, 0);

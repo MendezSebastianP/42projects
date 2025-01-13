@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/13 10:47:24 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/13 13:23:33 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_strjoin(char const *s1, const char *s2);
 size_t	ft_strlen(const char *c);
 char	*ft_strdup(const char *s);
 char	**cleanexit(char **a);
-void	*ft_calloc(size_t nitems, size_t size);
+void ft_close_all(int **fd);
 
 
 #endif //FT_H
