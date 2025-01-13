@@ -29,3 +29,22 @@ char	*ft_strdup(const char *s)
 	t[i] = '\0';
 	return (t);
 }
+
+void	*ft_calloc(size_t nitems, size_t size)
+{
+	unsigned char	*t;
+	size_t			i;
+	size_t			k;
+
+	i = 0;
+	k = nitems * size;
+	t = malloc(k);
+	if (t == NULL || (size != 0 && k / size != nitems))
+		return (NULL);
+	while (nitems * size > i)
+	{
+		t[i] = 0;
+		i++;
+	}
+	return (t);
+}

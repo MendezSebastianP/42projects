@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/10 12:15:31 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/13 10:47:24 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,19 @@
 # include <stdio.h>
 # include <sys/wait.h>
 
+typedef struct s_list
+{
+    void            *content;
+    struct s_list   *next;
+}           t_list;
+
 
 char	**ft_split(char *s, char c);
 char	*ft_strjoin(char const *s1, const char *s2);
 size_t	ft_strlen(const char *c);
 char	*ft_strdup(const char *s);
 char	**cleanexit(char **a);
+void	*ft_calloc(size_t nitems, size_t size);
 
 
 #endif //FT_H
