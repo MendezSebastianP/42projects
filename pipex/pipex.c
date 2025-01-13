@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:41:53 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/13 11:59:34 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/13 13:10:35 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ void	pid1(int *fd2, int *fd, char *argv[], char **paths)
 	exit(EXIT_FAILURE);
 }
 
-char	**cleanexit2(int **a)
+char	*cleanexit2(int **a)
 {
 	int	i;
 
@@ -208,31 +208,22 @@ char	**cleanexit2(int **a)
 int	**ft_add_fd(int **fd, int len)
 {
 	int **new_fd;
-	int *temp;
+	//int *temp;
 	int len_fd;
 	int i;
 
 	i = 0;
-	new_fd = calloc(i + 2, sizeof(int*));
+	new_fd = malloc((len + 2) * sizeof(int*));
 	if (!new_fd)
 		return (NULL);
-	
-	if (!fd)
-		fd = calloc(2, sizeof(int*));
-	while(fd[i])
-		i++;
-	
-	temp = malloc(2 * sizeof(int));
-	if (!temp)
-		return (NULL);
-	temp[2] = 0;
 	i = 0;
-	while(fd[i])
+	while(i < len)
 	{
 		new_fd[i] = fd[i];
 		i++;
 	}
-	new_fd[i] = temp;
+	new_fd[i++] = malloc(2 * sizeof(int));
+	new_fd[i] = NULL;
 	return (free(fd),new_fd);
 }
 
@@ -245,7 +236,7 @@ int	main(int argc, char *argv[], char *envp[])
 
 	i = 0;
 	fd = NULL;
-	fd = ft_add_fd(fd);
+	fd = ft_add_fd(fd, i);
 	paths = get_path(envp);
 	if (pipe(fd[0]) == -1)
 		return (perror("pipe1"),1);
@@ -253,7 +244,7 @@ int	main(int argc, char *argv[], char *envp[])
 	pid[0] = fork();
 	if (pid[0] == 0) 
 		pid0(fd[0], argv, paths);
-	fd = ft_add_fd(fd);
+	fd = ft_add_fd(fd, 1);
 	// i++;
 	if (pipe(fd[1]) == -1)
 		return (perror("pipe1"),1);
@@ -270,6 +261,7 @@ int	main(int argc, char *argv[], char *envp[])
 	waitpid(pid[1], NULL, 0);
 	waitpid(pid[2], NULL, 0);
 	cleanexit(paths);
+	cleanexit2(fd);
 	return (0);
 }
 
