@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:41:53 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/13 13:38:33 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/13 14:43:14 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,13 +164,9 @@ void	pid_pipe(int **fd1, char *argv[], char **paths, int i)
 		(perror("pid_pipe out"), exit(EXIT_FAILURE));
 	if (dup2(fd2[1], STDOUT_FILENO) == -1)
 		(perror("pid_pipe out"), exit(EXIT_FAILURE));
-	// close(fd[0]);
-	// close(fd[1]);
-	// close(fd2[0]);
-	// close(fd2[1]);
 	ft_close_all(fd1);
-	temp2 = ft_split(argv[3], ' ');
-	execve(get_path_command(paths, no_args_cmd(argv[3])), temp2, NULL);
+	temp2 = ft_split(argv[i + 2], ' ');
+	execve(get_path_command(paths, no_args_cmd(argv[i + 2])), temp2, NULL);
 	perror("execve");
 	free(temp2);
 	exit(EXIT_FAILURE);
@@ -241,11 +237,23 @@ int	**ft_add_fd(int **fd, int len)
 	return (free(fd),new_fd);
 }
 
+void wait_all(int *pid, int len)
+{
+	int	i;
+
+	i = 0;
+	while (i <= len)
+	{
+		waitpid(pid[i], NULL, 0);
+		i++;
+	}
+}
+
 
 int	main(int argc, char *argv[], char *envp[])
 {
 	int **fd;
-	int pid[3];
+	int pid[argc - 2];
 	char **paths;
 	int i;
 
@@ -253,25 +261,27 @@ int	main(int argc, char *argv[], char *envp[])
 	fd = NULL;
 	fd = ft_add_fd(fd, i);
 	paths = get_path(envp);
-	if (pipe(fd[0]) == -1)
+	if (pipe(fd[i]) == -1)
 		return (perror("pipe1"),1);
-	pid[0] = fork();
-	if (pid[0] == 0) 
+	pid[i] = fork();
+	if (pid[i] == 0) 
 		pid0(fd, argv, paths);
-	fd = ft_add_fd(fd, 1);
-	i++;
-	if (pipe(fd[1]) == -1)
-		return (perror("pipe1"),1);
-	pid[1] = fork();
-	if (pid[1] == 0) 
-		pid_pipe(fd, argv, paths, i);
-	pid[2] = fork();
-	if (pid[2] == 0) 
+	while(i < argc - 5)
+	{
+		printf("%d\n", i);
+		fd = ft_add_fd(fd, 1);
+		i++;
+		if (pipe(fd[i]) == -1)
+			return (perror("pipe1"),1);
+		pid[i] = fork();
+		if (pid[i] == 0) 
+			pid_pipe(fd, argv, paths, i);
+	}
+	pid[i + 1] = fork();
+	if (pid[i + 1] == 0) 
 		pid1(fd, argv, paths);
 	ft_close_all(fd);
-	waitpid(pid[0], NULL, 0);
-	waitpid(pid[1], NULL, 0);
-	waitpid(pid[2], NULL, 0);
+	wait_all(pid, i + 1);
 	cleanexit(paths);
 	cleanexit2(fd);
 	return (0);
