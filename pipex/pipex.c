@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:41:53 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/13 14:43:14 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/13 15:32:21 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ void	pid_pipe(int **fd1, char *argv[], char **paths, int i)
 	exit(EXIT_FAILURE);
 }
 
-void	pid1(int **fd1, char *argv[], char **paths)
+void	pid1(int **fd1, char *argv[], char **paths, int out)
 {
 	char **temp2;
 	int fd_out;
@@ -185,17 +185,14 @@ void	pid1(int **fd1, char *argv[], char **paths)
 		i++;
 	fd2 = fd1[i - 1];
 	fd = fd1[i - 2];
-	close(fd[0]);
-	close(fd[1]);
 	if (dup2(fd2[0], STDIN_FILENO) == -1)
 		(perror("dup2"), exit(EXIT_FAILURE));
-	fd_out = open(argv[5],  O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	fd_out = open(argv[out],  O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	dup2(fd_out, STDOUT_FILENO);
 	close(fd_out);
-	close(fd2[0]);
-	close(fd2[1]);
-	temp2 = ft_split(argv[4], ' ');
-	execve(get_path_command(paths, no_args_cmd(argv[4])), temp2, NULL);
+	ft_close_all(fd1);
+	temp2 = ft_split(argv[out - 1], ' ');
+	execve(get_path_command(paths, no_args_cmd(argv[out - 1])), temp2, NULL);
 	perror("execve");
 	free(temp2);
 	exit(EXIT_FAILURE);
@@ -269,8 +266,8 @@ int	main(int argc, char *argv[], char *envp[])
 	while(i < argc - 5)
 	{
 		printf("%d\n", i);
-		fd = ft_add_fd(fd, 1);
 		i++;
+		fd = ft_add_fd(fd, i);
 		if (pipe(fd[i]) == -1)
 			return (perror("pipe1"),1);
 		pid[i] = fork();
@@ -279,7 +276,7 @@ int	main(int argc, char *argv[], char *envp[])
 	}
 	pid[i + 1] = fork();
 	if (pid[i + 1] == 0) 
-		pid1(fd, argv, paths);
+		pid1(fd, argv, paths, argc - 1);
 	ft_close_all(fd);
 	wait_all(pid, i + 1);
 	cleanexit(paths);
