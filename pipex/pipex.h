@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/13 13:23:33 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/14 10:57:43 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ size_t	ft_strlen(const char *c);
 char	*ft_strdup(const char *s);
 char	**cleanexit(char **a);
 void ft_close_all(int **fd);
+int	ft_isequalstr(char *str1, char *str2);
 
 
 #endif //FT_H

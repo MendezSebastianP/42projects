@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:41:53 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/13 18:05:40 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/14 12:17:00 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,22 +131,22 @@ void	perror_exit(char *msg)
 // 	exit(EXIT_FAILURE);
 // }
 
-void	pid0(int **fd1, char *argv[], char **paths)
+void	pid0(int **fd1, char *argv[], char **paths, int i)
 {
 	char **temp2;
 	int open_fd;
 	int *fd;
 
 	fd = fd1[0];
-	open_fd = open(argv[1], O_RDONLY);
+	open_fd = open(argv[i + 1], O_RDONLY);
 	if (dup2(open_fd, STDIN_FILENO) == -1)
 		(perror("dup2"), exit(EXIT_FAILURE));
 	close(open_fd);
 	if (dup2(fd[1], STDOUT_FILENO) == -1)
 		(perror("dup2"), exit(EXIT_FAILURE));
 	ft_close_all(fd1);
-	temp2 = ft_split(argv[2], ' ');
-	execve(get_path_command(paths, no_args_cmd(argv[2])), temp2, NULL);
+	temp2 = ft_split(argv[i + 2], ' ');
+	execve(get_path_command(paths, no_args_cmd(argv[i + 2])), temp2, NULL);
 	perror("execve");
 	free(temp2);
 	exit(EXIT_FAILURE);
@@ -157,9 +157,13 @@ void	pid_pipe(int **fd1, char *argv[], char **paths, int i)
 	char **temp2;
 	int *fd;
 	int *fd2;
+	int k;
 
-	fd = fd1[i - 1];
-	fd2 = fd1[i];
+	k = 0;
+	if (ft_isequalstr(argv[1], "here_doc"))
+		k = 1;
+	fd = fd1[i - 1 - k];
+	fd2 = fd1[i - k];
 	if (dup2(fd[0], STDIN_FILENO) == -1)
 		(perror("pid_pipe out"), exit(EXIT_FAILURE));
 	if (dup2(fd2[1], STDOUT_FILENO) == -1)
@@ -180,19 +184,16 @@ void	pid1(int **fd1, char *argv[], char **paths, int out)
 	int *fd2;
 	int i;
 
-	// printf("%s\n",argv[out -1]);
-	// char **temp3 = ft_split(argv[out - 1], ' ');
-	// i = 0;
-	// while (temp3[i])
-	// 	printf("%s\n",temp3[i++]);
 	i = 0;
 	while (fd1[i])
 		i++;
 	fd2 = fd1[i - 1];
-	fd = fd1[i - 2];
 	if (dup2(fd2[0], STDIN_FILENO) == -1)
 		(perror("dup2"), exit(EXIT_FAILURE));
-	fd_out = open(argv[out],  O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (ft_isequalstr( argv[1], "here_doc"))
+		fd_out = open(argv[out], O_APPEND | O_WRONLY | O_CREAT , 0644);
+	else
+		fd_out = open(argv[out],  O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	dup2(fd_out, STDOUT_FILENO);
 	close(fd_out);
 	ft_close_all(fd1);
@@ -258,8 +259,12 @@ int	main(int argc, char *argv[], char *envp[])
 	int pid[argc - 2];
 	char **paths;
 	int i;
+	int j;
 
 	i = 0;
+	j = 0;
+	if (ft_isequalstr(argv[1], "here_doc"))
+		j = 1;
 	fd = NULL;
 	fd = ft_add_fd(fd, i);
 	paths = get_path(envp);
@@ -267,8 +272,8 @@ int	main(int argc, char *argv[], char *envp[])
 		return (perror("pipe1"),1);
 	pid[i] = fork();
 	if (pid[i] == 0) 
-		pid0(fd, argv, paths);
-	while(i < argc - 5)
+		pid0(fd, argv, paths, i + j);
+	while(i + j < argc - 5)
 	{
 		i++;
 		fd = ft_add_fd(fd, i);
@@ -276,7 +281,7 @@ int	main(int argc, char *argv[], char *envp[])
 			return (perror("pipe1"),1);
 		pid[i] = fork();
 		if (pid[i] == 0) 
-			pid_pipe(fd, argv, paths, i);
+			pid_pipe(fd, argv, paths, i + j);
 	}
 	pid[i + 1] = fork();
 	if (pid[i + 1] == 0) 
