@@ -6,44 +6,11 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:35:37 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/13 17:27:56 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/14 15:40:27 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-static int	splitlen(char const *s1, char c1)
-{
-	int	i;
-	int	k;
-
-	i = 0;
-	k = 0;
-	while (s1[i])
-	{
-		while (s1[i] == c1 && s1[i])
-			i++;
-		if (s1[i])
-			k++;
-		while (s1[i] != c1 && s1[i])
-			i++;
-	}
-	return (k);
-}
-
-char	**cleanexit(char **a)
-{
-	int	i;
-
-	i = 0;
-	while (a[i])
-	{
-		free(a[i]);
-		i++;
-	}
-	free(a);
-	return (NULL);
-}
 
 int	no_space_until_q(char const *s, int start_s, char c)
 {
