@@ -6,32 +6,12 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:41:53 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/14 16:37:00 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/14 19:24:31 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	pid4(int **fd1, char *argv[], char **paths, int i)
-{
-	char **temp2;
-	int open_fd;
-	int *fd;
-
-	fd = fd1[0];	
-	open_fd = open(argv[i + 1], O_RDONLY);
-	if (dup2(open_fd, STDIN_FILENO) == -1)
-		(perror("dup2"), exit(EXIT_FAILURE));
-	close(open_fd);
-	if (dup2(fd[1], STDOUT_FILENO) == -1)
-		(perror("dup2"), exit(EXIT_FAILURE));
-	ft_close_all(fd1);
-	temp2 = ft_split(argv[i + 2], ' ');
-	execve(get_path_command(paths, no_args_cmd(argv[i + 2])), temp2, NULL);
-	perror("execve");
-	free(temp2);
-	exit(EXIT_FAILURE);
-}
 
 int	pid_pipe(int **fd1, char *argv[], char **paths, int i)
 {
@@ -86,24 +66,53 @@ int multi_pipex(int argc, char *argv[], char **paths, int **fd)
 	return (cleanexit2(fd), 0);
 }
 
+void	pid_here_doc(int **fd1, char *argv[], char **paths)
+{
+	char **temp2;
+
+	if (dup2(fd1[0][0], STDIN_FILENO) == -1)
+		(perror("dup2"), exit(EXIT_FAILURE));
+	if (dup2(fd1[1][1], STDOUT_FILENO) == -1)
+		(perror("pid_pipe out"), exit(EXIT_FAILURE));
+	ft_close_all(fd1);
+	temp2 = ft_split(argv[3], ' ');
+	execve(get_path_command(paths, no_args_cmd(argv[3])), temp2, NULL);
+	perror("execve");
+	free(temp2);
+	exit(EXIT_FAILURE);
+}
+
 int	heredoc(int argc, char *argv[], char *envp[], int **fd)
 {
 	int pid[argc - 2];
 	char **paths;
-	int i;
+	char **temp2; //
 
-	i = 0;
-	fd = ft_add_fd(fd, i);
+	fd = ft_add_fd(fd, 0);
 	paths = get_path(envp);
-	if (pipe(fd[i]) == -1)
+	if (pipe(fd[0]) == -1)
 		return (perror("pipe1"),1);
-	pid[i] = fork();
-	if (pid[i] == 0) 
-		pid0(fd, argv, paths, i + 1);
-	pid[i + 1] = fork();
-	if (pid[i + 1] == 0) 
+	pid[0] = fork();
+	if (pid[0] == 0)
+	{
+		if (dup2(fd[0][1], STDOUT_FILENO) == -1)
+			(perror("dup2"), exit(EXIT_FAILURE));
+		ft_until_limiter(argv[2]);
+		ft_close_all(fd);
+		cleanexit(paths);
+		cleanexit2(fd);
+		exit(0);	
+	}
+	fd = ft_add_fd(fd, 1);
+	if (pipe(fd[1]) == -1)
+		return (perror("pipe1"),1);
+	pid[1] = fork();
+	if (pid[1] == 0)
+		pid_here_doc(fd, argv, paths);
+	pid[2] = fork();
+	if (pid[2] == 0) 
 		pid1(fd, argv, paths, argc - 1);
-	(ft_close_all(fd), wait_all(pid, i + 1), cleanexit(paths));
+	(ft_close_all(fd), wait_all(pid, 2), cleanexit(paths));
 	return (cleanexit2(fd), 0);
 }
 

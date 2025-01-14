@@ -6,25 +6,13 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 17:38:45 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/14 15:27:43 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/14 19:32:06 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-size_t	sl(const char *c)
-{
-	size_t	i;
-
-	i = 0;
-	if (!c)
-		return (0);
-	while (c[i] != '\0')
-		i++;
-	return (i);
-}
-
-void	*ft_calloc(size_t nitems, size_t size)
+void	*ft_calloc2(size_t nitems, size_t size)
 {
 	unsigned char	*t;
 	size_t			i;
@@ -45,7 +33,7 @@ void	*ft_calloc(size_t nitems, size_t size)
 	return (t);
 }
 
-int	isin(const char *set, const char c, int buffersize)
+int	isin1(const char *set, const char c, int buffersize)
 {
 	int	i;
 
@@ -76,19 +64,39 @@ int	ft_strcmp(char *s1, char *s2)
 	return (j);
 }
 
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	i;
 
-void	ft_until_limiter(char *argv[])
+	i = 0;
+	while (s[i])
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
+}
+
+void	ft_until_limiter(char *argv)
 {
 	char	*line;
 	char	*delimiter;
 	int	bomb;
 
 	bomb = 0;
-	delimiter = ft_strjoin(argv[2], "\n");
+	delimiter = ft_strjoin(argv, "\n");
 	while(bomb == 0)
 	{
 		line = get_next_line(0);
+		ft_putstr_fd(line, 1);
+		// free(line);
 		if (ft_strcmp(delimiter, line) == 0)
+		{
 			bomb = 1;
+			line = get_next_line(-14);
+			free(delimiter);
+			free(line);
+		}
 	}
 }
+
+

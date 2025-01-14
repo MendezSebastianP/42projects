@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:37:03 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/14 15:27:35 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/14 19:23:10 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_straddend(char *malloc1, char *toadd, int buffersize)
 		return (malloc1);
 	if (!malloc1)
 		return (ft_strdup2(toadd, 0));
-	str = ft_calloc(sl(malloc1) + sl(toadd) + 1, 1);
+	str = ft_calloc2(ft_strlen(malloc1) + ft_strlen(toadd) + 1, 1);
 	if (!str)
 		return (NULL);
 	while (malloc1[i])
@@ -54,13 +54,13 @@ char	*ft_resetsc(char *sc)
 	if (!sc[i])
 	{
 		free(sc);
-		return (ft_calloc(1, 1));
+		return (ft_calloc2(1, 1));
 	}
 	newlloc = ft_strdup2(sc + i + 1, 0);
 	if (!newlloc)
 	{
 		free(sc);
-		return (ft_calloc(1, 1));
+		return (ft_calloc2(1, 1));
 	}
 	free(sc);
 	return (newlloc);
@@ -106,15 +106,15 @@ char	*get_next_line(int fd)
 	char		*line;
 	int			n;
 
-	b1 = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (!b1)
-		return (NULL);
+	b1 = ft_calloc2(BUFFER_SIZE + 1, sizeof(char));
+	if (!b1 || fd == -14)
+		return (free(b1), freenull(&sc));
 	if (!sc)
-		sc = ft_calloc(1, sizeof(char));
+		sc = ft_calloc2(1, sizeof(char));
 	if (!sc)
 		return (free(b1), NULL);
 	n = 1;
-	while (isin(sc, '\n', sl(sc)) == 0 && n > 0)
+	while (isin1(sc, '\n', ft_strlen(sc)) == 0 && n > 0)
 	{
 		n = read(fd, b1, BUFFER_SIZE);
 		sc = ft_straddend(sc, b1, n);
@@ -162,8 +162,8 @@ int	main(void)
     return (0);
 } */
 
-/* int main(int argc, char *argv[])
-{
-	ft_until_limiter(argv);;
-	return (0);
-} */
+// int main(int argc, char *argv[])
+// {
+// 	ft_until_limiter(argv[2]);
+// 	return (0);
+// }

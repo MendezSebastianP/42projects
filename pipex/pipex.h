@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/14 15:50:17 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:54:57 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,10 @@ char	*ft_resetsc(char *base);
 char	*ft_strdup2(const char *s, int line);
 char	*get_next_line(int fd);
 size_t	sl(const char *c);
-void	*ft_calloc(size_t nitems, size_t size);
+void	*ft_calloc2(size_t nitems, size_t size);
 char	*ft_realloc(char *oldlloc, size_t buffersize);
-void	ft_until_limiter(char *argv[]);
+void	ft_until_limiter(char *argv);
+int	isin1(const char *set, const char c, int buffersize);
 
 
 #endif //FT_H
