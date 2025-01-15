@@ -1,36 +1,49 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   swap_fun1.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/15 16:52:17 by smendez-          #+#    #+#             */
+/*   Updated: 2025/01/15 16:58:09 by smendez-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void sswap(t_list **list)
+void	sswap(t_list **list)
 {
-	t_list *first;
-	t_list *second; 
+	t_list	*first;
+	t_list	*second;
 
 	if (!list || !*list || !(*list)->next)
-        	return;
+		return ;
 	first = *list;
 	second = (*list)->next;
 	first->next = second->next;
 	second->next = first;
 	*list = second;
 }
-void	ss(t_list **list_a, t_list ** list_b)
+
+void	ss(t_list **list_a, t_list **list_b)
 {
-	if (!list_a || !*list_a || !(*list_a)->next ||
-	!list_b || !*list_b || !(*list_b)->next)
-        	return;
+	if (!list_a || !*list_a || !(*list_a)->next
+		|| !list_b || !*list_b || !(*list_b)->next)
+		return ;
 	sswap(list_a);
 	sswap(list_b);
 }
 
-void spush(t_list **list_a, t_list **list_b)
+void	spush(t_list **list_a, t_list **list_b)
 {
-	t_list *first_a;
-	t_list *second_a;
-	int	rule;
+	t_list	*first_a;
+	t_list	*second_a;
+	int		rule;
 
 	rule = 0;
-	if (!list_a || !*list_a )
-        	return;
+	if (!list_a || !*list_a)
+		return ;
 	if (ft_lstsize(*list_b) < 1)
 		rule = 1;
 	first_a = *list_a;
@@ -40,6 +53,7 @@ void spush(t_list **list_a, t_list **list_b)
 	if (rule == 1)
 		first_a->next = NULL;
 }
+
 void	rotate(t_list **list)
 {
 	t_list	*temp;
@@ -52,10 +66,10 @@ void	rotate(t_list **list)
 	temp->next = NULL;
 }
 
-void	rr(t_list **list_a, t_list ** list_b)
+void	rr(t_list **list_a, t_list **list_b)
 {
 	if (!list_a || !*list_a || !list_b || !*list_b)
-        	return;
+		return ;
 	rotate(list_a);
 	rotate(list_b);
 }
@@ -66,7 +80,6 @@ void	rr(t_list **list_a, t_list ** list_b)
 	//print_both(argv, argv + 4, rr);
 	return (0);
 } */
-
 
 // int	main(int argc, char *argv[])
 // {

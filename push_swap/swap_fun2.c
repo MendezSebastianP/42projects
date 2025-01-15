@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   swap_fun2.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/15 16:52:36 by smendez-          #+#    #+#             */
+/*   Updated: 2025/01/15 16:52:39 by smendez-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	r_rot(t_list **list)
@@ -5,8 +17,8 @@ void	r_rot(t_list **list)
 	t_list	*first;
 	t_list	*last;
 	t_list	*temp;
-	int	i;
-	int	k;
+	int		i;
+	int		k;
 
 	k = 0;
 	i = ft_lstsize(*list) - 1;
@@ -23,10 +35,10 @@ void	r_rot(t_list **list)
 	temp->next = NULL;
 }
 
-void	rrr(t_list **list_a, t_list ** list_b)
+void	rrr(t_list **list_a, t_list **list_b)
 {
 	if (!list_a || !*list_a || !list_b || !*list_b)
-        	return;
+		return ;
 	r_rot(list_a);
 	r_rot(list_b);
 }

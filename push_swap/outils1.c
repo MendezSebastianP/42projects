@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   outils1.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/15 16:41:12 by smendez-          #+#    #+#             */
+/*   Updated: 2025/01/15 16:41:23 by smendez-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 char	*motoradress(unsigned long address, char *mainmalloc, int index)
@@ -43,6 +55,7 @@ char	*ft_adresschar(void *ptr, char *mainmalloc, int index)
 	mainmalloc = motoradress(address, mainmalloc, index);
 	return (mainmalloc);
 }
+
 int	isformat(const char c)
 {
 	int		i;
@@ -58,6 +71,7 @@ int	isformat(const char c)
 	}
 	return (0);
 }
+
 int	ft_print_adress(void *ptr)
 {
 	unsigned long	address;

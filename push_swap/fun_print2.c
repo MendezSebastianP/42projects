@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbrchardechex.c                                 :+:      :+:    :+:   */
+/*   fun_print2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 18:52:23 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/09 17:51:10 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:33:51 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static int	msize(long int a, char *base)
 {
-	long int		lenb;
-	long int		i;
-	long int		b;
+	long int	lenb;
+	long int	i;
+	long int	b;
 
 	i = 1;
 	b = a;
@@ -36,10 +36,10 @@ static int	msize(long int a, char *base)
 
 static char	*motor(long int nbr, char *base, char *final, int index)
 {
-	long int		size;
-	long int		k;
-	long int		nb;
-	long int		i;
+	long int	size;
+	long int	k;
+	long int	nb;
+	long int	i;
 
 	size = ft_strlen(base);
 	i = index;
@@ -75,6 +75,7 @@ size_t	ft_strlen(const char *c)
 		i++;
 	return (i);
 }
+
 size_t	ft_strlennull(const char *c)
 {
 	size_t	i;

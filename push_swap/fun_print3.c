@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fun_print3.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/15 16:34:00 by smendez-          #+#    #+#             */
+/*   Updated: 2025/01/15 16:36:51 by smendez-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 /**
@@ -9,9 +21,10 @@
  */
 void	print_s1(t_list *b1)
 {
+	t_list	*b1_free;
+	int		i;
 
-	t_list 	*b1_free;
-	int	i = 1;
+	i = 1;
 	b1_free = b1;
 	ft_printf("   |T     | \n");
 	while (b1 != NULL)
@@ -31,24 +44,21 @@ void	print_s1(t_list *b1)
  */
 void	print_s2(t_list *b1, t_list *b2)
 {
+	t_list	*b1_free;
+	int		i;
 
-	t_list 	*b1_free;
-	int	i = 1;
+	i = 1;
 	b1_free = b1;
 	ft_printf("   |T     | \n");
 	while (b1 != NULL || b2 != NULL)
 	{
 		if (b1 != NULL)
-		{
-			ft_printf("|__%d___|",  *(int *)b1->content);
-		}
+			ft_printf("|__%d___|", *(int *)b1->content);
 		if (b2 != NULL)
 		{
-			if(b1 == NULL)
-			{
+			if (b1 == NULL)
 				ft_printf("|______|");
-			}
-			ft_printf("|__%d___|",  *(int *)b2->content);
+			ft_printf("|__%d___|", *(int *)b2->content);
 			b2 = b2->next;
 		}
 		if (b1 != NULL)

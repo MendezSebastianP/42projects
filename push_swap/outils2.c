@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   outils2.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/15 16:41:34 by smendez-          #+#    #+#             */
+/*   Updated: 2025/01/15 16:41:45 by smendez-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	ft_atoi(const char *s)
@@ -29,29 +41,29 @@ int	ft_atoi(const char *s)
 	return (k);
 }
 
-char *free_list(t_list *list)
+char	*free_list(t_list *list)
 {
-    t_list *tmp;
+	t_list	*tmp;
 
-    while (list)
-    {
-        tmp = list;
-        list = list->next;
-	free(tmp->content);
-        free(tmp);
-    }
-    return (NULL);
+	while (list)
+	{
+		tmp = list;
+		list = list->next;
+		free(tmp->content);
+		free(tmp);
+	}
+	return (NULL);
 }
 
 t_list	*ptr_to_list(char *argv[])
 {
-	int	i;
+	int		i;
 	t_list	*newob;
 	t_list	*newlst;
 
 	i = 1;
 	newlst = NULL;
-	while(argv[i])
+	while (argv[i])
 	{
 		newob = ft_lstnew(argv[i]);
 		if (!newob)
@@ -64,21 +76,21 @@ t_list	*ptr_to_list(char *argv[])
 	}
 	return (newlst);
 }
-#include <stdio.h>
+
 t_list	*ptr_to_numblist(char *argv[])
 {
-	int	i;
+	int		i;
 	t_list	*newob;
 	t_list	*newlst;
-	int	*number;
+	int		*number;
 
 	i = 1;
 	newlst = NULL;
-	while(argv[i])
+	while (argv[i])
 	{
 		number = malloc(sizeof(int));
 		if (!number)
-			return(NULL);
+			return (NULL);
 		*number = ft_atoi(argv[i]);
 		newob = ft_lstnew(number);
 		if (!newob)
@@ -88,4 +100,3 @@ t_list	*ptr_to_numblist(char *argv[])
 	}
 	return (newlst);
 }
-

@@ -6,14 +6,14 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:36:58 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/22 12:40:27 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:58:42 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
-# include <fcntl.h>
-# include <stdlib.h>
-# include <unistd.h>
+#include "push_swap.h"
+#include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 int	ft_isdigit(int c)
 {
@@ -35,7 +35,7 @@ int	is_single_dup(char *a, char *b)
 	len_a = ft_strlen(a);
 	len_b = ft_strlen(b);
 	if (len_a != len_b)
-		return(0);
+		return (0);
 	while (a[i])
 	{
 		if (a[i] != b[i])
@@ -64,20 +64,21 @@ int	is_dup(char *argv[])
 	}
 	return (0);
 }
+
 int	is_intoverflow(char *arg)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*positive;
 
 	i = 0;
 	j = 0;
 	positive = "2147483647";
-	if ((ft_isdigit(arg[0]) == 1 && ft_strlen(arg) > 10) ||
-	(arg[0] == '-' && ft_strlen(arg) > 11))
+	if ((ft_isdigit(arg[0]) == 1 && ft_strlen(arg) > 10)
+		|| (arg[0] == '-' && ft_strlen(arg) > 11))
 		return (1);
-	if ((ft_isdigit(arg[0]) == 1 && ft_strlen(arg) < 10) ||
-	(arg[0] == '-' && ft_strlen(arg) < 11))
+	if ((ft_isdigit(arg[0]) == 1 && ft_strlen(arg) < 10)
+		|| (arg[0] == '-' && ft_strlen(arg) < 11))
 		return (0);
 	if (arg[0] == '-')
 		j = 1 + i++;
@@ -99,18 +100,18 @@ int	swap_iserror(int argc, char *argv[])
 
 	i = 1;
 	if (argc < 3)
-		return	(1);
+		return (1);
 	while (argv[i])
 	{
 		j = 0;
 		if (is_intoverflow(argv[i]) == 1)
 			return (1);
-		while(argv[i][j])
+		while (argv[i][j])
 		{
 			if (argv[i][j] == '-' || argv[i][j] == '+' || argv[i][j] == '\\')
 				j++;
 			if (ft_isdigit(argv[i][j]) != 1 || !argv[i][j]
-			|| argv[i][j] == '\\')
+				|| argv[i][j] == '\\')
 				return (1);
 			j++;
 		}
@@ -121,17 +122,18 @@ int	swap_iserror(int argc, char *argv[])
 	return (0);
 }
 
-// int	main(int argc, char *argv[])
-// {
-// 	ft_printf("Test result: (%s == %s) -> %d", argv[1], argv[2], is_single_dup(argv[1], argv[2]));
-// 	return (0);
-// }
+/* int	main(int argc, char *argv[])
+{
+	ft_printf("Test result: (%s == %s) -> %d", argv[1], argv[2],
+			is_single_dup(argv[1], argv[2]));
+	return (0);
+}
 
-// int	main(int argc, char *argv[])
-// {
-// 	ft_printf("Test result -> %d", is_dup(argc, argv));
-// 	return (0);
-// }
+int	main(int argc, char *argv[])
+{
+	ft_printf("Test result -> %d", is_dup(argc, argv));
+	return (0);
+} */
 /* 
 int	main(int argc, char *argv[])
 {

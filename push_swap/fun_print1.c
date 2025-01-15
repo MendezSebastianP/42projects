@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 18:52:23 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/21 13:57:10 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:33:42 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static int	msize1(long int a, char *base)
 {
-	long int		lenb;
-	long int		i;
-	long int		b;
+	long int	lenb;
+	long int	i;
+	long int	b;
 
 	i = 1;
 	b = a;
@@ -36,10 +36,10 @@ static int	msize1(long int a, char *base)
 
 static char	*motor1(long int nbr, char *base, char *final, int index)
 {
-	long int		size;
-	long int		k;
-	long int		nb;
-	long int		i;
+	long int	size;
+	long int	k;
+	long int	nb;
+	long int	i;
 
 	size = ft_strlen(base);
 	i = index;
@@ -101,6 +101,7 @@ int	ft_sizenbr_base(long int numb, char *base, int unsigned1)
 	}
 	return (i);
 }
+
 char	*ft_straddend(char *malloc1, char *toadd, int index)
 {
 	int		i;

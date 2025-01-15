@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   listfun1.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/15 16:40:11 by smendez-          #+#    #+#             */
+/*   Updated: 2025/01/15 16:40:24 by smendez-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_list	*ft_lstnew(void *content)
@@ -11,15 +23,17 @@ t_list	*ft_lstnew(void *content)
 	n->next = NULL;
 	return (n);
 }
+
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
 	new->next = *lst;
 	*lst = new;
 }
+
 int	ft_lstsize(t_list *lst)
 {
-	int			i;
-	t_list		*current;
+	int		i;
+	t_list	*current;
 
 	i = 0;
 	current = lst;
@@ -62,5 +76,3 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	}
 	current->next = new;
 }
-
-
