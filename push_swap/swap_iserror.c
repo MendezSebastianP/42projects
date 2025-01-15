@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:36:58 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/15 16:58:42 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/15 18:46:46 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	swap_iserror(int argc, char *argv[])
 	int	j;
 
 	i = 1;
-	if (argc < 3)
+	if (argc < 4)
 		return (1);
 	while (argv[i])
 	{

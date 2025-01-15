@@ -6,11 +6,36 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:50:45 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/15 16:51:56 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/15 19:06:35 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+char	*ft_strjoin(char const *s1, const char *s2)
+{
+	char			*t;
+	size_t			i;
+	size_t			j;
+
+	i = 0;
+	j = 0;
+	t = malloc((ft_strlen(s1) + ft_strlen(s2)) * sizeof(char) + 1);
+	if (t == NULL)
+		return (NULL);
+	while (s1[i])
+	{
+		t[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		t[i + j] = s2[j];
+		j++;
+	}
+	t[i + j] = '\0';
+	return (t);
+}
 
 /**
  * @brief Sorts the last three elements in the stack.
@@ -103,6 +128,8 @@ int	push_swap(int argc, char **argv)
 	b2 = NULL;
 	if (swap_iserror(argc, argv) == 1)
 		return (free_list(b1), ft_printf("Error\n"));
+	if (test_isok(b1) == 1)
+		return (free_list(b1), 0);
 	if (ft_lstsize(b1) > 3)
 		(spush(&b1, &b2), ft_printf("pb\n"));
 	if (ft_lstsize(b1) > 3)
@@ -118,7 +145,28 @@ int	push_swap(int argc, char **argv)
 }
 
 int	main(int argc, char *argv[])
-{
+{	
+	char	**str;
+	char	*temp;
+	char	*space;
+	int		i;
+
+	i = 0;
+	if (argc == 2)
+	{
+		space = ft_strjoin(" ", argv[1]);
+		temp = ft_strjoin(argv[0], space);
+		str = ft_split(temp, ' ');
+		while (str[i])
+			i++;
+		if (i < 3)
+			return (free(temp), free(space),
+				cleanexit(str), ft_printf("Error\n"));
+		push_swap(argc + i -1, str);
+		(free(temp), free(space));
+		cleanexit(str);
+		return (0);
+	}
 	push_swap(argc, argv);
 	return (0);
 }

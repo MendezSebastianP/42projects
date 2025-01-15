@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/15 17:07:11 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/15 18:41:56 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,7 @@ void				big_push(t_list **b1, t_list **b2, int index);
 void				move(t_list **b1, t_list **b2, int index);
 void				algo_badass(t_list **b1, t_list **b2);
 int					test_isok(t_list *b1);
+char				**ft_split(char const *s, char c);
+char				**cleanexit(char **a);
 
 #endif //FT_H
