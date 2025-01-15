@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:50:45 by smendez-          #+#    #+#             */
-/*   Updated: 2024/12/21 18:38:53 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:28:23 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,31 +119,30 @@ int	index_min(int *nmoves)
  * @param nmoves The linked list.
  * @return The index of the largest value, or -1 if the list is NULL.
  */
-int index_lst_max(t_list *nmoves) 
+int index_lst_max(t_list *nmoves)
 {
-    if (!nmoves)
-        return -1;
+	int biggest;
+	int biggest_index;
+	int current_index;
+	t_list *current;
 
-    int biggest;
-    int biggest_index;
-    int current_index;
-    t_list *current;
-    
-    biggest = *(int *)nmoves->content; 
-    biggest_index = 0;
-    current = nmoves;
-    current_index = 0;
-    while (current)
-    {
-        if (*(int *)current->content > biggest)
-        {
-            biggest = *(int *)current->content;
-            biggest_index = current_index;
-        }
-        current = current->next;
-        current_index++;
-    }
-    return biggest_index;
+	if (!nmoves)
+		return -1;
+	biggest = *(int *)nmoves->content; 
+	biggest_index = 0;
+	current = nmoves;
+	current_index = 0;
+	while (current)
+	{
+		if (*(int *)current->content > biggest)
+		{
+			biggest = *(int *)current->content;
+			biggest_index = current_index;
+		}
+		current = current->next;
+		current_index++;
+	}
+	return biggest_index;
 }
 
 
@@ -279,7 +278,7 @@ int	count_moves(t_list **b1, t_list **b2, int index)
  * @param index The index of the element.
  * @return int Position indicator.
  */
-int	place_stack(t_list **b1, int index) // give the place in the stack
+int	place_stack(t_list **b1, int index)
 {
 	int	a;
 	int	size_b1;
@@ -303,7 +302,7 @@ int	place_stack(t_list **b1, int index) // give the place in the stack
  * @param b2 Pointer to the second stack.
  * @return int Position indicator of the maximum element.
  */
-int	place_maximum(t_list **b2) // give the place in the stack for the maxumum
+int	place_maximum(t_list **b2)
 {
 	int	b;
 	int	size_b2;
@@ -416,12 +415,6 @@ void	algo_badass(t_list **b1, t_list **b2)
 		nmoves[i] = count_moves(b1, b2, i) + 1;
 		i++;
 	}
-	// int j = 0;
-	// while (j < lenb1)
-	// 	// {
-	// 	// 	ft_printf("%d-%d --- %d\n", j, content_list(*b1, j), nmoves[j]);
-	// 	// 	j++;
-	// 	// }
 	i = index_min(nmoves);
 	move(b1, b2, i);
 	free(nmoves);
@@ -498,7 +491,7 @@ void last_please(t_list **b1, t_list **b2)
 	int content_b;
 	int content_c;
 	if (*(int*)(ft_lstlast(*b2)->content) > *(int *)(*b2)->content)
-		(r_rot(b2), ft_printf("rrb\n"));
+		(r_rot(b2), print_s2(*b1, *b2), ft_printf("rrb\n"));
 	while (ft_lstsize(*b2) > 0)
 	{
 		content_a = *(int *)(*b1)->content;
@@ -507,19 +500,15 @@ void last_please(t_list **b1, t_list **b2)
 		if ((content_a > content_b && content_b > content_c) ||
 		(test_isok (*b1) == 1 && content_b < content_a) ||
 		(test_isok (*b1) == 1 && content_b > content_c))
-			(spush(b2, b1), ft_printf("pa\n"));
+			(spush(b2, b1), print_s2(*b1, *b2), ft_printf("pa\n"));
 		else
-			(r_rot(b1), ft_printf("rra\n"));
+			(r_rot(b1), print_s2(*b1, *b2), ft_printf("rra\n"));
+
 	}
-	if (*(int *)(*b1)->content > *(int*)(ft_lstlast(*b1)->content))
-		(rotate(b1), ft_printf("ra\n"));
-	// if (ft_lstsize(*b1) / 2 >= index_lst_max(*b1))
-	// {
 	while (test_isok(*b1) == 0 && ft_lstsize(*b1) / 2 >= index_lst_max(*b1))
-			(rotate(b1), ft_printf("ra\n"));
-	//}
+			(rotate(b1),  print_s2(*b1, *b2), ft_printf("ra\n"));
 	while (test_isok(*b1) == 0)
-		(r_rot(b1), ft_printf("rra\n"));
+		(r_rot(b1), print_s2(*b1, *b2), ft_printf("rra\n"));
 }
 
 /**
@@ -540,15 +529,15 @@ int	push_swap(int argc, char **argv)
 
 	b1 = ptr_to_numblist(argv);
 	b2 = NULL;
-	// print_s1(b1);
+	print_s1(b1);
 	if (swap_iserror(argc, argv) == 1)
 		return (free_list(b1), ft_printf("Error\n"));
 	if (ft_lstsize(b1) > 3)
-		(spush(&b1, &b2), ft_printf("pb\n"));
+		(spush(&b1, &b2), print_s2(b1, b2),  ft_printf("pb\n"));
 	if (ft_lstsize(b1) > 3)
-		(spush(&b1, &b2), ft_printf("pb\n"));
+		(spush(&b1, &b2),  print_s2(b1, b2), ft_printf("pb\n"));
 	while (ft_lstsize(b1) > 3)
-		(algo_badass(&b1, &b2)/* , print_s2(b1, b2) */);
+		(algo_badass(&b1, &b2) , print_s2(b1, b2));
 	sort_3last(&b1);
 	if (b2)
 		last_please(&b1, &b2);
