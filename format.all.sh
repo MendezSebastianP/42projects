@@ -13,7 +13,7 @@ for file in "$SOURCE_DIR"/*.c; do
     filename=$(basename "$file")
 
     # Format the file and save it in the target directory with the same name
-    c_formatter_42 < "$file" > "$TARGET_DIR/$filename"
+    python -m c_formatter_42 < "$file" > "$TARGET_DIR/$filename"
 
     echo "Formatted $file and saved as $TARGET_DIR/$filename"
 done
