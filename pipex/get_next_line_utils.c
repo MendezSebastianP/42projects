@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 17:38:45 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/15 10:45:53 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:52:39 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
 	int	j;
-	int	lens1;
-	int	lens2;
 
 	i = 0;
 	j = 0;

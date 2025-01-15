@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:41:53 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/15 13:35:57 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:56:41 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,21 +67,21 @@ int	heredoc(int argc, char *argv[], char *envp[], int **fd)
 	return (cleanexit2(fd), free(pid), 0);
 }
 
-int	main(int argc, char *argv[], char *envp[])
-{
-	char	**paths;
-	int		**fd;
+// int	main(int argc, char *argv[], char *envp[])
+// {
+// 	char	**paths;
+// 	int		**fd;
 
-	fd = NULL;
-	if (ft_isequalstr(argv[1], "here_doc"))
-	{
-		heredoc(argc, argv, envp, fd);
-		return (0);
-	}
-	paths = get_path(envp);
-	multi_pipex(argc, argv, paths, fd);
-	return (0);
-}
+// 	fd = NULL;
+// 	if (ft_isequalstr(argv[1], "here_doc"))
+// 	{
+// 		heredoc(argc, argv, envp, fd);
+// 		return (0);
+// 	}
+// 	paths = get_path(envp);
+// 	multi_pipex(argc, argv, paths, fd);
+// 	return (0);
+// }
 
 // ./a.out test1.txt cat wc out.txt qui equivaut a
 // < test1.txt cat | wc > out.txt

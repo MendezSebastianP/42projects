@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:05:00 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/15 12:05:03 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:55:34 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	pid1(int **fd1, char *argv[], char **paths, int out)
 {
 	char	**temp2;
 	int		fd_out;
-	int		*fd;
 	int		*fd2;
 	int		i;
 
@@ -78,7 +77,6 @@ char	*cleanexit2(int **a)
 int	**ft_add_fd(int **fd, int len)
 {
 	int	**new_fd;
-	int	len_fd;
 	int	i;
 
 	i = 0;

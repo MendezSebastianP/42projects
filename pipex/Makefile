@@ -1,26 +1,20 @@
 SRC = \
 pipex.c \
-# GNL
-get_next_line.c \
-get_next_line_utils.c \
-# Tools
+get_next_line.c get_next_line_utils.c \
 outils1.c \
 outils2.c \
 outils3.c \
 outils4.c \
 outils5.c \
-# Split
-ft_split.c \
-ft_split2.c
+ft_split.c ft_split2.c
 
-# BONUS SOURCES
 BSRC = \
 pipex_bonus.c
 
 OBJS        = $(SRC:.c=.o)
 BONUS_OBJS  = $(BSRC:.c=.o)
 
-NAME        = pipex
+NAME        = pipex.a
 CC          = gcc
 AR          = ar
 FLAGS       = -Wall -Wextra -Werror

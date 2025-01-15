@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:04:53 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/15 13:25:00 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:54:49 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ char	*get_home(char *envp[])
 {
 	int		i;
 	int		j;
-	char	*env_variable;
 	char	*p1;
 
 	i = 0;
@@ -37,7 +36,6 @@ char	**get_path(char *envp[])
 {
 	int		i;
 	int		j;
-	char	*env_variable;
 	char	*p1;
 	char	**path1;
 
@@ -90,7 +88,7 @@ char	*no_args_cmd(char *cmd)
 	j = 0;
 	while (cmd[i] && cmd[i] != ' ')
 		i++;
-	if (ft_strlen(cmd) == i)
+	if (ft_strlen(cmd) == (size_t)i)
 		return (cmd);
 	first_cmd = malloc((i + 1) * sizeof(char));
 	if (!first_cmd)
@@ -106,6 +104,6 @@ char	*no_args_cmd(char *cmd)
 
 void	perror_exit(char *msg)
 {
-	perror("ft_strjoin");
+	perror(msg);
 	exit(EXIT_FAILURE);
 }
