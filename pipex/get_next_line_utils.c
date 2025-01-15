@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 17:38:45 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/14 19:32:06 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/15 10:45:53 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,14 @@ void	ft_until_limiter(char *argv)
 	{
 		line = get_next_line(0);
 		ft_putstr_fd(line, 1);
-		// free(line);
 		if (ft_strcmp(delimiter, line) == 0)
 		{
+			free(line);
 			bomb = 1;
 			line = get_next_line(-14);
 			free(delimiter);
-			free(line);
 		}
+		free(line);
 	}
 }
 

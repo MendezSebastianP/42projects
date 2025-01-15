@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:41:53 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/14 19:24:31 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/15 10:57:20 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ int	heredoc(int argc, char *argv[], char *envp[], int **fd)
 	{
 		if (dup2(fd[0][1], STDOUT_FILENO) == -1)
 			(perror("dup2"), exit(EXIT_FAILURE));
-		ft_until_limiter(argv[2]);
 		ft_close_all(fd);
+		ft_until_limiter(argv[2]);
 		cleanexit(paths);
 		cleanexit2(fd);
 		exit(0);	
@@ -122,13 +122,13 @@ int	main(int argc, char *argv[], char *envp[])
 	int **fd;
 	
 	fd = NULL;
-	paths = get_path(envp);
 	if (ft_isequalstr(argv[1], "here_doc"))
 	{
 		heredoc(argc, argv, envp, fd);
-		cleanexit(paths);
+		// cleanexit(paths);
 		return (0);
 	}
+	paths = get_path(envp);
 	multi_pipex(argc, argv, paths, fd);
 	return (0);
 	
