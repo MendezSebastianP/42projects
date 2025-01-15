@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   outils2.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/15 12:04:47 by smendez-          #+#    #+#             */
+/*   Updated: 2025/01/15 12:05:50 by smendez-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 size_t	ft_strlen(const char *c)
@@ -12,9 +24,9 @@ size_t	ft_strlen(const char *c)
 
 char	*ft_strdup(const char *s)
 {
-	char			*t;
-	size_t			i;
-	size_t			nitems;
+	char	*t;
+	size_t	i;
+	size_t	nitems;
 
 	i = 0;
 	nitems = ft_strlen(s);
@@ -49,10 +61,10 @@ void	*ft_calloc(size_t nitems, size_t size)
 	return (t);
 }
 
-void ft_close_all(int **fd)
+void	ft_close_all(int **fd)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (fd[i])
@@ -68,9 +80,9 @@ void ft_close_all(int **fd)
 
 int	ft_isequalstr(char *str1, char *str2)
 {
-	int len1;
-	int len2;
-	int i;
+	int	len1;
+	int	len2;
+	int	i;
 
 	len1 = ft_strlen(str1);
 	len2 = ft_strlen(str2);

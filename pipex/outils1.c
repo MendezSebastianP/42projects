@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   outils1.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/15 12:03:26 by smendez-          #+#    #+#             */
+/*   Updated: 2025/01/15 12:03:33 by smendez-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 static int	isin(const char *set, const char c)
@@ -58,9 +70,9 @@ char	*ft_strtrim(char const *s1, const char *set)
 
 char	*ft_strjoin(char const *s1, const char *s2)
 {
-	char			*t;
-	size_t			i;
-	size_t			j;
+	char	*t;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	j = 0;

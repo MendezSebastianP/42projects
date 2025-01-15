@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:35:37 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/14 15:40:27 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/15 12:05:31 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,10 @@ static char	*t2f(char const *s, int start_s, char c)
 
 int	isin(char *s, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(s[i])
+	while (s[i])
 	{
 		if (s[i] == c)
 			return (1);
@@ -98,8 +98,6 @@ char	**ft_split(char *s, char c)
 	int		i;
 	int		j;
 
-	// if (isin(s, '$') == 1)
-	// 	s = ft_replace(s, "$$", "$");
 	t1 = malloc((splitlen(s, c) + 1) * sizeof(char *));
 	if (t1 == NULL)
 		return (NULL);
@@ -119,7 +117,6 @@ char	**ft_split(char *s, char c)
 	t1[j] = NULL;
 	return (t1);
 }
-
 
 // int	main(int c, char *v[])
 // {

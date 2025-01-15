@@ -80,7 +80,7 @@ char	*ft_strdup2(const char *s, int line)
 			break ;
 		nitems++;
 	}
-	t = malloc((nitems + 1 ) * sizeof(char));
+	t = malloc((nitems + 1) * sizeof(char));
 	if (t == NULL)
 		return (NULL);
 	while (nitems > i)

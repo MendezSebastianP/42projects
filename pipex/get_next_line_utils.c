@@ -80,11 +80,11 @@ void	ft_until_limiter(char *argv)
 {
 	char	*line;
 	char	*delimiter;
-	int	bomb;
+	int		bomb;
 
 	bomb = 0;
 	delimiter = ft_strjoin(argv, "\n");
-	while(bomb == 0)
+	while (bomb == 0)
 	{
 		line = get_next_line(0);
 		ft_putstr_fd(line, 1);
@@ -98,5 +98,3 @@ void	ft_until_limiter(char *argv)
 		free(line);
 	}
 }
-
-

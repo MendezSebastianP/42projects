@@ -1,4 +1,0 @@
-On va ecrire sur dup2.txt
-
-
- hehe

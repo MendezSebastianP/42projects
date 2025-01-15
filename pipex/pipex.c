@@ -14,22 +14,22 @@
 
 int	main(int argc, char *argv[], char *envp[])
 {
-	int **fd;
-	int pid[argc - 2];
-	char **paths;
-	int i;
+	int		**fd;
+	int		pid[argc - 2];
+	char	**paths;
+	int		i;
 
 	i = 0;
 	fd = NULL;
 	fd = ft_add_fd(fd, i);
 	paths = get_path(envp);
 	if (pipe(fd[i]) == -1)
-		return (perror("pipe1"),1);
+		return (perror("pipe1"), 1);
 	pid[i] = fork();
-	if (pid[i] == 0) 
+	if (pid[i] == 0)
 		pid0(fd, argv, paths, i);
 	pid[i + 1] = fork();
-	if (pid[i + 1] == 0) 
+	if (pid[i + 1] == 0)
 		pid1(fd, argv, paths, argc - 1);
 	ft_close_all(fd);
 	wait_all(pid, i + 1);
@@ -40,7 +40,3 @@ int	main(int argc, char *argv[], char *envp[])
 
 // ./a.out test1.txt cat wc out.txt qui equivaut a
 // < test1.txt cat | wc > out.txt
-
-
-
-
