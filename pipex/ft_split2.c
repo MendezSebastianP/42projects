@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/15 12:03:40 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/15 12:03:43 by smendez-         ###   ########.fr       */
+/*   Created: 2025/01/15 13:23:53 by smendez-          #+#    #+#             */
+/*   Updated: 2025/01/15 13:24:33 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	splitlen(char const *s1, char c1)
 
 char	**cleanexit(char **a)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (a[i])

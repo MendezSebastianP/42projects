@@ -6,11 +6,9 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:04:53 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/15 12:04:54 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:25:00 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "pipex.h"
 
@@ -71,7 +69,7 @@ char	*get_path_command(char **paths, char *command)
 	j = -1;
 	while (j != 0 && paths[i])
 	{
-		temp = ft_strjoin(paths[i++], "/"); // il rajoute a chaque fois...
+		temp = ft_strjoin(paths[i++], "/");
 		temp = ft_strjoin(temp, command);
 		j = access(temp, F_OK);
 		path = ft_strdup(temp);

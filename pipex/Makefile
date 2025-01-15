@@ -1,0 +1,47 @@
+SRC = \
+pipex.c \
+# GNL
+get_next_line.c \
+get_next_line_utils.c \
+# Tools
+outils1.c \
+outils2.c \
+outils3.c \
+outils4.c \
+outils5.c \
+# Split
+ft_split.c \
+ft_split2.c
+
+# BONUS SOURCES
+BSRC = \
+pipex_bonus.c
+
+OBJS        = $(SRC:.c=.o)
+BONUS_OBJS  = $(BSRC:.c=.o)
+
+NAME        = pipex
+CC          = gcc
+AR          = ar
+FLAGS       = -Wall -Wextra -Werror
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CC) $(FLAGS) $^ -o $(NAME)
+
+bonus: $(OBJS) $(BONUS_OBJS)
+	$(CC) $(FLAGS) $(OBJS) $(BONUS_OBJS) -o $(NAME)
+
+%.o: %.c
+	$(CC) $(FLAGS) -I. -c $< -o $@
+
+clean:
+	rm -f $(OBJS) $(BONUS_OBJS)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re bonus

@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/14 16:54:57 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:23:03 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ void				pid1(int **fd1, char *argv[], char **paths, int out);
 char				*cleanexit2(int **a);
 int					**ft_add_fd(int **fd, int len);
 void				wait_all(int *pid, int len);
+// bonus
+int					pid_pipe(int **fd1, char *argv[], char **paths, int i);
+void				pipe_withcall(int *fd);
+int					multi_pipex(int argc, char *argv[], char **paths, int **fd);
 
 // modified split
 char				**cleanexit(char **a);
