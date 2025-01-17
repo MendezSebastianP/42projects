@@ -6,7 +6,7 @@
 #    By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/10 10:54:46 by smendez-          #+#    #+#              #
-#    Updated: 2025/01/15 18:25:15 by smendez-         ###   ########.fr        #
+#    Updated: 2025/01/16 11:25:52 by smendez-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,6 @@ all: $(NAME)
 $(NAME) : $(OBJS)
 	$(AR) rcs $(NAME) $(OBJS)
 
-
-
 %.o:%.c
 	$(CC) $(FLAGS) -I./ -c $< -o $@
 
@@ -42,4 +40,3 @@ fclean : clean
 re : fclean all
 
 .PHONY: all clean fclean re
-

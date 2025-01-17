@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:41:53 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/15 13:56:47 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/17 11:55:02 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int	main(int argc, char *argv[], char *envp[])
 		return (perror("pipe1"), 1);
 	pid[i] = fork();
 	if (pid[i] == 0)
-		pid0(fd, argv, paths, i);
+		(free(pid), pid0(fd, argv, paths, i));
 	pid[i + 1] = fork();
 	if (pid[i + 1] == 0)
-		pid1(fd, argv, paths, argc - 1);
+		(free(pid), pid1(fd, argv, paths, argc - 1));
 	ft_close_all(fd);
 	wait_all(pid, i + 1);
 	cleanexit(paths);

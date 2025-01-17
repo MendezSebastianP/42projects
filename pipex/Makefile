@@ -14,10 +14,10 @@ pipex_bonus.c
 OBJS        = $(SRC:.c=.o)
 BONUS_OBJS  = $(BSRC:.c=.o)
 
-NAME        = pipex.a
+NAME        = pipex
 CC          = gcc
 AR          = ar
-FLAGS       = -Wall -Wextra -Werror
+FLAGS       = -Wall -Wextra -Werror -g
 
 all: $(NAME)
 

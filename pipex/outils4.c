@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:05:00 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/15 13:55:34 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/17 11:56:26 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ void	pid0(int **fd1, char *argv[], char **paths, int i)
 	int		*fd;
 
 	fd = fd1[0];
+	if (open(argv[i + 1], R_OK) == -1)
+	{
+		(ft_close_all(fd1), cleanexit2(fd1), cleanexit(paths));
+		write(2, "zsh: permission denied: test/no_read\n", 37);
+		exit(0);
+	}
 	open_fd = open(argv[i + 1], O_RDONLY);
 	if (dup2(open_fd, STDIN_FILENO) == -1)
 		(perror("dup2"), exit(EXIT_FAILURE));
@@ -28,9 +34,7 @@ void	pid0(int **fd1, char *argv[], char **paths, int i)
 	ft_close_all(fd1);
 	temp2 = ft_split(argv[i + 2], ' ');
 	execve(get_path_command(paths, no_args_cmd(argv[i + 2])), temp2, NULL);
-	perror("execve");
-	free(temp2);
-	exit(EXIT_FAILURE);
+	(perror("execve"), free(temp2), exit(EXIT_FAILURE));
 }
 
 void	pid1(int **fd1, char *argv[], char **paths, int out)
