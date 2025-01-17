@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:41:53 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/17 11:55:02 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/17 14:57:35 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	main(int argc, char *argv[], char *envp[])
 	pid = malloc((argc - 2) * sizeof(int));
 	if (!pid)
 		return (0);
-	paths = get_path(envp);
+	if (envp)
+		paths = get_path(envp);
 	if (pipe(fd[i]) == -1)
 		return (perror("pipe1"), 1);
 	pid[i] = fork();
@@ -35,10 +36,8 @@ int	main(int argc, char *argv[], char *envp[])
 	if (pid[i + 1] == 0)
 		(free(pid), pid1(fd, argv, paths, argc - 1));
 	ft_close_all(fd);
-	wait_all(pid, i + 1);
-	cleanexit(paths);
-	cleanexit2(fd);
-	return (free(pid), 0);
+	i = wait_all(pid, i + 1);
+	return (cleanexit(paths), cleanexit2(fd), free(pid), i);
 }
 
 // ./a.out test1.txt cat wc out.txt qui equivaut a

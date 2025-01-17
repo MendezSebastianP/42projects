@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:21:13 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/15 13:25:11 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/17 19:38:52 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ int	pid_pipe(int **fd1, char *argv[], char **paths, int i)
 	ft_close_all(fd1);
 	temp2 = ft_split(argv[i + 2], ' ');
 	execve(get_path_command(paths, no_args_cmd(argv[i + 2])), temp2, NULL);
-	perror("execve");
-	free(temp2);
-	exit(EXIT_FAILURE);
+	(ft_printf_fd(2, "zsh: command not found: %s\n", temp2[0]),
+		c_all(fd1, paths, NULL), cleanexit(temp2), exit(127));
 }
 
 void	pipe_withcall(int *fd)
@@ -62,11 +61,34 @@ int	multi_pipex(int argc, char *argv[], char **paths, int **fd)
 		pipe_withcall(fd[i]);
 		pid[i] = fork();
 		if (pid[i] == 0)
-			pid_pipe(fd, argv, paths, i);
+			(free(pid), pid_pipe(fd, argv, paths, i));
 	}
 	pid[i] = fork();
 	if (pid[i] == 0)
 		pid1(fd, argv, paths, argc - 1);
 	(ft_close_all(fd), wait_all(pid, i), cleanexit(paths));
 	return (cleanexit2(fd), free(pid), 0);
+}
+
+int	lvl2_len(int **fd)
+{
+	int	i;
+
+	i = 0;
+	while (fd[i])
+		i++;
+	return (i);
+}
+
+void	c_all(int **fd, char **paths, int *pid)
+{
+	if (fd)
+	{
+		ft_close_all(fd);
+		cleanexit2(fd);
+	}
+	if (paths)
+		cleanexit(paths);
+	if (pid)
+		free(pid);
 }
