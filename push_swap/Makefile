@@ -6,7 +6,7 @@
 #    By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/10 10:54:46 by smendez-          #+#    #+#              #
-#    Updated: 2025/01/16 11:25:52 by smendez-         ###   ########.fr        #
+#    Updated: 2025/01/18 11:39:38 by smendez-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,18 +18,14 @@ SRC = ft_printf.c fun_print1.c fun_print2.c fun_print3.c \
 OBJS = $(SRC:.c=.o)
 
 
-NAME = push_swap.a
+NAME = push_swap
 CC = gcc
-AR = ar
-# FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
+
+$(NAME) :
+		$(CC) $(FLAGS) $(SRC) -Includes -o $(NAME)
 
 all: $(NAME)
-
-$(NAME) : $(OBJS)
-	$(AR) rcs $(NAME) $(OBJS)
-
-%.o:%.c
-	$(CC) $(FLAGS) -I./ -c $< -o $@
 
 clean:
 	rm -f $(OBJS)

@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:50:45 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/15 19:06:35 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/18 12:17:50 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,10 +124,14 @@ int	push_swap(int argc, char **argv)
 	t_list	*b1;
 	t_list	*b2;
 
+	if (argc == 1)
+		return (0);
 	b1 = ptr_to_numblist(argv);
 	b2 = NULL;
 	if (swap_iserror(argc, argv) == 1)
 		return (free_list(b1), ft_printf("Error\n"));
+	if (argc == 3 && test_isok(b1) == 0)
+		return (r_rot(&b1), free(b1), ft_printf("rra\n"));
 	if (test_isok(b1) == 1)
 		return (free_list(b1), 0);
 	if (ft_lstsize(b1) > 3)
@@ -159,7 +163,7 @@ int	main(int argc, char *argv[])
 		str = ft_split(temp, ' ');
 		while (str[i])
 			i++;
-		if (i < 3)
+		if (i == 1)
 			return (free(temp), free(space),
 				cleanexit(str), ft_printf("Error\n"));
 		push_swap(argc + i -1, str);

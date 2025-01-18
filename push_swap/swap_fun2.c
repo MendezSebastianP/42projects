@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:52:36 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/15 16:52:39 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/18 11:15:04 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	r_rot(t_list **list)
 {
-	t_list	*first;
 	t_list	*last;
 	t_list	*temp;
 	int		i;
@@ -22,7 +21,6 @@ void	r_rot(t_list **list)
 
 	k = 0;
 	i = ft_lstsize(*list) - 1;
-	first = *list;
 	last = ft_lstlast(*list);
 	ft_lstadd_front(list, last);
 	*list = last;

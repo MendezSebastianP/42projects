@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:34:00 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/15 16:36:51 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/18 11:13:54 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,9 @@
  */
 void	print_s1(t_list *b1)
 {
-	t_list	*b1_free;
 	int		i;
 
 	i = 1;
-	b1_free = b1;
 	ft_printf("   |T     | \n");
 	while (b1 != NULL)
 	{
@@ -44,11 +42,9 @@ void	print_s1(t_list *b1)
  */
 void	print_s2(t_list *b1, t_list *b2)
 {
-	t_list	*b1_free;
 	int		i;
 
 	i = 1;
-	b1_free = b1;
 	ft_printf("   |T     | \n");
 	while (b1 != NULL || b2 != NULL)
 	{
