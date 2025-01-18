@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:50:45 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/18 14:40:06 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/18 14:42:03 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ int	main(int argc, char *argv[])
 			i++;
 		if (i == 1)
 			return (free(temp), free(space),
-				cleanexit(str), ft_printf("Error\n"));
+				cleanexit(str), write(2, "Error\n", 7));
 		push_swap(argc + i -2, str);
 		(free(temp), free(space));
 		cleanexit(str);
