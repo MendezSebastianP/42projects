@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:04:53 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/15 13:54:49 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/20 11:26:30 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ char	*get_path_command(char **paths, char *command)
 
 	i = 0;
 	j = -1;
+	if ((command == NULL) | (paths[0] == NULL))
+		return (NULL);
 	while (j != 0 && paths[i])
 	{
 		temp = ft_strjoin(paths[i++], "/");
@@ -86,6 +88,8 @@ char	*no_args_cmd(char *cmd)
 
 	i = 0;
 	j = 0;
+	if (cmd == NULL)
+		return (NULL);
 	while (cmd[i] && cmd[i] != ' ')
 		i++;
 	if (ft_strlen(cmd) == (size_t)i)
