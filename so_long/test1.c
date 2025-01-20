@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:10:35 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/20 16:00:43 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:28:42 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,6 @@ int if_wall(char **map)
 	}
 	return (1);
 }
-	
 
 
 void	step2(char **map)
@@ -181,6 +180,107 @@ void	step2(char **map)
 		}
 	}
 }
+int	is_c(char **map)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	while (map[j])
+	{
+		i = 0;
+		while (map[j][i])
+		{
+			if (map[j][i] == 'C')
+				return (1);
+			i++;
+		}
+		j++;
+	}
+	return (0);
+}
+
+int	is_missletter(char **map)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	while (map[j])
+	{
+		i = 0;
+		while (map[j][i])
+		{
+			if (isin("01PCE", map[j][i]) == 0)
+				return (1);
+			i++;
+		}
+		j++;
+	}
+	return (0);
+}
+char	*ft_strdup(const char *s)
+{
+	char	*t;
+	size_t	i;
+	size_t	nitems;
+
+	i = 0;
+	nitems = ft_strlen(s);
+	t = malloc(nitems * sizeof(char) + 1);
+	if (t == NULL)
+		return (NULL);
+	while (nitems > i)
+	{
+		t[i] = s[i];
+		i++;
+	}
+	t[i] = '\0';
+	return (t);
+}
+
+int	str_len_2d(char **str)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	j = 0;
+	k = 0;
+	while (str[j])
+	{
+		i = 0;
+		while(str[j][i])
+		{
+			j++;
+			k++;
+		}
+		i++;
+	}
+	return (k);
+}
+
+char	**strdup_2d(char **s)
+{
+	char	*t;
+	int	i;
+	int	j;
+	int	nitems;
+
+	i = 0;
+	j = 0;
+	nitems = str_len_2d(s);
+	t = malloc(nitems * sizeof(char) + 1);
+	if (t == NULL)
+		return (NULL);
+	while (nitems > i)
+	{
+		t[i] = s[i];
+		i++;
+	}
+	t[i] = '\0';
+	return (t);
+}
 
 int     main(void)
 {
@@ -191,17 +291,16 @@ int     main(void)
 	i = 0;
 	str = read_txt("map7.ber");
 	df1 = df(str);
-	printf("test map1: %d\n", if_wall(df1));
+	printf("test map7: %d\n", is_missletter(df1));
 	while(df1[i])
 		ft_printf_fd(1, "%s\n", df1[i++]);
 	printf("\n\n");
 	step(df1);
 	step2(df1);
 	i = 0;
-	printf("test map2: %d\n", if_wall(df1));
+	printf("test map7: %d\n", is_missletter(df1));
 	while(df1[i])
 		ft_printf_fd(1, "%s\n", df1[i++]);
-	
 	cleanexit(df1);
 	free(str);
         return (0);
