@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:10:35 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/20 17:28:42 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:20:21 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,31 @@ int	is_c(char **map)
 	}
 	return (0);
 }
+int	at_least_one(char **map)
+{
+	int	j;
+	int	p;
+	int	c;
+	int	e;
+
+	j = 0;
+	p = 0;
+	c = 0;
+	e = 0;
+	while (map[j])
+	{
+		if (isin(map[j], 'P'))
+			p = 1;
+		if (isin(map[j], 'C'))
+			c = 1;
+		if (isin(map[j], 'E'))
+			e = 1;	
+		j++;
+	}
+	if (p + c + e == 3)
+		return (1);
+	return (0);
+}
 
 int	is_missletter(char **map)
 {
@@ -219,50 +244,22 @@ int	is_missletter(char **map)
 	}
 	return (0);
 }
-char	*ft_strdup(const char *s)
-{
-	char	*t;
-	size_t	i;
-	size_t	nitems;
-
-	i = 0;
-	nitems = ft_strlen(s);
-	t = malloc(nitems * sizeof(char) + 1);
-	if (t == NULL)
-		return (NULL);
-	while (nitems > i)
-	{
-		t[i] = s[i];
-		i++;
-	}
-	t[i] = '\0';
-	return (t);
-}
 
 int	str_len_2d(char **str)
 {
-	int	i;
 	int	j;
-	int	k;
 
 	j = 0;
-	k = 0;
 	while (str[j])
 	{
-		i = 0;
-		while(str[j][i])
-		{
-			j++;
-			k++;
-		}
-		i++;
+		j++;
 	}
-	return (k);
+	return (j);
 }
 
 char	**strdup_2d(char **s)
 {
-	char	*t;
+	char	**t;
 	int	i;
 	int	j;
 	int	nitems;
@@ -270,16 +267,69 @@ char	**strdup_2d(char **s)
 	i = 0;
 	j = 0;
 	nitems = str_len_2d(s);
-	t = malloc(nitems * sizeof(char) + 1);
+	t = malloc((nitems + 1) * sizeof(char *));
 	if (t == NULL)
 		return (NULL);
 	while (nitems > i)
 	{
-		t[i] = s[i];
+		t[i] = ft_strdup(s[i]);
 		i++;
 	}
-	t[i] = '\0';
+	t[i] = NULL;
 	return (t);
+}
+
+int	is_exit(char **map, int i, int j)
+{
+	int	k;
+
+	k = 0;
+	while (map[j])
+	{
+		i = 0;
+		while (map[j][i])
+		{
+			if (map[j][i] == 'E')
+			{
+				if (map[j][i - 1] == 'X')
+					k = 1;
+				if (map[j][i + 1] == 'X')
+					k = 1;
+				if (map[j - 1][i] == 'X')
+					k = 1;
+				if (map[j + 1][i] == 'X')
+					k = 1;
+			}
+			i++;
+		}
+		j++;
+	}
+	return (k);
+}
+
+int	is_map_error(char **map)
+{
+	int	test;
+	char	**map2;
+
+	test = 0;
+	if (is_missletter(map) == 1)
+		return (0);
+	if (if_wall(map) == 0)
+		return (0);
+	if (if_rectangle(map) == 0)
+		return (0);
+	if (at_least_one(map) == 0)
+		return (0);
+	map2 = strdup_2d(map);
+	step(map2);
+	step2(map2);
+	if (is_c(map2) == 1)
+		test = 1;
+	if (is_exit(map2, 0, 0) == 0)
+		test = 1;
+	cleanexit(map2);
+	return (test);
 }
 
 int     main(void)
@@ -289,19 +339,30 @@ int     main(void)
 	int	i;
 	
 	i = 0;
-	str = read_txt("map7.ber");
+	str = read_txt("map8.ber");
 	df1 = df(str);
-	printf("test map7: %d\n", is_missletter(df1));
+	printf("test: %d\n", is_map_error(df1));
 	while(df1[i])
 		ft_printf_fd(1, "%s\n", df1[i++]);
 	printf("\n\n");
 	step(df1);
 	step2(df1);
 	i = 0;
-	printf("test map7: %d\n", is_missletter(df1));
+	printf("test: %d\n", is_exit(df1, 0, 0));
 	while(df1[i])
 		ft_printf_fd(1, "%s\n", df1[i++]);
 	cleanexit(df1);
 	free(str);
         return (0);
 }
+/* int main(int argc, char **argv)
+{
+	char **t = ft_split(argv[1], ' ');
+	char **k = strdup_2d(t);
+	int i = 0;
+	while(k[i])
+		printf("%s\n", k[i++]);
+	cleanexit(t);
+	cleanexit(k);
+	return (0);
+} */
