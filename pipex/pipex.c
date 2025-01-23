@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:41:53 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/23 15:24:52 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:40:10 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	main(int argc, char *argv[], char *envp[])
 	int		*pid;
 	int		i;
 
+	if (argc < 5)
+		return(0);
 	i = 0;
 	fd = NULL;
 	fd = ft_add_fd(fd, i);

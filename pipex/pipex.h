@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/23 12:06:29 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:40:59 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int					multi_pipex(int argc, char *argv[], char **paths, int **fd);
 int					lvl2_len(int **fd);
 void				c_all(int **fd, char **paths, int *pid);
 void				pid0b(int **fd1, char *argv[], char **paths, int i);
+void				pid1b(int **fd1, char *v[], char **paths, int out);
 
 // split modified
 char				**cleanexit(char **a);
