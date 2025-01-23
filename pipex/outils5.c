@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:21:13 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/17 19:38:52 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:27:24 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	multi_pipex(int argc, char *argv[], char **paths, int **fd)
 	pipe_withcall(fd[i]);
 	pid[i] = fork();
 	if (pid[i] == 0)
-		pid0(fd, argv, paths, i);
+		pid0b(fd, argv, paths, i);
 	while (i++ < argc - 5)
 	{
 		fd = ft_add_fd(fd, i);
@@ -65,7 +65,7 @@ int	multi_pipex(int argc, char *argv[], char **paths, int **fd)
 	}
 	pid[i] = fork();
 	if (pid[i] == 0)
-		pid1(fd, argv, paths, argc - 1);
+		pid1b(fd, argv, paths, argc - 1);
 	(ft_close_all(fd), wait_all(pid, i), cleanexit(paths));
 	return (cleanexit2(fd), free(pid), 0);
 }

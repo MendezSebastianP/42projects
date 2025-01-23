@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/18 17:25:50 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:40:46 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SO_LONG_H
 # include "get_next_line.h"
 # include "ft_printf_fd.h"
+# include "../minilibx-linux/mlx.h"
 # include <stdarg.h>
 # include <stdio.h>
 # include <stdlib.h>

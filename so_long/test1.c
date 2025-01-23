@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:10:35 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/21 15:20:21 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:41:06 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,23 +103,6 @@ int	if_foward(char **map, int j, int i)
 	return (k);
 }
 
-int if_rectangle(char **map)
-{
-	int	i;
-	int	j;
-	int	k;
-
-	i = 0;
-	j = 0;
-	k = 1;
-	while (map[i])
-		i++;
-	while (map[0][j])
-		j++;
-	if (i == j)
-		k = 0;
-	return (k);
-}
 
 int if_wall(char **map)
 {
@@ -317,8 +300,6 @@ int	is_map_error(char **map)
 		return (0);
 	if (if_wall(map) == 0)
 		return (0);
-	if (if_rectangle(map) == 0)
-		return (0);
 	if (at_least_one(map) == 0)
 		return (0);
 	map2 = strdup_2d(map);
@@ -332,7 +313,7 @@ int	is_map_error(char **map)
 	return (test);
 }
 
-int     main(void)
+/* int     main(void)
 {
 	char *str;
 	char **df1;
@@ -354,7 +335,7 @@ int     main(void)
 	cleanexit(df1);
 	free(str);
         return (0);
-}
+} */
 /* int main(int argc, char **argv)
 {
 	char **t = ft_split(argv[1], ' ');

@@ -57,6 +57,9 @@
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
-    "so_long.h": "c"
+    "so_long.h": "c",
+    "stdio.h": "c",
+    "mlx.h": "c",
+    "get_next_line.h": "c"
   }
 }
