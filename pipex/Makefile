@@ -29,9 +29,9 @@ NAME        = pipex
 NAME_B      = pipex_bonus
 CC          = gcc
 AR          = ar
-FLAGS       = -Wall -Wextra -Werror -g
+FLAGS       = -Wall -Wextra -Werror
 
-all: $(NAME) $(NAME_B)
+all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(FLAGS) $^ -o $(NAME)
