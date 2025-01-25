@@ -6,33 +6,37 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:21:13 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/23 15:27:24 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/25 16:06:57 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	pid_pipe(int **fd1, char *argv[], char **paths, int i)
+int	pid_pipe(t_pipex *pip, int i)
 {
 	char	**temp2;
 	int		*fd;
 	int		*fd2;
 	int		k;
+	char	*no_a;
+	char	*get_p;
 
 	k = 0;
-	if (ft_isequalstr(argv[1], "here_doc"))
+	if (ft_isequalstr(pip->v[1], "here_doc"))
 		k = 1;
-	fd = fd1[i - 1 - k];
-	fd2 = fd1[i - k];
+	fd = pip->fd[i - 1 - k];
+	fd2 = pip->fd[i - k];
 	if (dup2(fd[0], STDIN_FILENO) == -1)
 		(perror("pid_pipe out"), exit(EXIT_FAILURE));
 	if (dup2(fd2[1], STDOUT_FILENO) == -1)
 		(perror("pid_pipe out"), exit(EXIT_FAILURE));
-	ft_close_all(fd1);
-	temp2 = ft_split(argv[i + 2], ' ');
-	execve(get_path_command(paths, no_args_cmd(argv[i + 2])), temp2, NULL);
-	(ft_printf_fd(2, "zsh: command not found: %s\n", temp2[0]),
-		c_all(fd1, paths, NULL), cleanexit(temp2), exit(127));
+	ft_close_all(pip->fd);
+	temp2 = ft_split(pip->v[i + 2], ' ');
+	no_a = no_args_cmd(pip->v[i + 2]);
+	get_p = get_path_command(pip->path, no_a);
+	execve(get_p, temp2, pip->envp);
+	(ft_printf_fd(2, "zsh: command not found: %s\n", temp2[0]));
+	(cleanexit(temp2), free_pip(pip), free(no_a), free(get_p), exit(127));
 }
 
 void	pipe_withcall(int *fd)
@@ -41,33 +45,28 @@ void	pipe_withcall(int *fd)
 		perror("pipe1");
 }
 
-int	multi_pipex(int argc, char *argv[], char **paths, int **fd)
+int	multi_pipex(t_pipex *pip, int argc)
 {
-	int	*pid;
 	int	i;
 
 	i = 0;
-	pid = malloc((argc - 2) * sizeof(int));
-	if (!pid)
-		return (0);
-	fd = ft_add_fd(fd, i);
-	pipe_withcall(fd[i]);
-	pid[i] = fork();
-	if (pid[i] == 0)
-		pid0b(fd, argv, paths, i);
+	pipe_withcall(pip->fd[i]);
+	pip->pid[i] = fork();
+	if (pip->pid[i] == 0)
+		pid0b(pip, i);
 	while (i++ < argc - 5)
 	{
-		fd = ft_add_fd(fd, i);
-		pipe_withcall(fd[i]);
-		pid[i] = fork();
-		if (pid[i] == 0)
-			(free(pid), pid_pipe(fd, argv, paths, i));
+		pip->fd = ft_add_fd(pip->fd, i);
+		pipe_withcall(pip->fd[i]);
+		pip->pid[i] = fork();
+		if (pip->pid[i] == 0)
+			(pid_pipe(pip, i));
 	}
-	pid[i] = fork();
-	if (pid[i] == 0)
-		pid1b(fd, argv, paths, argc - 1);
-	(ft_close_all(fd), wait_all(pid, i), cleanexit(paths));
-	return (cleanexit2(fd), free(pid), 0);
+	pip->pid[i] = fork();
+	if (pip->pid[i] == 0)
+		pid1(pip, argc - 1);
+	(ft_close_all(pip->fd), i = wait_all(pip->pid, i), cleanexit(pip->path));
+	return (cleanexit2(pip->fd), free(pip->pid), free(pip), i);
 }
 
 int	lvl2_len(int **fd)

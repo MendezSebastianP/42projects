@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/25 11:52:23 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:57:56 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_pipex
     char    **path;
     int     **fd;
     int		*pid;
-    char    **argv;
+    char    **v;
     
 }   t_pipex;
 
@@ -50,19 +50,19 @@ char				*get_path_command(char **paths, char *command);
 char				*no_args_cmd(char *cmd);
 void				perror_exit(char *msg);
 void	            pid0(t_pipex *pip, int i);
-void				pid1(int **fd1, char *argv[], char **paths, int out);
+void	            pid1(t_pipex *pip, int out);
 char				*cleanexit2(int **a);
 int					**ft_add_fd(int **fd, int len);
 int					wait_all(int *pid, int len);
 void                free_pip(t_pipex *pip);
 // bonus
-int					pid_pipe(int **fd1, char *argv[], char **paths, int i);
+int                 pid_pipe(t_pipex *pip, int i);
 void				pipe_withcall(int *fd);
-int					multi_pipex(int argc, char *argv[], char **paths, int **fd);
+int                 multi_pipex(t_pipex *pip, int argc);
 int					lvl2_len(int **fd);
 void				c_all(int **fd, char **paths, int *pid);
-void				pid0b(int **fd1, char *argv[], char **paths, int i);
-void				pid1b(int **fd1, char *v[], char **paths, int out);
+void               	pid0b(t_pipex *pip, int i);
+void	            pid1a(int **fd1, char *v[], char **envp, int out);
 t_pipex             *init_pipex(char **envp, char **argv, int argc);
 
 // split modified
@@ -80,6 +80,7 @@ void				*ft_calloc2(size_t nitems, size_t size);
 char				*ft_realloc(char *oldlloc, size_t buffersize);
 void				ft_until_limiter(char *argv);
 int					isin1(const char *set, const char c, int buffersize);
+int	                ft_strcmp(char *s1, char *s2);
 
 // printf
 int					ft_printf_fd(int fd, const char *format, ...);
