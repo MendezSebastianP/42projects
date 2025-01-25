@@ -100,4 +100,12 @@ haha
 END
 ➜  pipex git:(main) ✗ cat out.txt -e
 ➜  pipex git:(main) ✗ cat out.txt   
-➜  pipex git:(main) ✗ 
+➜  pipex git:(main) ✗ haha
+hehe
+hihi
+LEL
+lal
+lul
+hahaha
+gege
+victory

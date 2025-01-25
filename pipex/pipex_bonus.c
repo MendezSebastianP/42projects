@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:41:53 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/25 16:24:08 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/25 17:11:23 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int	heredoc(int argc, t_pipex *pip)
 		(pid_here_doc(pip));
 	pip->pid[2] = fork();
 	if (pip->pid[2] == 0)
-		(pid1a(pip->fd, pip->v, pip->path, argc - 1));
-	(ft_close_all(pip->fd), ret = wait_all(pip->pid, 2), cleanexit(pip->path));
-	return (cleanexit2(pip->fd), ret);
+		(pid1a(pip, argc - 1));
+	(ft_close_all(pip->fd), ret = wait_all(pip->pid, 2));
+	return (ret);
 }
 
 int	main(int argc, char *argv[], char *envp[])
@@ -71,6 +71,7 @@ int	main(int argc, char *argv[], char *envp[])
 	if (ft_isequalstr(argv[1], "here_doc"))
 	{
 		ret = heredoc(argc, pip);
+		free_pip(pip);
 		return (ret);
 	}
 	ret = multi_pipex(pip, argc);
