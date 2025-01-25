@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:21:13 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/25 17:02:51 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/25 17:30:29 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 int	pid_pipe(t_pipex *pip, int i)
 {
 	char	**temp2;
-	int		*fd;
-	int		*fd2;
 	int		k;
 	char	*no_a;
 	char	*get_p;
@@ -24,11 +22,9 @@ int	pid_pipe(t_pipex *pip, int i)
 	k = 0;
 	if (ft_isequalstr(pip->v[1], "here_doc"))
 		k = 1;
-	fd = pip->fd[i - 1 - k];
-	fd2 = pip->fd[i - k];
-	if (dup2(fd[0], STDIN_FILENO) == -1)
+	if (dup2(pip->fd[i - 1 - k][0], STDIN_FILENO) == -1)
 		(perror("pid_pipe out"), exit(EXIT_FAILURE));
-	if (dup2(fd2[1], STDOUT_FILENO) == -1)
+	if (dup2(pip->fd[i - k][1], STDOUT_FILENO) == -1)
 		(perror("pid_pipe out"), exit(EXIT_FAILURE));
 	ft_close_all(pip->fd);
 	temp2 = ft_split(pip->v[i + 2], ' ');

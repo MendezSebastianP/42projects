@@ -98,7 +98,7 @@ char	*get_path_command(char **paths, char *command)
 		temp = ft_strjoin(paths[i++], "/");
 		temp2 = ft_strjoin(temp, command);
 		j = access(temp2, F_OK);
-		if(j == 0)
+		if (j == 0)
 			path = ft_strdup(temp2);
 		free(temp);
 		free(temp2);

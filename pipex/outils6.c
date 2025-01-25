@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:24:26 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/25 16:00:50 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/25 17:31:35 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	pid0b(t_pipex *pip, int i)
 	int		open_fd;
 	char	*no_a;
 	char	*get_p;
-	
+
 	if (access(pip->v[i + 1], R_OK) == -1)
 	{
 		write(2, "zsh: permission denied: test/no_read\n", 37);
@@ -39,9 +39,9 @@ void	pid0b(t_pipex *pip, int i)
 	(free(get_p), cleanexit(temp2), free_pip(pip), exit(127));
 }
 
-t_pipex *init_pipex(char **envp, char **argv, int argc)
+t_pipex	*init_pipex(char **envp, char **argv, int argc)
 {
-	t_pipex *pipex;
+	t_pipex	*pipex;
 
 	pipex = malloc(sizeof(t_pipex));
 	if (!pipex)
@@ -65,7 +65,7 @@ t_pipex *init_pipex(char **envp, char **argv, int argc)
 		cleanexit(pipex->path);
 		pipex->path = get_path(pipex->envp);
 	}
-    return (pipex);
+	return (pipex);
 }
 
 void	free_pip(t_pipex *pip)
@@ -77,3 +77,20 @@ void	free_pip(t_pipex *pip)
 	free(pip);
 }
 
+int	wait_all(int *pid, int len)
+{
+	int	i;
+	int	k;
+	int	rn;
+
+	i = 0;
+	k = 0;
+	rn = 0;
+	while (i <= len)
+	{
+		waitpid(pid[i], &k, 0);
+		i++;
+	}
+	rn = k >> 8;
+	return (rn);
+}

@@ -63,10 +63,10 @@ int	heredoc(int argc, t_pipex *pip)
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_pipex	*pip;
-	int ret;
+	int		ret;
 
 	if (argc < 5)
-		return(0);
+		return (0);
 	pip = init_pipex(envp, argv, argc);
 	if (ft_isequalstr(argv[1], "here_doc"))
 	{

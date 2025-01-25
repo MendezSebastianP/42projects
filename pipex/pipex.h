@@ -31,13 +31,13 @@ typedef struct s_list
 
 typedef struct s_pipex
 {
-    char    **envp;
-    char    **path;
-    int     **fd;
-    int		*pid;
-    char    **v;
-    
-}   t_pipex;
+	char			**envp;
+	char			**path;
+	int				**fd;
+	int				*pid;
+	char			**v;
+
+}					t_pipex;
 
 // pipex
 char				*ft_strjoin(char const *s1, const char *s2);
@@ -49,21 +49,21 @@ char				**get_path(char *envp[]);
 char				*get_path_command(char **paths, char *command);
 char				*no_args_cmd(char *cmd);
 void				perror_exit(char *msg);
-void	            pid0(t_pipex *pip, int i);
-void	            pid1(t_pipex *pip, int out);
+void				pid0(t_pipex *pip, int i);
+void				pid1(t_pipex *pip, int out);
 char				*cleanexit2(int **a);
 int					**ft_add_fd(int **fd, int len);
 int					wait_all(int *pid, int len);
-void                free_pip(t_pipex *pip);
+void				free_pip(t_pipex *pip);
 // bonus
-int                 pid_pipe(t_pipex *pip, int i);
+int					pid_pipe(t_pipex *pip, int i);
 void				pipe_withcall(int *fd);
-int                 multi_pipex(t_pipex *pip, int argc);
+int					multi_pipex(t_pipex *pip, int argc);
 int					lvl2_len(int **fd);
 void				c_all(int **fd, char **paths, int *pid);
-void               	pid0b(t_pipex *pip, int i);
-void            	pid1a(t_pipex *pip, int out);
-t_pipex             *init_pipex(char **envp, char **argv, int argc);
+void				pid0b(t_pipex *pip, int i);
+void				pid1a(t_pipex *pip, int out);
+t_pipex				*init_pipex(char **envp, char **argv, int argc);
 
 // split modified
 char				**cleanexit(char **a);
@@ -80,7 +80,7 @@ void				*ft_calloc2(size_t nitems, size_t size);
 char				*ft_realloc(char *oldlloc, size_t buffersize);
 void				ft_until_limiter(char *argv);
 int					isin1(const char *set, const char c, int buffersize);
-int	                ft_strcmp(char *s1, char *s2);
+int					ft_strcmp(char *s1, char *s2);
 
 // printf
 int					ft_printf_fd(int fd, const char *format, ...);
