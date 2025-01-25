@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:24:26 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/23 12:11:57 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/25 11:53:07 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,3 +66,42 @@ void	pid1b(int **fd1, char *v[], char **paths, int out)
 	(ft_printf_fd(2, "zsh: command not found: %s\n", t[0]),
 		cleanexit(t), exit(127));
 }
+
+t_pipex *init_pipex(char **envp, char **argv, int argc)
+{
+	t_pipex *pipex;
+
+	pipex = malloc(sizeof(t_pipex));
+	if (!pipex)
+		return (NULL);
+	pipex->envp = envp;
+	pipex->argv = argv;
+	pipex->fd = NULL;
+	pipex->fd = ft_add_fd(pipex->fd, 0);
+	if (!pipex->fd)
+	{
+		free(pipex);
+		return (NULL);
+	}
+	pipex->path = NULL;
+	pipex->pid = malloc((argc - 2) * sizeof(int));
+	if (!pipex->pid)
+		return (free(pipex), NULL);
+	pipex->path = ft_split("error env", ' ');
+	if (pipex->envp[0] && pipex->envp[0][0] != 'V')
+	{
+		cleanexit(pipex->path);
+		pipex->path = get_path(pipex->envp);
+	}
+    return (pipex);
+}
+
+void	free_pip(t_pipex *pip)
+{
+	ft_close_all(pip->fd);
+	cleanexit2(pip->fd);
+	cleanexit(pip->path);
+	free(pip->pid);
+	free(pip);
+}
+

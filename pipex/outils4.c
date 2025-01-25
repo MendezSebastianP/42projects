@@ -6,13 +6,13 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:05:00 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/23 15:25:24 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/25 11:59:32 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	pid0(int **fd1, char *argv[], char **envp, int i)
+/* void	pid0(int **fd1, char *argv[], char **envp, int i)
 {
 	char	**temp2;
 	char	**paths;
@@ -39,6 +39,32 @@ void	pid0(int **fd1, char *argv[], char **envp, int i)
 	execve(get_path_command(paths, no_args_cmd(argv[i + 2])), temp2, envp);
 	(ft_printf_fd(2, "zsh: command not found: %s\n", temp2[0]),
 		cleanexit(temp2), exit(127));
+} */
+
+void	pid0(t_pipex *pip, int i)
+{
+	char	**temp2;
+	int		open_fd;
+	char	*no_a;
+	char	*get_p;
+
+	if (access(pip->argv[i + 1], R_OK) == -1)
+	{
+		write(2, "zsh: permission denied: test/no_read\n", 37);
+		(free_pip(pip), exit(EXIT_FAILURE));
+	}
+	open_fd = open(pip->argv[i + 1], O_RDONLY);
+	if (dup2(open_fd, STDIN_FILENO) == -1)
+		(perror("dup2"), exit(EXIT_FAILURE));
+	if (dup2(pip->fd[0][1], STDOUT_FILENO) == -1)
+		(perror("dup2"), exit(EXIT_FAILURE));
+	(ft_close_all(pip->fd), close(open_fd));
+	temp2 = ft_split(pip->argv[i + 2], ' ');
+	no_a = no_args_cmd(pip->argv[i + 2]);
+	get_p = get_path_command(pip->path, no_a);
+	execve(get_p, temp2, pip->envp);
+	ft_printf_fd(2, "zsh: command not found: %s\n", temp2[0]);
+	(cleanexit(temp2), free_pip(pip), free(no_a), free(get_p), exit(127));
 }
 
 void	pid1(int **fd1, char *v[], char **envp, int out)

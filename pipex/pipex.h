@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/23 15:40:59 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/25 11:52:23 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,16 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+typedef struct s_pipex
+{
+    char    **envp;
+    char    **path;
+    int     **fd;
+    int		*pid;
+    char    **argv;
+    
+}   t_pipex;
+
 // pipex
 char				*ft_strjoin(char const *s1, const char *s2);
 size_t				ft_strlen(const char *c);
@@ -39,11 +49,12 @@ char				**get_path(char *envp[]);
 char				*get_path_command(char **paths, char *command);
 char				*no_args_cmd(char *cmd);
 void				perror_exit(char *msg);
-void				pid0(int **fd1, char *argv[], char **paths, int i);
+void	            pid0(t_pipex *pip, int i);
 void				pid1(int **fd1, char *argv[], char **paths, int out);
 char				*cleanexit2(int **a);
 int					**ft_add_fd(int **fd, int len);
 int					wait_all(int *pid, int len);
+void                free_pip(t_pipex *pip);
 // bonus
 int					pid_pipe(int **fd1, char *argv[], char **paths, int i);
 void				pipe_withcall(int *fd);
@@ -52,6 +63,7 @@ int					lvl2_len(int **fd);
 void				c_all(int **fd, char **paths, int *pid);
 void				pid0b(int **fd1, char *argv[], char **paths, int i);
 void				pid1b(int **fd1, char *v[], char **paths, int out);
+t_pipex             *init_pipex(char **envp, char **argv, int argc);
 
 // split modified
 char				**cleanexit(char **a);
