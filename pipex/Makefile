@@ -25,8 +25,8 @@ BSRC = \
 OBJS        = $(SRC:.c=.o)
 BONUS_OBJS  = $(BSRC:.c=.o)
 
-NAME        = pipexx
-NAME_B      = pipex
+NAME        = pipex
+NAME_B      = pipex_bonus
 CC          = gcc
 AR          = ar
 FLAGS       = -Wall -Wextra -Werror -g
