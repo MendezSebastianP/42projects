@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/18 18:39:34 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/27 18:26:07 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,9 @@ char	*ft_strdup(const char *s);
 void	*ft_calloc(size_t nitems, size_t size);
 char	**ft_split(char const *s, char c);
 char	**cleanexit(char **a);
+int	n_c(char **map);
+char	**df(char *str);
+char    *read_txt(char *file);
+int	str_len_2d(char **str);
 
 #endif //FT_H

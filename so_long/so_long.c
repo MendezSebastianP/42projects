@@ -6,73 +6,40 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:59:30 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/27 17:38:30 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/27 18:38:06 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/so_long.h"
 
-static size_t sl_strlen(const char *s)
-{
-    size_t i = 0;
-    while (s && s[i])
-        i++;
-    return i;
-}
-
 static void error_exit(const char *msg)
 {
     write(2, "Error\n", 6);
     if (msg)
-        write(2, msg, sl_strlen(msg));
+        write(2, msg, ft_strlen(msg));
     write(2, "\n", 1);
     exit(EXIT_FAILURE);
 }
 
-static void read_map(const char *filepath, t_game *g)
+void initializate_g(t_game g)
 {
-    int     fd = open(filepath, O_RDONLY);
-    char    *line;
-    char    **tmp;
-    int     i;
+    g.coins = 0;
+    g.ended = 0;
+    g.map_height = 0;
+    g.map_data = NULL;
+    g.coins = 0;
+}
 
-    if (fd < 0)
-        error_exit("Failed to open map file");
-    g->map_height = 0;
-    g->map_data = NULL;
-    g->coins = 0;
-    while ((line = get_next_line(fd)))
-    {
-        size_t len = sl_strlen(line);
-        if (len > 0 && line[len - 1] == '\n')
-            line[len - 1] = '\0';
-        if (g->map_height == 0)
-            g->map_width = (int)sl_strlen(line);
-        tmp = g->map_data;
-        g->map_data = malloc(sizeof(char *) * (g->map_height + 2));
-        if (!g->map_data)
-            error_exit("Memory allocation failed");
-        i = 0;
-        while (i < g->map_height)
-        {
-            g->map_data[i] = tmp[i];
-            i++;
-        }
-        g->map_data[i] = line;
-        g->map_data[i + 1] = NULL;
-        free(tmp);
-        {
-            int j = 0;
-            while (line[j])
-            {
-                if (line[j] == 'C')
-                    g->coins++;
-                j++;
-            }
-        }
-        g->map_height++;
-    }
-    close(fd);
+static void read_map(char *filepath, t_game *g)
+{
+    char *str;
+    
+    str = read_txt(filepath);
+	g->map_data = df(str);
+    free(str);
+    g->coins = n_c(g->map_data);
+    g->map_height = str_len_2d(g->map_data);
+    g->map_width = ft_strlen((g->map_data)[0]);
     if (g->map_height == 0 || g->map_width == 0)
         error_exit("Empty or invalid map file");
 }
@@ -188,7 +155,7 @@ static void render(t_game *g)
 
 static int close_win(t_game *g)
 {
-    (void)g;
+    cleanexit(g->map_data);
     exit(0);
     return (0);
 }
@@ -240,6 +207,8 @@ static int key_hook(int keycode, t_game *g)
     return (0);
 }
 
+
+
 int main(int argc, char **argv)
 {
     t_game g;
@@ -247,8 +216,7 @@ int main(int argc, char **argv)
     if (argc != 2)
         error_exit("Usage: ./so_long <map.ber>");
     g.moves = 0;
-    g.coins = 0;
-    g.ended = 0;
+    initializate_g(g);
     read_map(argv[1], &g);
     g.mlx_ptr = mlx_init();
     if (!g.mlx_ptr)

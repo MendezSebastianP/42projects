@@ -60,6 +60,8 @@
     "so_long.h": "c",
     "stdio.h": "c",
     "mlx.h": "c",
-    "get_next_line.h": "c"
+    "get_next_line.h": "c",
+    "stdlib.h": "c",
+    "stdarg.h": "c"
   }
 }

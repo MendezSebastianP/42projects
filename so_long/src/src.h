@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/18 18:39:30 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/27 18:31:18 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../includes/get_next_line.h"
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 
 char	*ft_strjoin(char const *s1, const char *s2);
 int	isin(const char *set, const char c);
