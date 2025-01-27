@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:59:30 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/27 18:38:06 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/27 18:45:02 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ static void render(t_game *g)
 static int close_win(t_game *g)
 {
     cleanexit(g->map_data);
+    free(g->mlx_ptr);
     exit(0);
     return (0);
 }
