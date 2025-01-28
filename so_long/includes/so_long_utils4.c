@@ -16,7 +16,7 @@ void	step(char **map)
 {
 	int	i;
 	int	j;
-	
+
 	j = 0;
 	while (map[j])
 	{
@@ -41,7 +41,7 @@ int	equalto_one(char base, char a, char b)
 	return (k);
 }
 
-void foward(char **map, int j, int i)
+void	foward(char **map, int j, int i)
 {
 	if (map[j][i - 1] && equalto_one(map[j][i - 1], '0', 'C'))
 		map[j][i - 1] = 'X';
@@ -69,7 +69,7 @@ int	if_foward(char **map, int j, int i)
 	return (k);
 }
 
-int if_wall(char **map)
+int	if_wall(char **map)
 {
 	int	i;
 	int	j;
@@ -84,15 +84,15 @@ int if_wall(char **map)
 		j++;
 	while (map[i])
 	{
-		if(map[i][p] != '1' || map[i][j - 1] != '1')
-			return(0);
+		if (map[i][p] != '1' || map[i][j - 1] != '1')
+			return (0);
 		i++;
 	}
 	p = 0;
 	while (j > 0)
 	{
-		if(map[i - 1][j - 1] != '1' || map[p][j - 1] != '1')
-			return(0);
+		if (map[i - 1][j - 1] != '1' || map[p][j - 1] != '1')
+			return (0);
 		j--;
 	}
 	return (1);

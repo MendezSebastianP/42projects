@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:43:45 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/28 14:55:31 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:47:16 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	step2(char **map)
 {
-	int	i;
-	int	j;
-	int	bomb;
+	int		i;
+	int		j;
+	int		bomb;
 	char	*o;
-	
+
 	bomb = 0;
 	while (bomb == 0)
 	{
@@ -32,8 +32,7 @@ void	step2(char **map)
 			{
 				if (map[j][i] == 'X' && if_foward(map, j, i))
 				{
-					foward(map, j, i);
-					bomb = 0;
+					(foward(map, j, i), bomb = 0);
 				}
 				i++;
 			}
@@ -41,6 +40,7 @@ void	step2(char **map)
 		}
 	}
 }
+
 int	is_c(char **map)
 {
 	int	i;
@@ -75,14 +75,14 @@ int	at_least_one(char **map)
 	while (map[j])
 	{
 		if (isin(map[j], 'P'))
-			p = 1;
+			p++;
 		if (isin(map[j], 'C'))
 			c = 1;
 		if (isin(map[j], 'E'))
-			e = 1;	
+			e++;
 		j++;
 	}
-	if (p + c + e == 3)
+	if (p == 1 && c == 1 && e == 1)
 		return (1);
 	return (0);
 }
@@ -110,9 +110,9 @@ int	is_missletter(char **map)
 char	**strdup_2d(char **s)
 {
 	char	**t;
-	int	i;
-	int	j;
-	int	nitems;
+	int		i;
+	int		j;
+	int		nitems;
 
 	i = 0;
 	j = 0;

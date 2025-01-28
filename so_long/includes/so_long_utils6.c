@@ -59,10 +59,10 @@ int	is_ber(char *str)
 
 int	is_map_error(char *path)
 {
-	int	test;
+	int		test;
 	char	**map2;
-	char 	**map;
-	char *str;
+	char	**map;
+	char	*str;
 
 	test = 0;
 	str = read_txt(path);

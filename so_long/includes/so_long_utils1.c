@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:28:55 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/28 16:48:36 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:45:20 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,22 @@ void	error_exit(t_game *g, const char *msg)
 
 void	initializate_g(t_game *g)
 {
-	g->coins = 0;
-	g->ended = 0;
-	g->map_height = 0;
-	g->map_width = 0;
+	g->mlx_ptr = NULL;
+	g->win_ptr = NULL;
 	g->map_data = NULL;
+	g->map_width = 0;
+	g->map_height = 0;
+	g->grass_img = NULL;
+	g->wall_img = NULL;
+	g->macron_img = NULL;
+	g->money_img = NULL;
+	g->exit_img = NULL;
+	g->win_img = NULL;
 	g->px = 0;
 	g->py = 0;
+	g->coins = 0;
 	g->moves = 1;
+	g->ended = 0;
 }
 
 void	read_map(char *filepath, t_game *g)

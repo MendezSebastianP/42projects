@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:59:30 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/28 17:01:07 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:36:33 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,17 @@
 int	main(int argc, char **argv)
 {
 	t_game	g;
-	int	fd;
-	
+	int		fd;
+
 	if (argc != 2)
-		error_exit(&g, "Usage: ./so_long <map.ber>");
+		(ft_printf_fd(2, "Error\nUsage: ./so_long <map.ber>\n"),
+			exit(EXIT_FAILURE));
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		(close(fd), error_exit(&g, "Usage: ./so_long <map.ber>"));
+		(close(fd), ft_printf_fd(2, "Error\nUse existing/valid file\n"),
+			exit(EXIT_FAILURE));
 	if (is_map_error(argv[1]) == 1)
-		(ft_printf_fd(2, "Error\nNot valid map\n"));
+		(ft_printf_fd(2, "Error\nNot valid map\n"), exit(EXIT_FAILURE));
 	g.moves = 1;
 	(initializate_g(&g), read_map(argv[1], &g));
 	g.mlx_ptr = mlx_init();
@@ -35,7 +37,6 @@ int	main(int argc, char **argv)
 		error_exit(&g, "Failed to create a window");
 	(load_textures(&g), find_player(&g), render(&g));
 	mlx_hook(g.win_ptr, 2, 1L << 0, key_hook, &g);
-	mlx_hook(g.win_ptr, 17, 0, close_win, &g);
-	mlx_loop(g.mlx_ptr);
+	(mlx_hook(g.win_ptr, 17, 0, close_win, &g), mlx_loop(g.mlx_ptr));
 	return (0);
 }
