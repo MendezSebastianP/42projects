@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:59:30 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/27 18:45:02 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:58:09 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,16 @@ static void error_exit(const char *msg)
     exit(EXIT_FAILURE);
 }
 
-void initializate_g(t_game g)
+void initializate_g(t_game *g)
 {
-    g.coins = 0;
-    g.ended = 0;
-    g.map_height = 0;
-    g.map_data = NULL;
-    g.coins = 0;
+    g->coins = 0;
+    g->ended = 0;
+    g->map_height = 0;
+    g->map_width = 0;
+    g->map_data = NULL;
+    g->px = 0;
+    g->py = 0;
+    g->moves = 0;
 }
 
 static void read_map(char *filepath, t_game *g)
@@ -156,7 +159,24 @@ static void render(t_game *g)
 static int close_win(t_game *g)
 {
     cleanexit(g->map_data);
-    free(g->mlx_ptr);
+    if (g->grass_img)
+        mlx_destroy_image(g->mlx_ptr, g->grass_img);
+    if (g->exit_img)
+        mlx_destroy_image(g->mlx_ptr, g->exit_img);
+    if (g->macron_img)
+        mlx_destroy_image(g->mlx_ptr, g->macron_img);
+    if (g->wall_img)
+        mlx_destroy_image(g->mlx_ptr, g->wall_img);
+    if (g->money_img)
+        mlx_destroy_image(g->mlx_ptr, g->money_img);
+    if (g->win_img)
+        mlx_destroy_image(g->mlx_ptr, g->win_img);
+    if (g->mlx_ptr)
+    {
+        mlx_destroy_window(g->mlx_ptr, g->win_ptr);
+        mlx_destroy_display(g->mlx_ptr);
+        free(g->mlx_ptr);
+    }
     exit(0);
     return (0);
 }
@@ -217,7 +237,7 @@ int main(int argc, char **argv)
     if (argc != 2)
         error_exit("Usage: ./so_long <map.ber>");
     g.moves = 0;
-    initializate_g(g);
+    initializate_g(&g);
     read_map(argv[1], &g);
     g.mlx_ptr = mlx_init();
     if (!g.mlx_ptr)
