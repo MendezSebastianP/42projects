@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/28 13:33:20 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:44:06 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-void				error_exit(const char *msg);
+void				error_exit(t_game *g, const char *msg);
 void				initializate_g(t_game *g);
 void				read_map(char *filepath, t_game *g);
 void				find_player(t_game *g);

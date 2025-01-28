@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:10:35 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/28 15:28:40 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:31:16 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,23 @@ int	is_exit(char **map, int i, int j)
 	return (k);
 }
 
+int	is_ber(char *str)
+{
+	int	len;
+
+	len = ft_strlen(str);
+	if (len < 4)
+		return (0);
+	len--;
+	if (str[len - 3] == '.' && str[len - 2] == 'b' && str[len - 1] == 'e'
+		&& str[len] == 'r')
+		return (1);
+	if (str[len - 3] == '.' && str[len - 2] == 'B' && str[len - 1] == 'E'
+		&& str[len] == 'R')
+		return (1);
+	return (0);
+}
+
 int	is_map_error(char *path)
 {
 	int	test;
@@ -53,7 +70,7 @@ int	is_map_error(char *path)
 	if (ft_strlen(str) < 17 | is_missletter(map) == 1)
 		return (free(str), cleanexit(map), 1);
 	free(str);
-	if (if_wall(map) == 0)
+	if (if_wall(map) == 0 | is_ber(path) == 0)
 		return (cleanexit(map), 1);
 	if (at_least_one(map) == 0)
 		return (cleanexit(map), 1);

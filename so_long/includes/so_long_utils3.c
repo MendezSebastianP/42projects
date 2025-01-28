@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 13:32:11 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/28 15:36:39 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:39:55 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	close_win(t_game *g)
 {
-	cleanexit(g->map_data);
+	if (g->map_data)
+		cleanexit(g->map_data);
 	if (g->grass_img)
 		mlx_destroy_image(g->mlx_ptr, g->grass_img);
 	if (g->exit_img)
