@@ -20,7 +20,8 @@ INCLUDES = -I includes -I $(MLX_PATH)
 SRCS = so_long.c \
        $(wildcard src/*.c) \
        $(wildcard get_next_line/*.c) \
-       $(wildcard printf_fd/*.c)
+       $(wildcard printf_fd/*.c) \
+       $(wildcard includes/*.c)
 
 # ======== OBJECT FILES IN .trash FOLDER ========
 TRASH = .trash

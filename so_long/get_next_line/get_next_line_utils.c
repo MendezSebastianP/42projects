@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 17:38:45 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/18 17:12:03 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:02:46 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,29 @@ int	isin1(const char *set, const char c, int buffersize)
 		i++;
 	}
 	return (0);
+}
+
+char    *read_txt(char *file)
+{
+	int	fd;
+	char	*line;
+	char	*map;
+	char	*temp;
+	
+	map = ft_calloc(1,1);
+        fd =  open(file, O_RDONLY);
+	if (fd == -1)
+		return(perror("Error opening the file"), NULL);
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		temp = ft_strjoin(map, line);
+		(free(line), free(map));
+		map = ft_strdup(temp);
+		free(temp);
+		line = get_next_line(fd);
+	}
+	free (line);
+	close(fd);
+	return (map);
 }

@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/27 17:03:16 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:33:20 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,21 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }					t_list;
+
+void error_exit(const char *msg);
+void initializate_g(t_game *g);
+void read_map(char *filepath, t_game *g);
+void find_player(t_game *g);
+void load_textures(t_game *g);
+
+void draw_tile(t_game *g, char c, int x, int y);
+void draw_map(t_game *g);
+void draw_player(t_game *g);
+void draw_win_message(t_game *g);
+void render(t_game *g);
+
+int close_win(t_game *g);
+void move_player(t_game *g, int nx, int ny);
+int key_hook(int keycode, t_game *g);
 
 #endif //FT_H

@@ -62,6 +62,7 @@
     "mlx.h": "c",
     "get_next_line.h": "c",
     "stdlib.h": "c",
-    "stdarg.h": "c"
+    "stdarg.h": "c",
+    "src.h": "c"
   }
 }

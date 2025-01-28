@@ -6,16 +6,16 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/27 18:26:07 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:18:05 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SRC_H
 # define SRC_H
 # include "ft_printf_fd.h"
-# include "get_next_line.h"
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
 
 char	*ft_strjoin(char const *s1, const char *s2);
 int	isin(const char *set, const char c);
@@ -28,5 +28,6 @@ int	n_c(char **map);
 char	**df(char *str);
 char    *read_txt(char *file);
 int	str_len_2d(char **str);
+
 
 #endif //FT_H
