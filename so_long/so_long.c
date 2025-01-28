@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:59:30 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/28 16:52:17 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:01:07 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 	if (fd < 0)
 		(close(fd), error_exit(&g, "Usage: ./so_long <map.ber>"));
 	if (is_map_error(argv[1]) == 1)
-		(error_exit(&g, "map.ber not valid"));
+		(ft_printf_fd(2, "Error\nNot valid map\n"));
 	g.moves = 1;
 	(initializate_g(&g), read_map(argv[1], &g));
 	g.mlx_ptr = mlx_init();
