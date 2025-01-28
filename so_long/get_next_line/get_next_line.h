@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/28 13:05:17 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:20:35 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define GET_NEXT_LINE_H
 # include "../includes/src.h"
 # include <fcntl.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-#include <stdio.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -28,6 +28,6 @@ char	*get_next_line(int fd);
 size_t	sl(const char *c);
 int		isin1(const char *set, const char c, int buffersize);
 char	*ft_realloc(char *oldlloc, size_t buffersize);
-char    *read_txt(char *file);
+char	*read_txt(char *file);
 
 #endif //FT_H

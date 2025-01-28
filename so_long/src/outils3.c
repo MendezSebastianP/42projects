@@ -1,55 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   outils2.c                                          :+:      :+:    :+:   */
+/*   outils3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/18 16:31:04 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/28 14:18:13 by smendez-         ###   ########.fr       */
+/*   Created: 2025/01/28 12:55:04 by smendez-          #+#    #+#             */
+/*   Updated: 2025/01/28 14:15:50 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "src.h"
+// #include "../includes/so_long.h"
 
-int	n_c(char **map)
-{
-	int	i;
-	int	j;
-	int	c;
-
-	j = 0;
-	c = 0;
-	while (map[j])
-	{
-		i = 0;
-		while (map[j][i])
-		{
-			if (map[j][i] == 'C')
-				c++;
-			i++;
-		}
-		j++;
-	}
-	return (c);
-}
-
-char	**df(char *str)
-{
-	char	**df;
-
-	df = ft_split(str, '\n');
-	return (df);
-}
-
-int	str_len_2d(char **str)
-{
-	int	j;
-
-	j = 0;
-	while (str[j])
-	{
-		j++;
-	}
-	return (j);
-}
+// void error_exit(const char *msg)
+// {
+//     write(2, "Error\n", 6);
+//     if (msg)
+//         write(2, msg, ft_strlen(msg));
+//     write(2, "\n", 1);
+//     exit(EXIT_FAILURE);
+// }

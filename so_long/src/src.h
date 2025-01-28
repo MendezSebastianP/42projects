@@ -14,12 +14,12 @@
 # define SRC_H
 # include "../includes/ft_printf_fd.h"
 # include "../includes/get_next_line.h"
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 
 char	*ft_strjoin(char const *s1, const char *s2);
-int	isin(const char *set, const char c);
+int		isin(const char *set, const char c);
 size_t	ft_strlen(const char *c);
 char	*ft_strdup(const char *s);
 void	*ft_calloc(size_t nitems, size_t size);

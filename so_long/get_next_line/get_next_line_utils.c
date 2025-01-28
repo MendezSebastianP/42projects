@@ -24,7 +24,6 @@ size_t	sl(const char *c)
 	return (i);
 }
 
-
 int	isin1(const char *set, const char c, int buffersize)
 {
 	int	i;
@@ -41,17 +40,17 @@ int	isin1(const char *set, const char c, int buffersize)
 	return (0);
 }
 
-char    *read_txt(char *file)
+char	*read_txt(char *file)
 {
-	int	fd;
+	int		fd;
 	char	*line;
 	char	*map;
 	char	*temp;
-	
-	map = ft_calloc(1,1);
-        fd =  open(file, O_RDONLY);
+
+	map = ft_calloc(1, 1);
+	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		return(perror("Error opening the file"), NULL);
+		return (perror("Error opening the file"), NULL);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -61,7 +60,7 @@ char    *read_txt(char *file)
 		free(temp);
 		line = get_next_line(fd);
 	}
-	free (line);
+	free(line);
 	close(fd);
 	return (map);
 }
