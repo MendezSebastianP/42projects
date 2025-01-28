@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:28:55 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/28 14:32:15 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/28 15:35:10 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	initializate_g(t_game *g)
 	g->map_data = NULL;
 	g->px = 0;
 	g->py = 0;
-	g->moves = 0;
+	g->moves = 1;
 }
 
 void	read_map(char *filepath, t_game *g)

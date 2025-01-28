@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 13:32:11 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/28 13:42:57 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/28 15:36:39 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	move_player(t_game *g, int nx, int ny)
 	{
 		g->px = nx;
 		g->py = ny;
-		g->moves++;
 		g->ended = 1;
 		(render(g), printf("Moves: %d\n", g->moves));
 		return ;

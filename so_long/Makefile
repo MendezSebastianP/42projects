@@ -6,7 +6,7 @@ RESET = \033[0m
 # ================= COMPILATION =================
 NAME    = so_long
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror
+CFLAGS  = -Wall -Wextra -Werror -g
 
 # =========== MINI LIBX (adjust if needed) ======
 MLX_PATH = minilibx-linux
