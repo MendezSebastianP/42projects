@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:28:18 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/29 15:40:45 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/29 19:52:20 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 
 typedef struct s_data {
     int num_philos;
-    long time_to_die;
-    long time_to_eat;
-    long time_to_sleep;
+    long long time_to_die;
+    long long time_to_eat;
+    long long time_to_sleep;
     int meals_required;
     pthread_mutex_t *forks;
     pthread_mutex_t print_mutex;
@@ -36,11 +36,12 @@ typedef struct s_data {
 typedef struct s_philosopher {
     int id;
     int meals_eaten;
+    int nothing;
     pthread_t thread;
-    pthread_mutex_t *left_fork;
-    pthread_mutex_t *right_fork;
+    pthread_mutex_t left_fork;
+    pthread_mutex_t right_fork;
     t_data *data;
-    long last_meal;
+    long long last_meal;
 } t_philosopher;
 
 typedef struct s_list
