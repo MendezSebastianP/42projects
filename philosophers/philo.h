@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:28:18 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/29 19:52:20 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:28:21 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,16 @@ typedef struct s_data {
 typedef struct s_philosopher {
     int id;
     int meals_eaten;
-    int nothing;
     pthread_t thread;
-    pthread_mutex_t left_fork;
-    pthread_mutex_t right_fork;
+    pthread_mutex_t *left_fork;
+    pthread_mutex_t *right_fork;
     t_data *data;
     long long last_meal;
 } t_philosopher;
 
 typedef struct s_list
 {
-	void			*content;
+	t_philosopher	*philo;
 	struct s_list	*next;
 }			t_list;
 

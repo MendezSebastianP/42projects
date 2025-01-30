@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:22:11 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/29 19:51:04 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:24:17 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_list	*ft_lstnew(void *content)
 	n = malloc(sizeof(t_list));
 	if (n == NULL)
 		return (NULL);
-	n->content = content;
+	n->philo = content;
 	n->next = NULL;
 	return (n);
 }
