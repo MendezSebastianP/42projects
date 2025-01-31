@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:28:18 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/30 16:28:21 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:07:13 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_data {
     long long time_to_eat;
     long long time_to_sleep;
     int meals_required;
+    int is_dead;
     pthread_mutex_t *forks;
     pthread_mutex_t print_mutex;
     long long start_time;
