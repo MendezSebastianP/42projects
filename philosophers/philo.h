@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:28:18 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/31 14:07:13 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/31 18:12:25 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,17 @@ int is_valid(int argc, char **argv);
 
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_back(t_list **lst, t_list *new);
+t_list	*ft_lstnew(void *content);
+char	*free_list(t_list *list);
+t_philosopher   *start_p(int id, t_data *data);
+t_list *start_philos(char **argv, t_data *data);
+
+void    start_data(int argc, char **argv, t_data *data);
+int    eat(t_philosopher *philo);
+int    ph_sleep(t_philosopher *philo);
+int    think(t_philosopher *philo);
+void     *monitor(void *arg);
+
 
 
 
