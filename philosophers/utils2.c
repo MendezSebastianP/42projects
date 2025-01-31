@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:22:11 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/31 18:08:43 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/31 19:16:56 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,46 +58,41 @@ char	*free_list(t_list *list)
 	return (NULL);
 }
 
-t_philosopher   *start_p(int id, t_data *data)
+t_philosopher	*start_p(int id, t_data *data)
 {
-        t_philosopher *philo;
+	t_philosopher	*philo;
 
-        philo = malloc(sizeof(t_philosopher));
-        if (!philo)
-                return (NULL);
-        philo->id = id;
-        philo->meals_eaten = 0;
-        philo->data = data;
-        philo->last_meal = philo->data->start_time;
-        philo->left_fork = &data->forks[id - 1];
-        philo->right_fork = &data->forks[(id) % data->num_philos];
-        return (philo);
+	philo = malloc(sizeof(t_philosopher));
+	if (!philo)
+		return (NULL);
+	philo->id = id;
+	philo->meals_eaten = 0;
+	philo->data = data;
+	philo->last_meal = philo->data->start_time;
+	philo->left_fork = &data->forks[id - 1];
+	philo->right_fork = &data->forks[(id) % data->num_philos];
+	return (philo);
 }
 
-t_list *start_philos(char **argv, t_data *data)
+t_list	*start_philos(char **argv, t_data *data, int i)
 {
-        int     i;
-        int     n_ph;
-        t_list *ph_list;
-        t_list *temp;
-        t_philosopher *philo;
-        t_philosopher *philo_last;
+	int				n_ph;
+	t_list			*ph_list;
+	t_list			*temp;
+	t_philosopher	*philo;
+	t_philosopher	*philo_last;
 
-        i = 1;
-        ph_list = NULL;
-        n_ph = atoi(argv[1]);
-        while (i <= n_ph)
-        {
-                philo = start_p(i, data);
-                
-                temp = ft_lstnew(philo);
-                ft_lstadd_back(&ph_list, temp);
-                philo_last = philo;
-                printf("philo number: %d\n", i);
-                i++;
-        }
-        ph_list->philo->left_fork = philo_last->right_fork;
-        return (ph_list);
+	ph_list = NULL;
+	n_ph = atoi(argv[1]);
+	while (i <= n_ph)
+	{
+		philo = start_p(i, data);
+		temp = ft_lstnew(philo);
+		ft_lstadd_back(&ph_list, temp);
+		philo_last = philo;
+		printf("philo number: %d\n", i);
+		i++;
+	}
+	ph_list->philo->left_fork = philo_last->right_fork;
+	return (ph_list);
 }
-
-

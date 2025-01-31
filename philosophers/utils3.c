@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 18:07:48 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/31 18:26:56 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/01/31 19:18:10 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	*monitor(void *arg)
 			i = philo->philo->meals_eaten + i;
 			if (philo->philo->last_meal + (philo->philo->data->time_to_die
 					* 1000) < now)
-			return (l1(philo, now));
+				return (l1(philo, now));
 			philo = philo->next;
 		}
 	}
