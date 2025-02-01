@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/28 16:44:06 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/02/01 11:10:10 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }					t_list;
+
+int					ft_printf_fd(int fd, const char *format, ...);
 
 void				error_exit(t_game *g, const char *msg);
 void				initializate_g(t_game *g);

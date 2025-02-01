@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:42:16 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/18 16:23:09 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/02/01 11:13:39 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,53 +129,3 @@ int	ft_printf_fd(int fd, const char *format, ...)
 	free(chr);
 	return (sz);
 }
-
-/* #include <stdio.h>
-int	main(void)
-{
-	int	result;
-	int	result_native;
-	char	c = '\0';
-	char	*s = NULL;
-	int a = -13634;
-	//int *p = &a;
-	// int t1 =  ft_printf("Our result      : %c   %s   %p %d %i %u %x %X%%|\n",
-			
-	c, s, s, a, a, a, a, a);
-	// int t2 =     printf("Intended result : %c   %s   %p %d %i %u %x %X%%|\n",
-	c, s, s, a, a, a, a, a);
-	int t2 =     printf("|Intended result : %c%c%c|\n", '0', 0, '1');
-	int t1 =  ft_printf("|Our result      : %c%c%c|\n", '0', 0, '1');
-	printf("\nNcharacters\nOurs: %d\nintended: %d\n", t1, t2);
-	return (0);
-} */
-/* #include <stdio.h>
-#include <limits.h>
-
-int	main(void)
-{
-    int res1, res2;
-
-    // Test null pointer
-    res1 = ft_printf("Custom: %p\n", NULL);
-    res2 = printf("Native: %p\n", NULL);
-    printf("Custom: %d, Native: %d\n\n", res1, res2);
-
-    // Test valid pointer
-    int x = 42;
-    res1 = ft_printf("Custom: %p\n", &x);
-    res2 = printf("Native: %p\n", &x);
-    printf("Custom: %d, Native: %d\n\n", res1, res2);
-
-    // Test LONG_MIN and LONG_MAX
-    res1 = ft_printf("Custom: %p %p\n", (void *)LONG_MIN, (void *)LONG_MAX);
-    res2 = printf("Native: %p %p\n", (void *)LONG_MIN, (void *)LONG_MAX);
-    printf("Custom: %d, Native: %d\n\n", res1, res2);
-
-    // Test ULONG_MAX
-    res1 = ft_printf("Custom: %p\n", (void *)ULONG_MAX);
-    res2 = printf("Native: %p\n", (void *)ULONG_MAX);
-    printf("Custom: %d, Native: %d\n\n", res1, res2);
-
-    return (0);
-} */

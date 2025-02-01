@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:37:03 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/18 17:24:57 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/02/01 11:08:02 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,32 +127,3 @@ char	*get_next_line(int fd)
 	sc = ft_resetsc(sc);
 	return (free(b1), line);
 }
-/* 
-#include <stdio.h>
-
-int	main(void)
-{
-	int		fd;
-	char	*a1;
-
-	fd =  open("empty.txt", O_RDONLY);
-	if (fd == -1)
-	{
-		perror("Error opening the file");
-	}
-	a1 = get_next_line(fd);
-	printf("%s", a1);
-	free(a1);
-	a1 = get_next_line(fd);
-	printf("%s", a1);
-	free(a1);
-	a1 = get_next_line(fd);
-	printf("%s", a1);
-	free(a1);
-	a1 = get_next_line(fd);
-	printf("%s", a1);
-	free(a1);
-	close(fd);
-    return (0);
-}
- */
