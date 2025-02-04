@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:13:53 by smendez-          #+#    #+#             */
-/*   Updated: 2025/02/04 14:48:27 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:31:47 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,13 @@
 
 typedef struct s_list
 {
-	void			*content;
+	char		*cmd;
 	struct s_list	*next;
+        int     index;
+        int     exe1;
+        int     exe2;
+        char    *if_file1;
+        char    *if_file2;
 }					t_list;
 
 typedef struct s_pipex
@@ -55,6 +60,7 @@ char	*cleanexit_int(int **a);
 int	isin(char *s, char c);
 char	**ft_split_exe(char *s, char c);
 char	**cleanexit(char **a);
+int	lvl2_len(int **fd);
 
 
 // printf_fd

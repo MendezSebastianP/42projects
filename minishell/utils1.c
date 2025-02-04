@@ -41,3 +41,13 @@ char	*cleanexit_int(int **a)
 	free(a);
 	return (NULL);
 }
+
+int	lvl2_len(int **fd)
+{
+	int	i;
+
+	i = 0;
+	while (fd[i])
+		i++;
+	return (i);
+}
