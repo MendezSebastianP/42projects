@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 13:32:11 by smendez-          #+#    #+#             */
-/*   Updated: 2025/02/01 11:11:24 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/02/04 11:03:49 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	move_player(t_game *g, int nx, int ny)
 		(render(g), ft_printf_fd(1, "Moves: %d\n", g->moves));
 		return ;
 	}
-	if (g->map_data[ny][nx] == 'E' && g->coins > 0)
-		return ;
+	// if (g->map_data[ny][nx] == 'E' && g->coins > 0)
+	// 	return ;
 	g->px = nx;
 	g->py = ny;
 	printf("Moves: %d\n", g->moves++);

@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 17:59:30 by smendez-          #+#    #+#             */
-/*   Updated: 2025/02/01 11:01:38 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/02/04 11:51:52 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 	if (!g.win_ptr)
 		error_exit(&g, "Failed to create a window");
 	(load_textures(&g), find_player(&g), render(&g));
-	mlx_hook(g.win_ptr, 2, 1L << 0, key_hook, &g);
+	mlx_hook(g.win_ptr, 2, 1L, key_hook, &g);
 	(mlx_hook(g.win_ptr, 17, 0, close_win, &g), mlx_loop(g.mlx_ptr));
 	return (0);
 }

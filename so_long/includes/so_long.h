@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:30:42 by smendez-          #+#    #+#             */
-/*   Updated: 2025/02/01 11:10:10 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/02/04 10:21:09 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <unistd.h>
 
 # define TILE_SIZE 64
-
 # define KEY_ESC 65307
 # define KEY_W 119
 # define KEY_A 97
