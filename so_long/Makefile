@@ -8,7 +8,7 @@ NAME    = so_long
 CC      = cc
 CFLAGS  = -Wall -Wextra -Werror -g
 
-# =========== MINI LIBX (adjust if needed) ======
+# =========== MINI LIBX =========================
 MLX_PATH = minilibx-linux
 MLX      = $(MLX_PATH)/libmlx.a
 
@@ -35,14 +35,14 @@ $(NAME): $(MLX) $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -L$(MLX_PATH) -lmlx -lXext -lX11 -lGL -lm -o $(NAME)
 	@echo "$(GREEN)[OK] $(NAME) built successfully!$(RESET)"
 
-# Build the MiniLibX if needed
+# Build the MiniLibX
 $(MLX):
 	@$(MAKE) -C $(MLX_PATH)
 	@echo "$(GREEN)MiniLibX library compiled.$(RESET)"
 
 # Pattern rule: compile .c to .o into .trash/...
 $(TRASH)/%.o: %.c
-	@mkdir -p $(dir $@)            # Create subfolders inside .trash if needed
+	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 	@echo "$(GREEN)Compiled $< -> $@$(RESET)"
 
@@ -52,7 +52,7 @@ clean:
 	@$(MAKE) -C $(MLX_PATH) clean
 	@echo "$(RED)Removed object files and .trash folder.$(RESET)"
 
-# Remove the final binary as well
+# Remove the final binary files
 fclean: clean
 	@rm -f $(NAME)
 	@echo "$(RED)Removed $(NAME) binary.$(RESET)"
