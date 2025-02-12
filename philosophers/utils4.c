@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 18:27:19 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/31 18:27:35 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:20:23 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 void	start_data(int argc, char **argv, t_data *data)
 {
 	struct timeval	time_t;
-	long long		sec;
-	long			micro;
 	int				i;
 
 	i = 0;

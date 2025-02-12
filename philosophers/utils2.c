@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:22:11 by smendez-          #+#    #+#             */
-/*   Updated: 2025/01/31 19:16:56 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:38:51 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ t_list	*start_philos(char **argv, t_data *data, int i)
 		temp = ft_lstnew(philo);
 		ft_lstadd_back(&ph_list, temp);
 		philo_last = philo;
-		printf("philo number: %d\n", i);
 		i++;
 	}
 	ph_list->philo->left_fork = philo_last->right_fork;
