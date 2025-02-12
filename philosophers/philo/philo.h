@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:28:18 by smendez-          #+#    #+#             */
-/*   Updated: 2025/02/12 15:29:22 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/02/12 17:08:51 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,18 @@
 typedef struct s_data
 {
 	int				num_philos;
+	int				num_philos2;
 	long long		time_to_die;
 	long long		time_to_eat;
 	long long		time_to_sleep;
 	int				meals_required;
+	int				meals_required2;
 	int				is_dead;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	me;
+	pthread_mutex_t	lm;
+	pthread_mutex_t	d;
 	long long		start_time;
 }					t_data;
 
@@ -71,7 +76,8 @@ int					eat(t_philosopher *philo);
 int					ph_sleep(t_philosopher *philo);
 int					think(t_philosopher *philo);
 void				*monitor(void *arg);
-
 void				*action(void *arg);
+int	l(pthread_mutex_t a);
+int	u(pthread_mutex_t a);
 
 #endif
