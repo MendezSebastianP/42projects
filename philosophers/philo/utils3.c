@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 18:07:48 by smendez-          #+#    #+#             */
-/*   Updated: 2025/02/12 17:52:20 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/02/13 11:52:38 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,17 +84,30 @@ int	think(t_philosopher *philo)
 	return (0);
 }
 
-char	*l1(t_list *philo, long long now)
+char	*l1(t_list *philo, long long now, int *i)
 {
-	pthread_mutex_unlock(&philo->philo->data->lm);
-	pthread_mutex_lock(&philo->philo->data->print_mutex);
-	printf("%lld %d died\n", (now - philo->philo->data->start_time)
-		/ 1000, philo->philo->id);
-	pthread_mutex_unlock(&philo->philo->data->print_mutex);
-	pthread_mutex_lock(&philo->philo->data->d);
-	philo->philo->data->is_dead = 1;
-	pthread_mutex_unlock(&philo->philo->data->d);
-	return (NULL);
+	while (philo)
+	{
+		pthread_mutex_lock(&philo->philo->data->me);
+		*i = philo->philo->meals_eaten + *i;
+		pthread_mutex_unlock(&philo->philo->data->me);
+		pthread_mutex_lock(&philo->philo->data->lm);
+		if (philo->philo->last_meal + (philo->philo->data->time_to_die * 1000) < now)
+		{
+			pthread_mutex_unlock(&philo->philo->data->lm);
+			pthread_mutex_lock(&philo->philo->data->print_mutex);
+			printf("%lld %d died\n", (now - philo->philo->data->start_time)
+				/ 1000, philo->philo->id);
+			pthread_mutex_unlock(&philo->philo->data->print_mutex);
+			pthread_mutex_lock(&philo->philo->data->d);
+			philo->philo->data->is_dead = 1;
+			pthread_mutex_unlock(&philo->philo->data->d);
+			return (NULL);
+		}
+		pthread_mutex_unlock(&philo->philo->data->lm);
+		philo = philo->next;
+	}
+	return ("continue");
 }
 
 void	*monitor(void *arg)
@@ -115,16 +128,7 @@ void	*monitor(void *arg)
 				* philo->philo->data->num_philos2))
 			return (NULL);
 		i = 0;
-		while (philo)
-		{
-			pthread_mutex_lock(&philo->philo->data->me);
-			i = philo->philo->meals_eaten + i;
-			pthread_mutex_unlock(&philo->philo->data->me);
-			pthread_mutex_lock(&philo->philo->data->lm);
-			if (philo->philo->last_meal + (philo->philo->data->time_to_die * 1000) < now)
-				return (l1(philo, now));
-			pthread_mutex_unlock(&philo->philo->data->lm);
-			philo = philo->next;
-		}
+		if (!l1(philo, now, &i))
+			return (NULL);
 	}
 }

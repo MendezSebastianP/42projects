@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 18:54:41 by smendez-          #+#    #+#             */
-/*   Updated: 2025/02/12 17:22:07 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/02/13 11:56:03 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,15 @@ void	part1(t_philosopher *philo)
 {
 	long long		now;
 	struct timeval	time_t;
+	int				isd;
 
 	pthread_mutex_lock(philo->right_fork);
 	gettimeofday(&time_t, NULL);
 	now = (time_t.tv_sec * 1000000) + time_t.tv_usec;
-	if (philo->data->is_dead == 0)
+	pthread_mutex_lock(&philo->data->d);
+	isd = philo->data->is_dead;
+	pthread_mutex_unlock(&philo->data->d);
+	if (isd == 0)
 	{
 		pthread_mutex_lock(&philo->data->print_mutex);
 		printf("%lld %d has taken a fork\n", (now - philo->data->start_time)
@@ -45,15 +49,20 @@ void	part2(t_philosopher *philo)
 {
 	long long		now;
 	struct timeval	time_t;
+	int				isd;
 
 	pthread_mutex_lock(philo->left_fork);
 	gettimeofday(&time_t, NULL);
 	now = (time_t.tv_sec * 1000000) + time_t.tv_usec;
-	if (philo->data->is_dead == 0)
+	pthread_mutex_lock(&philo->data->d);
+	isd = philo->data->is_dead;
+	pthread_mutex_unlock(&philo->data->d);
+	if (isd == 0)
 	{
 		pthread_mutex_lock(&philo->data->print_mutex);
 		printf("%lld %d has taken a fork\n",
-			(now - philo->data->start_time) / 1000, philo->id);
+			(now - philo->data->start_time) / 1000,
+			philo->id);
 		pthread_mutex_unlock(&philo->data->print_mutex);
 	}
 }
@@ -61,7 +70,7 @@ void	part2(t_philosopher *philo)
 void	*action(void *arg)
 {
 	t_philosopher	*philo;
-	int	me;
+	int				me;
 
 	philo = (t_philosopher *)arg;
 	rules_sleep(philo);
@@ -69,21 +78,19 @@ void	*action(void *arg)
 	{
 		if (philo->id % 2 == 1)
 		{
-			part2(philo);
 			if (philo->data->num_philos == 1)
 				return (NULL);
-			pthread_mutex_lock(philo->right_fork);
+			(part2(philo), pthread_mutex_lock(philo->right_fork));
 		}
 		else
 			part1(philo);
 		eat(philo);
 		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_unlock(philo->right_fork);
-		pthread_mutex_lock(&philo->data->me);
-		me = philo->meals_eaten;
+		(pthread_mutex_lock(&philo->data->me), me = philo->meals_eaten);
 		pthread_mutex_unlock(&philo->data->me);
-		if (me == philo->data->meals_required || ph_sleep(philo)
-			== -1 || think(philo) == -1)
+		if (me == philo->data->meals_required || ph_sleep(philo) == -1
+			|| think(philo) == -1)
 			return (NULL);
 	}
 	return (NULL);

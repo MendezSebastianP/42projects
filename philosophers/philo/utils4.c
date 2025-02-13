@@ -6,18 +6,29 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 18:27:19 by smendez-          #+#    #+#             */
-/*   Updated: 2025/02/12 16:56:20 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/02/13 11:22:21 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+void	m_init(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->num_philos)
+		pthread_mutex_init(&data->forks[i++], NULL);
+	pthread_mutex_init(&data->print_mutex, NULL);
+	pthread_mutex_init(&data->d, NULL);
+	pthread_mutex_init(&data->me, NULL);
+	pthread_mutex_init(&data->lm, NULL);
+}
+
 int	start_data(int argc, char **argv, t_data *data)
 {
 	struct timeval	time_t;
-	int				i;
 
-	i = 0;
 	data->num_philos = ft_atoi(argv[1]);
 	data->num_philos2 = data->num_philos;
 	data->time_to_die = ft_atoi(argv[2]);
@@ -34,9 +45,7 @@ int	start_data(int argc, char **argv, t_data *data)
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->num_philos);
 	if (!data->forks)
 		return (1);
-	while (i < data->num_philos)
-		pthread_mutex_init(&data->forks[i++], NULL);
-	pthread_mutex_init(&data->print_mutex, NULL);
+	m_init(data);
 	return (0);
 }
 
