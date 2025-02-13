@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 18:07:48 by smendez-          #+#    #+#             */
-/*   Updated: 2025/02/13 11:52:38 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/02/13 12:54:11 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	eat(t_philosopher *philo)
 {
 	struct timeval	time_t;
 	long long		now;
-	int			isd;
+	int				isd;
 
 	pthread_mutex_lock(&philo->data->d);
 	isd = philo->data->is_dead;
@@ -45,7 +45,7 @@ int	ph_sleep(t_philosopher *philo)
 {
 	struct timeval	time_t;
 	long long		now;
-	int			isd;
+	int				isd;
 
 	pthread_mutex_lock(&philo->data->d);
 	isd = philo->data->is_dead;
@@ -66,7 +66,7 @@ int	think(t_philosopher *philo)
 {
 	struct timeval	time_t;
 	long long		now;
-	int			isd;
+	int				isd;
 
 	pthread_mutex_lock(&philo->data->d);
 	isd = philo->data->is_dead;
@@ -92,7 +92,8 @@ char	*l1(t_list *philo, long long now, int *i)
 		*i = philo->philo->meals_eaten + *i;
 		pthread_mutex_unlock(&philo->philo->data->me);
 		pthread_mutex_lock(&philo->philo->data->lm);
-		if (philo->philo->last_meal + (philo->philo->data->time_to_die * 1000) < now)
+		if (philo->philo->last_meal + (philo->philo->data->time_to_die
+				* 1000) < now)
 		{
 			pthread_mutex_unlock(&philo->philo->data->lm);
 			pthread_mutex_lock(&philo->philo->data->print_mutex);

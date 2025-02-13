@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:28:18 by smendez-          #+#    #+#             */
-/*   Updated: 2025/02/12 17:08:51 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/02/13 12:51:56 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int					ph_sleep(t_philosopher *philo);
 int					think(t_philosopher *philo);
 void				*monitor(void *arg);
 void				*action(void *arg);
-int	l(pthread_mutex_t a);
-int	u(pthread_mutex_t a);
+int					l(pthread_mutex_t a);
+int					u(pthread_mutex_t a);
 
 #endif

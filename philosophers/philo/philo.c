@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:27:43 by smendez-          #+#    #+#             */
-/*   Updated: 2025/02/12 17:41:52 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/02/13 12:51:37 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	init1(t_data **data, pthread_t **threads, int argc, char **argv)
 
 pthread_t	*th_cr(t_list *philos, pthread_t	*threads)
 {
-	int		i;
+	int			i;
 	int			n_philos;
 	t_list		*head;
 

@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 18:27:19 by smendez-          #+#    #+#             */
-/*   Updated: 2025/02/13 11:22:21 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/02/13 12:54:27 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int	l(pthread_mutex_t a)
 	pthread_mutex_lock(&a);
 	return (-1);
 }
+
 int	u(pthread_mutex_t a)
 {
 	pthread_mutex_unlock(&a);
