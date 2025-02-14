@@ -6,7 +6,7 @@
 /*   By: smendez- <smendez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 18:54:41 by smendez-          #+#    #+#             */
-/*   Updated: 2025/02/13 11:56:03 by smendez-         ###   ########.fr       */
+/*   Updated: 2025/02/14 14:35:08 by smendez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	*action(void *arg)
 		if (philo->id % 2 == 1)
 		{
 			if (philo->data->num_philos == 1)
-				return (NULL);
+				return (write(1, "0 1 has taken a fork\n", 22), NULL);
 			(part2(philo), pthread_mutex_lock(philo->right_fork));
 		}
 		else
